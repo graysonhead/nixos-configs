@@ -25,6 +25,7 @@
     root = {
       device = "/dev/nvme0n1p2";
       preLVM = true;
+    };
   };
 
   networking.hostName = "deckchair"; # Define your hostname.
