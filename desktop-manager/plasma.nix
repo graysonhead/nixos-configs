@@ -15,5 +15,6 @@
         networkmanager-iodine
         networkmanager-openvpn
         networkmanager-openconnect
+        bluetoothd
     ];
 }
