@@ -7,6 +7,8 @@
     services.printing.enable = true;
     sound.enable = true;
     hardware.pulseaudio.enable = true;
+    hardware.pulseaudio.package = pkgs.pulseaudiofull;
+    hardware.bluetooth.enable = true;
 
     environment.systemPackages = with pkgs; [
         firefox
