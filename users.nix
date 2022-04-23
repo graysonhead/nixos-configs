@@ -1,8 +1,9 @@
 { nixpkgs, ... }:
 
-security.sudo.wheelNeedsPassword = false;
 
 {
+    security.sudo.wheelNeedsPassword = false;
+
     users.users.grayson = {
         isNormalUser = true;
         home = "/home/grayson";
