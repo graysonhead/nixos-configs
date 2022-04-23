@@ -2,7 +2,8 @@
     environment = {
         systemPackages = with pkgs; [
             git
-            wgetcurl
+            wget
+            curl
             bind
             tcpdump
         ];
