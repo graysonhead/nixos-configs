@@ -31,7 +31,7 @@
   #### NETWORKING
   networking.hostName = "deckchair"; # Define your hostname.
   networking.networkmanager = {
-    enabled=true;
+    enable=true;
   };
 
   # Set your time zone.
