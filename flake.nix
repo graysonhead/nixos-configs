@@ -11,7 +11,6 @@
           ./deckchair/configuration.nix
           ./modules/nix-flakes.nix
           ./modules/default-system-packages.nix
-          ./home-manager/users.nix
         ];
       };
     };
