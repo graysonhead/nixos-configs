@@ -11,6 +11,7 @@
         modules = [
           nixos-hardware.nixosModules.dell-xps-13-9370
           ./deckchair/configuration.nix
+          ./users.nix
           ./modules/nix-flakes.nix
           ./modules/default-system-packages.nix
           ./desktop-manager/plasma.nix
