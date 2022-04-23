@@ -7,7 +7,7 @@
     services.printing.enable = true;
     sound.enable = true;
     hardware.pulseaudio.enable = true;
-    hardware.pulseaudio.package = pkgs.pulseaudiofull;
+    hardware.pulseaudio.package = pkgs.pulseaudioFull;
     hardware.bluetooth.enable = true;
 
     environment.systemPackages = with pkgs; [
