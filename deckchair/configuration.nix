@@ -27,10 +27,10 @@
       preLVM = true;
     };
   };
-  
+
   #### NETWORKING
   networking.hostName = "deckchair"; # Define your hostname.
-  networking.networkmanager. = {
+  networking.networkmanager = {
     enabled=true;
   };
 
