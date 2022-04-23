@@ -1,5 +1,8 @@
 {
   description = "Grayson's NixOS Configurations";
+  inputs = {
+    home-manager.url = "github:nix-community/home-manager";
+  };
   outputs = { nixpkgs, ... }: {
     nixosConfigurations = {
       deckchair = nixpkgs.lib.nixosSystem {
@@ -8,6 +11,7 @@
           ./deckchair/configuration.nix
           ./modules/nix-flakes.nix
           ./modules/default-system-packages.nix
+          ./home-manager/users.nix
         ];
       };
     };
