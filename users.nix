@@ -1,5 +1,7 @@
 { nixpkgs, ... }:
 
+security.sudo.wheelNeedsPassword = false;
+
 {
     users.users.grayson = {
         isNormalUser = true;
