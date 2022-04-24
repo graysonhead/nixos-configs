@@ -14,5 +14,6 @@
         networkmanager-iodine
         networkmanager-openvpn
         networkmanager-openconnect
+        nordic
     ];
 }
