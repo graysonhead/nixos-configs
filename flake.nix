@@ -17,6 +17,8 @@
           ./modules/nix-flakes.nix
           ./modules/default-system-packages.nix
           ./desktop-manager/plasma.nix
+          ./services/syncthing.nix
+          ./services/common.nix
 	  home-manager.nixosModules.home-manager
 		{
 			home-manager.useGlobalPkgs = true;

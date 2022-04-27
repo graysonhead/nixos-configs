@@ -17,11 +17,10 @@
 		rustc
 		rustfmt
 		opera
+		discord
+		joplin-desktop
+		gcc
 	];
-	services.syncthing = {
-		enable = true;
-		tray.enable = true;
-	};
 
 	programs.home-manager = {
 		enable = true;

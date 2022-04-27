@@ -7,6 +7,7 @@
 		tmux
 		htop
 		nmon
+		screen
 	];
     programs.git = {
 		package = pkgs.gitAndTools.gitFull;
