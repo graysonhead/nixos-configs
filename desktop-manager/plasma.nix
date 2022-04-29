@@ -17,5 +17,8 @@
         networkmanager-openvpn
         networkmanager-openconnect
         nordic
+        slack
+        discord
+        teamspeak_client
     ];
 }
