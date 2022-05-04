@@ -21,14 +21,9 @@
           ./services/syncthing.nix
           ./services/common.nix
           ./jager/install.nix
-	  home-manager.nixosModules.home-manager
-		{
-			home-manager.useGlobalPkgs = true;
-			home-manager.useUserPackages = true;
-			home-manager.users.grayson = import ./home-manager/grayson.nix;
-		}
+          home-manager.nixosModules.home-manager
         ];
-        specialArgs = { inherit jager; };
+        specialArgs = { inherit jager; inherit home-manager; };
       };
     };
   };

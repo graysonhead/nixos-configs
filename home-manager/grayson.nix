@@ -20,6 +20,7 @@
 		discord
 		joplin-desktop
 		gcc
+		redis
 	];
 
 	programs.home-manager = {
