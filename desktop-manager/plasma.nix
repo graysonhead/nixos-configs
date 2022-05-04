@@ -1,7 +1,6 @@
 # Sets up a system with a full Plasma UI and enables
 # common desktop/laptop services
 { config, pkgs, ...}:
-
 {
     services.xserver.enable = true;
     services.xserver.displayManager.sddm.enable = true;
@@ -20,5 +19,6 @@
         slack
         discord
         teamspeak_client
+        zoom-us
     ];
 }

@@ -5,8 +5,9 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    jager.url = "/home/grayson/RustProjects/jager";
   };
-  outputs = inputs@{ nixpkgs, nixos-hardware, home-manager, ... }: {
+  outputs = { nixpkgs, nixos-hardware, home-manager, jager, ... }: {
     nixosConfigurations = {
       deckchair = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -19,6 +20,7 @@
           ./desktop-manager/plasma.nix
           ./services/syncthing.nix
           ./services/common.nix
+          ./jager/install.nix
 	  home-manager.nixosModules.home-manager
 		{
 			home-manager.useGlobalPkgs = true;
@@ -26,6 +28,7 @@
 			home-manager.users.grayson = import ./home-manager/grayson.nix;
 		}
         ];
+        specialArgs = { inherit jager; };
       };
     };
   };
