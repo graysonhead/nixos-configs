@@ -37,7 +37,7 @@
           ./services/common.nix
           home-manager.nixosModules.home-manager
         ];
-        specialArgs = { inherit jager; inherit home-manager; };
+        specialArgs = { inherit jager; inherit home-manager; inherit deploy-rs; };
       };
     };
     deploy = {
