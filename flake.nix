@@ -29,6 +29,7 @@
       ops = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          ./roles/ops-server.nix
           ./ops/configuration.nix
           ./users.nix
           ./modules/nix-flakes.nix
