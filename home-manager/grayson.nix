@@ -1,7 +1,7 @@
 { pkgs, ... }: 
 # Home manager module for full desktop installs
 {
-	imports = [./grayson-minimal.nix];
+    imports = [./grayson-minimal.nix];
 	programs.vscode = {
 		enable = true;
 		package = pkgs.vscode;

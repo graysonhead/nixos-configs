@@ -2,7 +2,7 @@
 
 {
     imports = [ 
-        ../users.nix
+        ../home-manager/minimal-homes.nix
         ../modules/common.nix
         ../services/common.nix 
         ];

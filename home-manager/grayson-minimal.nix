@@ -23,6 +23,11 @@
 			rebuild-from-dir = "nixos-rebuild build --impure --flake . && sudo ./result/bin/switch-to-configuration switch";
 		};
 	};
+
+	programs.home-manager = {
+		enable = true;
+	};
+
 	home.file = {
 		".tmux.conf" = {
 			text = ''
