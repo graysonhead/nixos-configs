@@ -6,5 +6,5 @@
     ];
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
-    home-manager.users.grayson = import ./home-manager/grayson-minimal.nix;
+    home-manager.users.grayson = import ./grayson-minimal.nix;
 }
