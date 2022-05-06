@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, ... }: 
+# Minimal home manager module for CLI only systems
+{
 
 	home.packages = with pkgs; [
 		vim
@@ -28,9 +30,4 @@
                         '';
 		};
 	};
-	services.kdeconnect = {
-		enable = true;
-		indicator = true;
-	};
-	
 }

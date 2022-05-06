@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, ... }: 
+# Home manager module for full desktop installs
+{
 	imports = [./grayson-minimal.nix];
 	programs.vscode = {
 		enable = true;
@@ -25,5 +27,10 @@
 
 	programs.home-manager = {
 		enable = true;
+	};
+
+	services.kdeconnect = {
+		enable = true;
+		indicator = true;
 	};
 }
