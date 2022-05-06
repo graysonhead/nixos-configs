@@ -15,7 +15,7 @@
         modules = [
           nixos-hardware.nixosModules.dell-xps-13-9370
           ./roles/plasma-desktop.nix
-          ./deckchair/configuration.nix
+          ./systems/deckchair/configuration.nix
           ./jager/install.nix
         ];
         specialArgs = { inherit jager; inherit home-manager; };
@@ -24,7 +24,7 @@
         system = "x86_64-linux";
         modules = [
           ./roles/ops-server.nix
-          ./ops/configuration.nix
+          ./systems/ops/configuration.nix
         ];
         specialArgs = { inherit home-manager; inherit deploy-rs; };
       };
