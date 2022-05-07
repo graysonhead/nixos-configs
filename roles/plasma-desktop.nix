@@ -1,4 +1,4 @@
-{ nixpkgs, pkgs, home-manager, ... }:
+{ nixpkgs, pkgs, home-manager, deploy-rs, ... }:
 
 {
     imports = [
@@ -15,6 +15,7 @@
     hardware.pulseaudio.package = pkgs.pulseaudioFull;
     hardware.bluetooth.enable = true;
     programs.kdeconnect.enable = true;
+    programs.wireshark.enable = true;
     environment.systemPackages = with pkgs; [
         firefox
         networkmanager-iodine

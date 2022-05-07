@@ -1,4 +1,4 @@
-{ nixpkgs, home-manager, ... }: 
+{ nixpkgs, home-manager, deploy-rs, ... }: 
 {
     imports = [ 
         ./users.nix 
@@ -6,6 +6,12 @@
     ];
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
-    home-manager.users.grayson = import ./grayson.nix;
+    home-manager.users.grayson = {
+        imports = [
+            ./grayson.nix
+            ./grayson-minimal.nix
+        ];
+        _module.args.deploy-rs = deploy-rs;
+    };
     home-manager.users.maerose = import ./maerose.nix;
 }

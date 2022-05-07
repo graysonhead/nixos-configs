@@ -1,7 +1,6 @@
-{ pkgs, ... }: 
+{ pkgs, deploy-rs, ... }: 
 # Home manager module for full desktop installs
 {
-    imports = [./grayson-minimal.nix];
 	programs.vscode = {
 		enable = true;
 		package = pkgs.vscode;
@@ -23,6 +22,9 @@
 		joplin-desktop
 		gcc
 		redis
+		deploy-rs.defaultPackage.x86_64-linux
+		transmission-qt
+		wireshark
 	];
 
 	programs.home-manager = {

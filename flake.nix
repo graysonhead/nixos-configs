@@ -18,7 +18,7 @@
           ./systems/deckchair/configuration.nix
           ./jager/install.nix
         ];
-        specialArgs = { inherit jager; inherit home-manager; };
+        specialArgs = { inherit jager; inherit home-manager; inherit deploy-rs; };
       };
       ops = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
