@@ -11,11 +11,20 @@
     services.xserver.displayManager.sddm.enable = true;
     services.xserver.desktopManager.plasma5.enable = true;
     services.printing.enable = true;
+    services.printing.drivers = [
+        pkgs.gutenprint
+        pkgs.brlaser
+        pkgs.brgenml1lpr
+        pkgs.brgenml1cupswrapper 
+    ];
     hardware.pulseaudio.enable = true;
     hardware.pulseaudio.package = pkgs.pulseaudioFull;
     hardware.bluetooth.enable = true;
     programs.kdeconnect.enable = true;
     programs.wireshark.enable = true;
+    services.avahi.enable = true;
+    services.avahi.publish.enable = true;
+    services.avahi.nssmdns = true;
     environment.systemPackages = with pkgs; [
         firefox
         networkmanager-iodine
