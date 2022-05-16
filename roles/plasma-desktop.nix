@@ -25,6 +25,7 @@
     services.avahi.enable = true;
     services.avahi.publish.enable = true;
     services.avahi.nssmdns = true;
+    programs.ssh.startAgent = true;
     environment.systemPackages = with pkgs; [
         firefox
         networkmanager-iodine

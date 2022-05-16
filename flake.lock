@@ -1,9 +1,27 @@
 {
   "nodes": {
+    "agenix": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1648942457,
+        "narHash": "sha256-i29Z1t3sVfCNfpp+KAfeExvpqHQSbLO1KWylTtfradU=",
+        "owner": "ryantm",
+        "repo": "agenix",
+        "rev": "0d5e59ed645e4c7b60174bc6f6aac6a203dc0b01",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryantm",
+        "repo": "agenix",
+        "type": "github"
+      }
+    },
     "cargo2nix": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "rust-overlay": "rust-overlay"
       },
       "locked": {
@@ -24,7 +42,7 @@
     "cargo2nix_2": {
       "inputs": {
         "flake-utils": "flake-utils_3",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_5",
         "rust-overlay": "rust-overlay_3"
       },
       "locked": {
@@ -45,7 +63,7 @@
     "deploy-rs": {
       "inputs": {
         "flake-compat": "flake-compat",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "utils": "utils"
       },
       "locked": {
@@ -66,18 +84,21 @@
       "inputs": {
         "cargo2nix": "cargo2nix",
         "flake-utils": "flake-utils_2",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
         "lastModified": 1652329712,
-        "narHash": "sha256-RYXKY9JYOMXwAB8AMKI0I80P+o8+5GO+tava6XUKi84=",
-        "type": "git",
-        "url": "file:///home/grayson/rust-projects/dns-agent"
+        "narHash": "sha256-AAETGxkNWzcniIZpUC5tXUmZ+qde5eNfCUNMaWfs/7o=",
+        "owner": "graysonhead",
+        "repo": "dns-agent",
+        "rev": "b0db02d8c4160f6d296080737460978313bfc0c6",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/grayson/rust-projects/dns-agent"
+        "owner": "graysonhead",
+        "repo": "dns-agent",
+        "type": "github"
       }
     },
     "flake-compat": {
@@ -180,7 +201,7 @@
       "inputs": {
         "cargo2nix": "cargo2nix_2",
         "flake-utils": "flake-utils_4",
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_6",
         "rust-overlay": "rust-overlay_4"
       },
       "locked": {
@@ -215,6 +236,22 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1638587357,
+        "narHash": "sha256-2ySMW3QARG8BsRPmwe7clTbdCuaObromOKewykP+UJc=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "e34c5379866833f41e2a36f309912fa675d687c7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-21.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
         "lastModified": 1648219316,
         "narHash": "sha256-Ctij+dOi0ZZIfX5eMhgwugfvB+WZSrvVNAyAuANOsnQ=",
         "owner": "NixOS",
@@ -229,7 +266,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1638109994,
         "narHash": "sha256-OpA37PTiPMIqoRJbufbl5rOLII7HeeGcA0yl7FoyCIE=",
@@ -245,7 +282,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1652060829,
         "narHash": "sha256-ND2od94mb0z7YKDvrMA/CYRgFz35uaCenNlu0vwPp/A=",
@@ -260,7 +297,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1638109994,
         "narHash": "sha256-OpA37PTiPMIqoRJbufbl5rOLII7HeeGcA0yl7FoyCIE=",
@@ -276,7 +313,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_5": {
+    "nixpkgs_6": {
       "locked": {
         "lastModified": 1650937716,
         "narHash": "sha256-3Tuspfl36JKnQekMVII3kiL2afj+ngPY2iPVN3zeReU=",
@@ -291,7 +328,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_6": {
+    "nixpkgs_7": {
       "locked": {
         "lastModified": 1650701402,
         "narHash": "sha256-XKfstdtqDg+O+gNBx1yGVKWIhLgfEDg/e2lvJSsp9vU=",
@@ -309,12 +346,13 @@
     },
     "root": {
       "inputs": {
+        "agenix": "agenix",
         "deploy-rs": "deploy-rs",
         "dns-agent": "dns-agent",
         "home-manager": "home-manager",
         "jager": "jager",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_6"
+        "nixpkgs": "nixpkgs_7"
       }
     },
     "rust-overlay": {

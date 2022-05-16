@@ -1,4 +1,4 @@
-{ pkgs, deploy-rs, ... }: 
+{ pkgs, deploy-rs, agenix, ... }: 
 # Home manager module for full desktop installs
 {
 	programs.vscode = {
@@ -25,6 +25,7 @@
 		deploy-rs.defaultPackage.x86_64-linux
 		transmission-qt
 		wireshark
+		agenix.defaultPackage.x86_64-linux
 	];
 
 	programs.home-manager = {

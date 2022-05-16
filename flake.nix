@@ -7,9 +7,19 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     jager.url = "github:graysonhead/jager";
     deploy-rs.url = "github:serokell/deploy-rs";
-    dns-agent.url = "/home/grayson/rust-projects/dns-agent";
+    dns-agent.url = "github:graysonhead/dns-agent";
+    agenix.url = "github:ryantm/agenix";
   };
-  outputs = { self, deploy-rs, nixpkgs, nixos-hardware, home-manager, jager, dns-agent, ... }: {
+  outputs = { self, 
+              deploy-rs, 
+              agenix, 
+              nixpkgs, 
+              nixos-hardware, 
+              home-manager, 
+              jager, 
+              dns-agent, 
+              ... 
+  }: {
     nixosConfigurations = {
       deckchair = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -19,16 +29,17 @@
           ./systems/deckchair/configuration.nix
           ./jager/install.nix
         ];
-        specialArgs = { inherit jager; inherit home-manager; inherit deploy-rs; inherit dns-agent; };
+        specialArgs = { inherit jager; inherit home-manager; inherit deploy-rs; inherit dns-agent; inherit agenix; };
       };
       ops = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          agenix.nixosModule
           ./roles/ops-server.nix
           ./systems/ops/configuration.nix
           ./services/dns-agent.nix
         ];
-        specialArgs = { inherit home-manager; inherit deploy-rs; inherit dns-agent; };
+        specialArgs = { inherit home-manager; inherit deploy-rs; inherit dns-agent; inherit agenix;};
       };
     };
     deploy = {

@@ -31,8 +31,8 @@
 	home.file = {
 		".tmux.conf" = {
 			text = ''
-                        setw -g mouse on
-                        '';
+				setw -g mouse on
+				'';
 		};
 	};
 }
