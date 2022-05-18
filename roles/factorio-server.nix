@@ -40,7 +40,7 @@
                     {
                         name = "${config.networking.hostName}";
                         record_type = "A";
-                        interface = "external_interface";
+                        interface = "external";
                     }
                     {
                         name = "${config.networking.hostName}";
