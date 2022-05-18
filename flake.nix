@@ -11,13 +11,9 @@
     agenix.url = "github:ryantm/agenix";
   };
   outputs = { self,
-              deploy-rs, 
-              agenix, 
-              nixpkgs, 
-              nixos-hardware, 
-              home-manager, 
-              jager, 
-              dns-agent,
+              nixpkgs,
+              agenix,
+              deploy-rs,
               ... 
   }@inputs: {
     nixosConfigurations = {
@@ -25,7 +21,7 @@
       deckchair = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          nixos-hardware.nixosModules.dell-xps-13-9370
+          inputs.nixos-hardware.nixosModules.dell-xps-13-9370
           ./roles/plasma-desktop.nix
           ./systems/deckchair/configuration.nix
           ./jager/install.nix
@@ -55,6 +51,16 @@
         specialArgs = { inherit inputs; };
       };
 
+      factorio = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          agenix.nixosModule
+          ./systems/factorio.nix
+          ./roles/factorio.nix
+        ];
+        specialArgs = { inherit inputs; };
+      };
+
     };
     deploy = {
 
@@ -68,10 +74,18 @@
 
       };
       nodes.nx1 = {
-        hostname = "10.5.5.41";
+        hostname = "nx1.i.graysonhead.net";
         profiles.system = {
           user = "root";
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.nx1;
+        };
+      };
+
+      nodes.factorio = {
+        hostname = "factorio.i.graysonhead.net";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.factorio;
         };
       };
 
