@@ -1,5 +1,5 @@
 
-{ nixpkgs, home-manager, ... }:
+{ nixpkgs, inputs, ... }:
 # Contains user entries for all users as well as default minimal home manager module imports
 {
     security.sudo.wheelNeedsPassword = false;

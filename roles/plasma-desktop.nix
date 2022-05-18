@@ -1,4 +1,4 @@
-{ nixpkgs, pkgs, home-manager, deploy-rs, ... }:
+{ nixpkgs, pkgs, inputs, ... }:
 
 {
     imports = [

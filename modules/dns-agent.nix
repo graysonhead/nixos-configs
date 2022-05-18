@@ -1,4 +1,4 @@
-{ config, lib, pkgs, dns-agent, ...}:
+{ config, lib, pkgs, inputs, ...}:
 
 with lib;
 
@@ -12,8 +12,8 @@ in {
             enable = mkEnableOption "dns-agent";
 
             package = mkOption {
-                default = dns-agent.defaultPackage.${pkgs.system};
-                defaultText = literalExpression "dns-agent.defaultPackage";
+                default = inputs.dns-agent.defaultPackage.${pkgs.system};
+                defaultText = literalExpression "inputs.dns-agent.defaultPackage";
                 type = types.package;
             };
 

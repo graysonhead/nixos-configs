@@ -1,8 +1,8 @@
-{ nixpkgs, home-manager, deploy-rs, agenix, ... }: 
+{ nixpkgs, inputs, ... }: 
 {
     imports = [ 
         ./users.nix 
-        home-manager.nixosModules.home-manager
+        inputs.home-manager.nixosModule
     ];
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
@@ -11,8 +11,7 @@
             ./grayson.nix
             ./grayson-minimal.nix
         ];
-        _module.args.deploy-rs = deploy-rs;
-        _module.args.agenix = agenix;
+        _module.args.inputs = inputs;
     };
     home-manager.users.maerose = import ./maerose.nix;
 }

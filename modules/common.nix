@@ -1,4 +1,4 @@
-{ pkgs, dns-agent, ... }: 
+{ pkgs, inputs, ... }: 
 # Enable nix flakes, set default systempackages, disable package signing for deploy-rs
 {
     imports = [

@@ -10,17 +10,18 @@
     dns-agent.url = "github:graysonhead/dns-agent";
     agenix.url = "github:ryantm/agenix";
   };
-  outputs = { self, 
+  outputs = { self,
               deploy-rs, 
               agenix, 
               nixpkgs, 
               nixos-hardware, 
               home-manager, 
               jager, 
-              dns-agent, 
+              dns-agent,
               ... 
-  }: {
+  }@inputs: {
     nixosConfigurations = {
+
       deckchair = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -29,8 +30,9 @@
           ./systems/deckchair/configuration.nix
           ./jager/install.nix
         ];
-        specialArgs = { inherit jager; inherit home-manager; inherit deploy-rs; inherit dns-agent; inherit agenix; };
+        specialArgs = { inherit inputs;};
       };
+
       ops = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -39,10 +41,23 @@
           ./systems/ops/configuration.nix
           ./services/dns-agent.nix
         ];
-        specialArgs = { inherit home-manager; inherit deploy-rs; inherit dns-agent; inherit agenix;};
+        specialArgs = { inherit inputs; };
       };
+
+      nx1 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          agenix.nixosModule
+          ./systems/nx1/configuration.nix
+          ./roles/minimal-server.nix
+          ./services/dns-agent.nix
+        ];
+        specialArgs = { inherit inputs; };
+      };
+
     };
     deploy = {
+
       nodes.ops = {
         hostname = "ops.i.graysonhead.net";
         profiles.system = {
@@ -50,7 +65,16 @@
           user = "root";
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.ops;
         };
+
       };
+      nodes.nx1 = {
+        hostname = "10.5.5.41";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.nx1;
+        };
+      };
+
     };
     checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
   };
