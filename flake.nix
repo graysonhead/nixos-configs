@@ -56,7 +56,7 @@
         modules = [
           agenix.nixosModule
           ./systems/factorio.nix
-          ./roles/factorio.nix
+          ./roles/factorio-server.nix
         ];
         specialArgs = { inherit inputs; };
       };
