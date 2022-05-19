@@ -11,12 +11,18 @@
 			golang.go
 			ms-python.python
 			matklad.rust-analyzer
+			arrterian.nix-env-selector
         ];
+	};
+	programs.direnv = {
+		enable = true;
+		nix-direnv.enable = true;
 	};
 	home.packages = with pkgs; [
 		cargo
 		rustc
 		rustfmt
+		rust-analyzer
 		opera
 		discord
 		joplin-desktop
