@@ -7,6 +7,10 @@
         ../services/syncthing.nix
         ../home-manager/full-homes.nix
     ];
+    nix.extraOptions = ''
+        keep-outputs = true
+        keep-derivations = true
+        '';
     services.xserver.enable = true;
     services.xserver.displayManager.sddm.enable = true;
     services.xserver.desktopManager.plasma5.enable = true;
