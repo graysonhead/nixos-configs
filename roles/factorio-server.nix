@@ -1,14 +1,31 @@
-{ nixpkgs, inputs, config, ... }:
+{ nixpkgs, inputs, lib, config, ... }:
 
 {
     imports = [ 
         ../home-manager/minimal-homes.nix
         ../modules/common.nix
+        ../modules/factorio.nix
         ../services/common.nix 
-        ../services/dns-agent.nix
+        ../services/dns-agent.nix 
         ];
     services.openssh.enable = true;
     security.sudo.wheelNeedsPassword = false;
+    age.secrets.factorio.file = ../secrets/factorio.age;
+
+    # Factorio server
+    services.gfactorio = {
+        enable = true;
+        token = "$TOKEN";
+        openFirewall = true;
+        admins = [ "darkside34" ];
+        description = "Welcome to the darkside, we have cookies";
+        game-password = "$GAME_PASSWORD";
+        game-name = "The Darkside";
+        environmentFiles = [config.age.secrets.factorio.path];
+    };
+
+ 
+
     environment.systemPackages = [
     ];
     services.dns-agent.extraConfig = let

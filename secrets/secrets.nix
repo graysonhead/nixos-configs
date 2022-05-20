@@ -8,4 +8,5 @@ let
 in
 {
     "digitalocean-key.age".publicKeys = users ++ systems;
+    "factorio.age".publicKeys = [grayson factorio];
 }

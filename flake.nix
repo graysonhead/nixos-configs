@@ -14,8 +14,13 @@
               nixpkgs,
               agenix,
               deploy-rs,
-              ... 
-  }@inputs: {
+              ...
+  }@inputs: 
+  let pkgs = nixpkgs.legacyPackages.x86_64-linux;
+  in {
+    devShells.x86_64-linux.default = pkgs.mkShell {
+      packages = [agenix.packages.x86_64-linux.agenix];
+    };
     nixosConfigurations = {
 
       deckchair = nixpkgs.lib.nixosSystem {
