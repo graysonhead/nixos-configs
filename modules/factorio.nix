@@ -275,6 +275,7 @@ in
         StateDirectory = cfg.stateDirName;
         UMask = "0007";
         EnvironmentFile = config.services.gfactorio.environmentFiles;
+        RuntimeDirectory = "factorio";
         ExecStartPre = lib.optional (config.services.gfactorio.environmentFiles !=[])
             (pkgs.writeShellScript "pre-start" ''
                 umask 077
@@ -291,7 +292,6 @@ in
           (optionalString (cfg.mods != []) "--mod-directory=${modDir}")
           (optionalString (cfg.admins != []) "--server-adminlist=${serverAdminsFile}")
         ];
-        RuntimeDirectory = "factorio";
 
         # Sandboxing
         NoNewPrivileges = true;

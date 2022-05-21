@@ -21,6 +21,7 @@
         description = "Welcome to the darkside, we have cookies";
         game-password = "$GAME_PASSWORD";
         game-name = "The Darkside";
+        saveName = "save";
         environmentFiles = [config.age.secrets.factorio.path];
     };
 
