@@ -9,6 +9,10 @@
     deploy-rs.url = "github:serokell/deploy-rs";
     dns-agent.url = "github:graysonhead/dns-agent";
     agenix.url = "github:ryantm/agenix";
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
   };
   outputs = { self,
               nixpkgs,

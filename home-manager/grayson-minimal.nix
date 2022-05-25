@@ -10,6 +10,7 @@
 		htop
 		nmon
 		screen
+		unzip
 	];
     programs.git = {
 		package = pkgs.gitAndTools.gitFull;
@@ -32,6 +33,7 @@
 		".tmux.conf" = {
 			text = ''
 				setw -g mouse on
+				bind -n -C-s set-window-option synchronize-panes
 				'';
 		};
 	};

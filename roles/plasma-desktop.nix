@@ -41,4 +41,5 @@
         teamspeak_client
         zoom-us
     ];
+    programs.adb.enable = true;
 }
