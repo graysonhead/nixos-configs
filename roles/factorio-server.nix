@@ -5,6 +5,7 @@
         ../home-manager/minimal-homes.nix
         ../modules/common.nix
         ../modules/factorio.nix
+        ../modules/home-backups.nix
         ../services/common.nix 
         ../services/dns-agent.nix 
         ];
@@ -25,10 +26,24 @@
         environmentFiles = [config.age.secrets.factorio.path];
     };
 
- 
+    services.restic.backups = {
+        factorio = {
+            repository = "b2:nixos-backups";
+            paths = [ "/var/lib/factorio" ];
+            timerConfig = {
+                OnCalendar = "daily";
+            };
+            pruneOpts = [
+                "--keep-daily 7"
+                "--keep-weekly 5"
+                "--keep-monthly 12"
+                "--keep-yearly 75"
+            ];
+            environmentFile = config.age.secrets.restic.path;
+            passwordFile = config.age.secrets.restic_password.path;
+        };
+    };
 
-    environment.systemPackages = [
-    ];
     services.dns-agent.extraConfig = let
         interface_name_list = builtins.attrNames config.networking.interfaces;
         first_interface = builtins.elemAt interface_name_list 0;
