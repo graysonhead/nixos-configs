@@ -29,7 +29,10 @@
     services.restic.backups = {
         factorio = {
             repository = "b2:nixos-backups";
-            paths = [ "/var/lib/factorio" ];
+            paths = [
+                "/var/lib/factorio"
+                "/var/lib/private"
+             ];
             timerConfig = {
                 OnCalendar = "daily";
             };
