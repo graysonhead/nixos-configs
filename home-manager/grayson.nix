@@ -26,6 +26,7 @@
 		opera
 		discord
 		joplin-desktop
+		signal-desktop
 		gcc
 		redis
 		transmission-qt

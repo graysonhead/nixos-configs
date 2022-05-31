@@ -4,9 +4,13 @@ let
     ops = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIesZVAoa5QkmDQ95sOrOhLHao8Pi1ZUxEyr+Uh5Gfnr";
     nx1 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEo7WqbCAS2y8zlxnFFNKsiJkGTXRpesiRIm8g8G2io1";
     factorio = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINa0kSfUH79cdUbgC7Tj8bJXLNsNrLiwmtrjnjyeoAP7";
-    systems = [ ops nx1 factorio ];
+    deckchair = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFbxjqdNMawqU4C99V0OqyMVFxZCUypUQn6mTLErg6Yi";
+    systems = [ ops nx1 factorio deckchair ];
 in
 {
     "digitalocean-key.age".publicKeys = users ++ systems;
-    "factorio.age".publicKeys = [grayson factorio];
+    "factorio.age".publicKeys = users ++ [ factorio ];
+    "backblaze_restic.age".publicKeys = users ++ systems;
+    "restic_password.age".publicKeys = users ++ systems;
 }
+

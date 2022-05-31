@@ -4,6 +4,7 @@
     imports = [
         ./dns-agent.nix
     ];
+    programs.vim.defaultEditor = true;
     nix.requireSignedBinaryCaches = false;
     nixpkgs.config.allowUnfree = true;
     environment = {

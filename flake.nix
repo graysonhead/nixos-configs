@@ -30,6 +30,7 @@
       deckchair = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          agenix.nixosModule
           inputs.nixos-hardware.nixosModules.dell-xps-13-9370
           ./roles/plasma-desktop.nix
           ./systems/deckchair/configuration.nix
