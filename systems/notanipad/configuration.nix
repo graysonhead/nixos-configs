@@ -10,6 +10,10 @@
       ./hardware-configuration.nix
     ];
 
+  age.identityPaths = [
+    "/etc/ssh/ssh_host_ed25519_key"
+  ];
+
  
   #Hidpi
   boot.loader.grub.gfxmodeEfi = "1024x768";
