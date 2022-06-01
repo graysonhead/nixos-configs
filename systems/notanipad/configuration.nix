@@ -25,7 +25,7 @@
     efiSupport = true;
     enableCryptodisk = true;
   };
-  
+
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.initrd.luks.devices = {
     root = {
@@ -39,6 +39,7 @@
   networking.interfaces.enp58s0u1.useDHCP = true;
   networking.interfaces.wlp59s0.useDHCP = true;
 
+  time.timeZone = "America/Chicago";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
