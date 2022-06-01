@@ -5,7 +5,6 @@
         ../home-manager/full-homes.nix
         ../modules/common.nix
         ../services/syncthing.nix
-        ../home-manager/full-homes.nix
         ../modules/home-backups.nix
     ];
     nix.extraOptions = ''

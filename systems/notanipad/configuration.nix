@@ -12,7 +12,7 @@
 
  
   #Hidpi
-  # boot.loader.grub.gfxmodeEfi = "1024x768";
+  boot.loader.grub.gfxmodeEfi = "1024x768";
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.efi.canTouchEfiVariables = true;
