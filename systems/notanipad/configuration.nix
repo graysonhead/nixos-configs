@@ -32,7 +32,7 @@
       device = "/dev/nvme0n1p2";
       preLVM = true;
       allowDiscards = true;
-    }
+    };
   };
 
   networking.useDHCP = false;
