@@ -10,12 +10,12 @@
       ./hardware-configuration.nix
     ];
 
+ 
+  #Hidpi
+  # boot.loader.grub.gfxmodeEfi = "1024x768";
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.efi.canTouchEfiVariables = true;
-
-  #Hidpi
-  boot.loader.grub.gfxmodeEfi = "1024x768";
-
   boot.loader.grub = {
     enable = true;
     version = 2;
@@ -23,17 +23,18 @@
     efiSupport = true;
     enableCryptodisk = true;
   };
-
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.opengl.enable = true;
-
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.initrd.luks.devices = {
-    enc-vg = {
+    "enc-vg" = {
       device = "/dev/nvme0n1p2";
       preLVM = true;
     };
   };
+
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.opengl.enable = true;
+
+
 
   networking.hostName = "notanipad"; # Define your hostname.
   networking.networkmanager = {
