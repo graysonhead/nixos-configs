@@ -39,6 +39,18 @@
         specialArgs = { inherit inputs;};
       };
 
+      notanipad = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          agenix.nixosModule
+          inputs.nixos-hardware.nixosModules.dell-precision-5530
+          ./roles/plasma-desktop.nix
+          ./systems/deckchair/configuration.nix
+          ./jager/install.nix
+        ];
+        specialArgs = { inherit inputs;};
+      };
+
       ops = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
