@@ -9,51 +9,45 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+  # https://bugzilla.kernel.org/show_bug.cgi?id=110941
+  boot.kernelParams = [ "intel_pstate=no_hwp" ];
 
   age.identityPaths = [
     "/etc/ssh/ssh_host_ed25519_key"
   ];
 
- 
-  #Hidpi
+  # Supposedly better for the SSD.
+  fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
+
+  # Use the GRUB 2 boot loader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.version = 2;
+  boot.loader.grub.device = "nodev";
+  boot.loader.grub.efiSupport = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # Grub menu is painted really slowly on HiDPI, so we lower the
+  # resolution. Unfortunately, scaling to 1280x720 (keeping aspect
+  # ratio) doesn't seem to work, so we just pick another low one.
   boot.loader.grub.gfxmodeEfi = "1024x768";
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub = {
-    enable = true;
-    version = 2;
-    device = "nodev";
-    efiSupport = true;
-    enableCryptodisk = true;
-  };
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.initrd.luks.devices = {
-    "enc-vg" = {
-      device = "/dev/nvme0n1p2";
+    root = {
+      device = "/dev/disk/by-uuid/20c1473c-55f3-4e0c-ad7e-0a906d8ae4b0";
       preLVM = true;
+      allowDiscards = true;
     };
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
 
-
-
-  networking.hostName = "notanipad"; # Define your hostname.
   networking.networkmanager = {
     enable=true;
   };
 
   time.timeZone = "America/Chicago";
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.11"; # Did you read the comment?
-
+  system.stateVersion = "21.11";
 }
 
