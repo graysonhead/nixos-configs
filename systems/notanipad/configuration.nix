@@ -29,7 +29,7 @@
 
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.initrd.luks.devices = {
-    root = {
+    enc-vg = {
       device = "/dev/nvme0n1p2";
       preLVM = true;
     };
