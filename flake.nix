@@ -45,8 +45,7 @@
           agenix.nixosModule
           inputs.nixos-hardware.nixosModules.dell-precision-5530
           ./roles/plasma-desktop.nix
-          ./systems/deckchair/configuration.nix
-          ./jager/install.nix
+          ./systems/notanipad/configuration.nix
         ];
         specialArgs = { inherit inputs;};
       };
