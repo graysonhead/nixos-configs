@@ -16,8 +16,6 @@
   #Hidpi
   boot.loader.grub.gfxmodeEfi = "1024x768";
 
-  fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
-
   boot.loader.grub = {
     enable = true;
     version = 2;
@@ -34,13 +32,13 @@
     root = {
       device = "/dev/nvme0n1p2";
       preLVM = true;
-      allowDiscards = true;
     };
   };
 
-  networking.useDHCP = false;
-  networking.interfaces.enp58s0u1.useDHCP = true;
-  networking.interfaces.wlp59s0.useDHCP = true;
+  networking.hostName = "notanipad"; # Define your hostname.
+  networking.networkmanager = {
+    enable=true;
+  };
 
   time.timeZone = "America/Chicago";
 
