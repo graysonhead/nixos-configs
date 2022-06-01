@@ -22,6 +22,9 @@
         pkgs.brgenml1lpr
         pkgs.brgenml1cupswrapper 
     ];
+    programs.steam = {
+        enable = true;
+    };
     hardware.pulseaudio.enable = true;
     hardware.pulseaudio.package = pkgs.pulseaudioFull;
     hardware.bluetooth.enable = true;

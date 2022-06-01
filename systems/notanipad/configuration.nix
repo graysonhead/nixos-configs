@@ -10,13 +10,14 @@
       ./hardware-configuration.nix
     ];
 
-  age.identityPaths = [
-    "/etc/ssh/ssh_host_ed25519_key"
-  ];
-
   # Use the systemd-boot EFI boot loader.
- 
   boot.loader.efi.canTouchEfiVariables = true;
+
+  #Hidpi
+  boot.loader.grub.gfxmodeEfi = "1024x768";
+
+  fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
+
   boot.loader.grub = {
     enable = true;
     version = 2;
@@ -24,22 +25,20 @@
     efiSupport = true;
     enableCryptodisk = true;
   };
+  
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.initrd.luks.devices = {
     root = {
       device = "/dev/nvme0n1p2";
       preLVM = true;
-    };
+      allowDiscards = true;
+    }
   };
 
-  #### NETWORKING
-  networking.hostName = "deckchair"; # Define your hostname.
-  networking.networkmanager = {
-    enable=true;
-  };
+  networking.useDHCP = false;
+  networking.interfaces.enp58s0u1.useDHCP = true;
+  networking.interfaces.wlp59s0.useDHCP = true;
 
-  # Set your time zone.
-  time.timeZone = "America/Chicago";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -5,6 +5,7 @@
         ../home-manager/minimal-homes.nix
         ../modules/common.nix
         ../services/common.nix 
+        ../modules/home-backups.nix
         ];
     services.openssh.enable = true;
     security.sudo.wheelNeedsPassword = false;
