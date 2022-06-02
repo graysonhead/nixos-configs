@@ -38,9 +38,16 @@
       allowDiscards = true;
     };
   };
+  
+  services.xserver.videoDrivers = [ "nvidia" "modesetting" ];
+    hardware.nvidia = {
+          optimus_prime = {
+                  enable = true;
+                  nvidiaBusId = "PCI:1:0:0";
+                  intelBusId = "PCI:0:2:0";
+          };
+  };
 
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.opengl.enable = true;
 
   networking.hostName = "notanipad";
   networking.networkmanager = {
