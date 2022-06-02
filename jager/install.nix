@@ -1,6 +1,6 @@
-{ config, pkgs, inputs, ...}:
+{ config, pkgs, inputs, ... }:
 {
-    environment.systemPackages = with pkgs; [
-        inputs.jager.packages.${system}.jager-backend
-    ];
+  environment.systemPackages = with pkgs; [
+    inputs.jager.packages.${system}.jager-backend
+  ];
 }

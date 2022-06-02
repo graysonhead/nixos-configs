@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
   # https://bugzilla.kernel.org/show_bug.cgi?id=110941
@@ -38,20 +39,19 @@
       allowDiscards = true;
     };
   };
-  
+
   services.xserver.videoDrivers = [ "nvidia" "modesetting" ];
-    hardware.nvidia = {
-          prime = {
-                  enable = true;
-                  nvidiaBusId = "PCI:1:0:0";
-                  intelBusId = "PCI:0:2:0";
-          };
+  hardware.nvidia = {
+    prime = {
+      nvidiaBusId = "PCI:1:0:0";
+      intelBusId = "PCI:0:2:0";
+    };
   };
 
 
   networking.hostName = "notanipad";
   networking.networkmanager = {
-    enable=true;
+    enable = true;
   };
 
   time.timeZone = "America/Chicago";

@@ -14,103 +14,109 @@
       flake = false;
     };
   };
-  outputs = { self,
-              nixpkgs,
-              agenix,
-              deploy-rs,
-              ...
-  }@inputs: 
-  let pkgs = nixpkgs.legacyPackages.x86_64-linux;
-  in {
-    devShells.x86_64-linux.default = pkgs.mkShell {
-      packages = [agenix.packages.x86_64-linux.agenix];
-    };
-    nixosConfigurations = {
+  outputs =
+    { self
+    , nixpkgs
+    , agenix
+    , deploy-rs
+    , ...
+    }@inputs:
+    let pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    in
+    {
+      devShells.x86_64-linux.default = pkgs.mkShell {
+        packages = [
+          agenix.packages.x86_64-linux.agenix
 
-      deckchair = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          agenix.nixosModule
-          inputs.nixos-hardware.nixosModules.dell-xps-13-9370
-          ./roles/plasma-desktop.nix
-          ./systems/deckchair/configuration.nix
-          ./jager/install.nix
         ];
-        specialArgs = { inherit inputs;};
       };
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+      nixosConfigurations = {
 
-      notanipad = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          agenix.nixosModule
-          inputs.nixos-hardware.nixosModules.dell-precision-5530
-          ./roles/plasma-desktop.nix
-          ./systems/notanipad/configuration.nix
-        ];
-        specialArgs = { inherit inputs;};
-      };
+        deckchair = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            agenix.nixosModule
+            inputs.nixos-hardware.nixosModules.dell-xps-13-9370
+            ./roles/plasma-desktop.nix
+            ./systems/deckchair/configuration.nix
+            ./jager/install.nix
+          ];
+          specialArgs = { inherit inputs; };
+        };
 
-      ops = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          agenix.nixosModule
-          ./roles/ops-server.nix
-          ./systems/ops/configuration.nix
-          ./services/dns-agent.nix
-        ];
-        specialArgs = { inherit inputs; };
-      };
+        notanipad = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            agenix.nixosModule
+            inputs.nixos-hardware.nixosModules.dell-precision-5530
+            ./roles/plasma-desktop.nix
+            ./systems/notanipad/configuration.nix
+          ];
+          specialArgs = { inherit inputs; };
+        };
 
-      nx1 = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          agenix.nixosModule
-          ./systems/nx1/configuration.nix
-          ./roles/minimal-server.nix
-          ./services/dns-agent.nix
-        ];
-        specialArgs = { inherit inputs; };
-      };
+        ops = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            agenix.nixosModule
+            ./roles/ops-server.nix
+            ./systems/ops/configuration.nix
+            ./services/dns-agent.nix
+          ];
+          specialArgs = { inherit inputs; };
+        };
 
-      factorio = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          agenix.nixosModule
-          ./systems/factorio.nix
-          ./roles/factorio-server.nix
-        ];
-        specialArgs = { inherit inputs; };
-      };
+        nx1 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            agenix.nixosModule
+            ./systems/nx1/configuration.nix
+            ./roles/minimal-server.nix
+            ./services/dns-agent.nix
+          ];
+          specialArgs = { inherit inputs; };
+        };
 
-    };
-    deploy = {
-
-      nodes.ops = {
-        hostname = "ops.i.graysonhead.net";
-        profiles.system = {
-          sshUser = "grayson";
-          user = "root";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.ops;
+        factorio = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            agenix.nixosModule
+            ./systems/factorio.nix
+            ./roles/factorio-server.nix
+          ];
+          specialArgs = { inherit inputs; };
         };
 
       };
-      nodes.nx1 = {
-        hostname = "nx1.i.graysonhead.net";
-        profiles.system = {
-          user = "root";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.nx1;
-        };
-      };
+      deploy = {
 
-      nodes.factorio = {
-        hostname = "factorio.i.graysonhead.net";
-        profiles.system = {
-          user = "root";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.factorio;
-        };
-      };
+        nodes.ops = {
+          hostname = "ops.i.graysonhead.net";
+          profiles.system = {
+            sshUser = "grayson";
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.ops;
+          };
 
+        };
+        nodes.nx1 = {
+          hostname = "nx1.i.graysonhead.net";
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.nx1;
+          };
+        };
+
+        nodes.factorio = {
+          hostname = "factorio.i.graysonhead.net";
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.factorio;
+          };
+        };
+
+      };
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
-    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
-  };
 }

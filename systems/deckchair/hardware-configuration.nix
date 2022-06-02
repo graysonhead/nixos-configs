@@ -5,35 +5,37 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ 
-    "xhci_pci" 
-    "nvme" 
-    "usb_storage" 
-    "sd_mod" 
-    "rtsx_pci_sdmmc" 
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "nvme"
+    "usb_storage"
+    "sd_mod"
+    "rtsx_pci_sdmmc"
     "aesni_intel"
     "cryptd"
-    ];
+  ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/b3dc0b59-806b-47a5-835d-671bb8f47b02";
+    {
+      device = "/dev/disk/by-uuid/b3dc0b59-806b-47a5-835d-671bb8f47b02";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/4584-AD0D";
+    {
+      device = "/dev/disk/by-uuid/4584-AD0D";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/c2341089-55c9-4d30-a9fb-1a7dc1d1da09"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/c2341089-55c9-4d30-a9fb-1a7dc1d1da09"; }];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

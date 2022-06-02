@@ -1,3 +1,3 @@
-{ nixpkgs, inputs, ...}: {
-    services.locate.enable = true;
+{ nixpkgs, inputs, ... }: {
+  services.locate.enable = true;
 }

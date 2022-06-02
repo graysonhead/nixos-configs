@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -15,7 +16,7 @@
   ];
 
   # Use the systemd-boot EFI boot loader.
- 
+
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub = {
     enable = true;
@@ -35,7 +36,7 @@
   #### NETWORKING
   networking.hostName = "deckchair"; # Define your hostname.
   networking.networkmanager = {
-    enable=true;
+    enable = true;
   };
 
   # Set your time zone.

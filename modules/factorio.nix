@@ -65,7 +65,7 @@ in
 
       admins = mkOption {
         type = types.listOf types.str;
-        default = [];
+        default = [ ];
         example = [ "username" ];
         description = ''
           List of player names which will be admin.
@@ -102,16 +102,16 @@ in
         '';
       };
       environmentFiles = mkOption {
-            type = types.listOf types.path;
-            default =[];
-            example = ["/run/keys/factorio.env"];
-            description = ''
-                File to load as environment file. Environment variables from this file
-                will be interpolated into the config file using envsubst with this
-                syntax: <literal>$ENVIRONMENT</literal> or <literal>''${VARIABLE}</literal>.
-                This is useful to avoid putting secrets into the nix store.
-            '';
-        };
+        type = types.listOf types.path;
+        default = [ ];
+        example = [ "/run/keys/factorio.env" ];
+        description = ''
+          File to load as environment file. Environment variables from this file
+          will be interpolated into the config file using envsubst with this
+          syntax: <literal>$ENVIRONMENT</literal> or <literal>''${VARIABLE}</literal>.
+          This is useful to avoid putting secrets into the nix store.
+        '';
+      };
       # TODO Add more individual settings as nixos-options?
       # TODO XXX The server tries to copy a newly created config file over the old one
       #   on shutdown, but fails, because it's in the nix store. When is this needed?
@@ -139,7 +139,7 @@ in
       };
       mods = mkOption {
         type = types.listOf types.package;
-        default = [];
+        default = [ ];
         description = ''
           Mods the server should install and activate.
 
@@ -165,8 +165,8 @@ in
       };
       extraSettings = mkOption {
         type = types.attrs;
-        default = {};
-        example = { admins = [ "username" ];};
+        default = { };
+        example = { admins = [ "username" ]; };
         description = ''
           Extra game configuration that will go into server-settings.json
         '';
@@ -250,65 +250,68 @@ in
   };
 
   config = mkIf cfg.enable {
-    systemd.services.factorio = let
-        finalConfigFile = if config.services.gfactorio.environmentFiles == []
-                            then serverSettingsFile
-                            else "/var/run/factorio/server-settings.json";
-    in {
-      description   = "Factorio headless server";
-      wantedBy      = [ "multi-user.target" ];
-      after         = [ "network.target" ];
+    systemd.services.factorio =
+      let
+        finalConfigFile =
+          if config.services.gfactorio.environmentFiles == [ ]
+          then serverSettingsFile
+          else "/var/run/factorio/server-settings.json";
+      in
+      {
+        description = "Factorio headless server";
+        wantedBy = [ "multi-user.target" ];
+        after = [ "network.target" ];
 
-      preStart = toString [
-        "test -e ${stateDir}/saves/${cfg.saveName}.zip"
-        "||"
-        "${cfg.package}/bin/factorio"
+        preStart = toString [
+          "test -e ${stateDir}/saves/${cfg.saveName}.zip"
+          "||"
+          "${cfg.package}/bin/factorio"
           "--config=${finalConfigFile}"
           "--create=${mkSavePath cfg.saveName}"
-          (optionalString (cfg.mods != []) "--mod-directory=${modDir}")
-      ];
-
-      serviceConfig = {
-        Restart = "always";
-        KillSignal = "SIGINT";
-        DynamicUser = true;
-        StateDirectory = cfg.stateDirName;
-        UMask = "0007";
-        EnvironmentFile = config.services.gfactorio.environmentFiles;
-        RuntimeDirectory = "factorio";
-        ExecStartPre = lib.optional (config.services.gfactorio.environmentFiles !=[])
-            (pkgs.writeShellScript "pre-start" ''
-                umask 077
-                ${pkgs.envsubst}/bin/envsubst -i "${serverSettingsFile}" > /var/run/factorio/server-settings.json
-            '');
-        ExecStart = toString [
-          "${cfg.package}/bin/factorio"
-          "--config=${cfg.configFile}"
-          "--port=${toString cfg.port}"
-          "--bind=${cfg.bind}"
-          (optionalString (!cfg.loadLatestSave) "--start-server=${mkSavePath cfg.saveName}")
-          "--server-settings=${finalConfigFile}"
-          (optionalString cfg.loadLatestSave "--start-server-load-latest")
-          (optionalString (cfg.mods != []) "--mod-directory=${modDir}")
-          (optionalString (cfg.admins != []) "--server-adminlist=${serverAdminsFile}")
+          (optionalString (cfg.mods != [ ]) "--mod-directory=${modDir}")
         ];
 
-        # Sandboxing
-        NoNewPrivileges = true;
-        PrivateTmp = true;
-        PrivateDevices = true;
-        ProtectSystem = "strict";
-        ProtectHome = true;
-        ProtectControlGroups = true;
-        ProtectKernelModules = true;
-        ProtectKernelTunables = true;
-        RestrictAddressFamilies = [ "AF_UNIX" "AF_INET" "AF_INET6" "AF_NETLINK" ];
-        RestrictRealtime = true;
-        RestrictNamespaces = true;
-        MemoryDenyWriteExecute = true;
-      };
-    };
+        serviceConfig = {
+          Restart = "always";
+          KillSignal = "SIGINT";
+          DynamicUser = true;
+          StateDirectory = cfg.stateDirName;
+          UMask = "0007";
+          EnvironmentFile = config.services.gfactorio.environmentFiles;
+          RuntimeDirectory = "factorio";
+          ExecStartPre = lib.optional (config.services.gfactorio.environmentFiles != [ ])
+            (pkgs.writeShellScript "pre-start" ''
+              umask 077
+              ${pkgs.envsubst}/bin/envsubst -i "${serverSettingsFile}" > /var/run/factorio/server-settings.json
+            '');
+          ExecStart = toString [
+            "${cfg.package}/bin/factorio"
+            "--config=${cfg.configFile}"
+            "--port=${toString cfg.port}"
+            "--bind=${cfg.bind}"
+            (optionalString (!cfg.loadLatestSave) "--start-server=${mkSavePath cfg.saveName}")
+            "--server-settings=${finalConfigFile}"
+            (optionalString cfg.loadLatestSave "--start-server-load-latest")
+            (optionalString (cfg.mods != [ ]) "--mod-directory=${modDir}")
+            (optionalString (cfg.admins != [ ]) "--server-adminlist=${serverAdminsFile}")
+          ];
 
-    networking.firewall.allowedUDPPorts = if cfg.openFirewall then [ cfg.port ] else [];
+          # Sandboxing
+          NoNewPrivileges = true;
+          PrivateTmp = true;
+          PrivateDevices = true;
+          ProtectSystem = "strict";
+          ProtectHome = true;
+          ProtectControlGroups = true;
+          ProtectKernelModules = true;
+          ProtectKernelTunables = true;
+          RestrictAddressFamilies = [ "AF_UNIX" "AF_INET" "AF_INET6" "AF_NETLINK" ];
+          RestrictRealtime = true;
+          RestrictNamespaces = true;
+          MemoryDenyWriteExecute = true;
+        };
+      };
+
+    networking.firewall.allowedUDPPorts = if cfg.openFirewall then [ cfg.port ] else [ ];
   };
 }
