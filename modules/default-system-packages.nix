@@ -7,6 +7,7 @@
       curl
       bind
       tcpdump
+      zip
     ];
   };
 }
