@@ -25,6 +25,9 @@
     uid = 1001;
     home = "/home/maerose";
     description = "Maerose Head";
-    extraGroups = [ "networkmanager" ];
+    extraGroups = [ 
+      "networkmanager"
+      "wheel"
+      ];
   };
 }
