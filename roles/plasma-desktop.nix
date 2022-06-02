@@ -44,6 +44,7 @@
     teamspeak_client
     zoom-us
     lutris
+    ark
   ];
   programs.adb.enable = true;
 }
