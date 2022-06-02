@@ -42,6 +42,7 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
 
+  networking.hostName = "notanipad";
   networking.networkmanager = {
     enable=true;
   };
