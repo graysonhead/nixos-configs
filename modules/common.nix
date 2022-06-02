@@ -3,6 +3,7 @@
 {
   imports = [
     ./dns-agent.nix
+    ./default-system-packages.nix
   ];
   programs.vim.defaultEditor = true;
   nix.requireSignedBinaryCaches = false;
