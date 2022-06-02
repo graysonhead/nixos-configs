@@ -43,6 +43,7 @@
         discord
         teamspeak_client
         zoom-us
+        lutris
     ];
     programs.adb.enable = true;
 }
