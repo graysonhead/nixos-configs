@@ -9,6 +9,7 @@
       tcpdump
       zip
       unzip
+      unrar
     ];
   };
 }
