@@ -10,6 +10,7 @@
       zip
       unzip
       unrar
+      libtelnet
     ];
   };
 }

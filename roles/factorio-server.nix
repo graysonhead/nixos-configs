@@ -12,7 +12,7 @@
   services.openssh.enable = true;
   security.sudo.wheelNeedsPassword = false;
   age.secrets.factorio.file = ../secrets/factorio.age;
-
+  networking.firewall.allowedTCPPorts = [ 25575 ];
   # Factorio server
   services.gfactorio = {
     enable = true;
@@ -24,6 +24,8 @@
     game-name = "The Darkside";
     saveName = "save";
     environmentFiles = [ config.age.secrets.factorio.path ];
+    rConBind = "0.0.0.0:25575";
+    rConPassword = "$GAME_PASSWORD";
   };
 
   services.restic.backups = {

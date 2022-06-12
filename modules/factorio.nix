@@ -246,6 +246,29 @@ in
           Autosaving on connected Windows clients will be disabled regardless of autosave_only_on_server option.
         '';
       };
+      rConPort = mkOption {
+        type = types.nullOr types.int;
+        default = null;
+        example = 25575;
+        description = ''
+          Enables the rcon server
+        '';
+      };
+      rConPassword = mkOption {
+        type = types.nullOr types.str;
+        default = null;
+        description = ''
+          Sets the rcon server password.
+          required when rConPort is set
+        '';
+      };
+      rConBind = mkOption {
+        type = types.nullOr types.str;
+        default = null;
+        example = ''
+          127.0.0.1:25575
+          '';
+      };
     };
   };
 
@@ -294,6 +317,8 @@ in
             (optionalString cfg.loadLatestSave "--start-server-load-latest")
             (optionalString (cfg.mods != [ ]) "--mod-directory=${modDir}")
             (optionalString (cfg.admins != [ ]) "--server-adminlist=${serverAdminsFile}")
+            (optionalString (cfg.rConPort != null) "--rcon-port=${builtins.toString cfg.rConPort}")
+            (optionalString (cfg.rConPassword != null) "--rcon-password=${cfg.rConPassword}")
           ];
 
           # Sandboxing
