@@ -11,6 +11,7 @@ in
 {
   "digitalocean-key.age".publicKeys = users ++ systems;
   "factorio.age".publicKeys = users ++ [ factorio ];
+  "factorio-bot.age".publicKeys = users ++ [ factorio ];
   "backblaze_restic.age".publicKeys = users ++ systems;
   "restic_password.age".publicKeys = users ++ systems;
 }

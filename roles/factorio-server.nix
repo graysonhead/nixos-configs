@@ -5,6 +5,7 @@
     ../home-manager/minimal-homes.nix
     ../modules/common.nix
     ../modules/factorio.nix
+    ../modules/factorio-bot.nix
     ../modules/home-backups.nix
     ../services/common.nix
     ../services/dns-agent.nix
@@ -12,6 +13,7 @@
   services.openssh.enable = true;
   security.sudo.wheelNeedsPassword = false;
   age.secrets.factorio.file = ../secrets/factorio.age;
+  age.secrets.factorio-bot.file = ../secrets/factorio-bot.age;
   networking.firewall.allowedTCPPorts = [ 25575 ];
   # Factorio server
   services.gfactorio = {
@@ -26,6 +28,11 @@
     environmentFiles = [ config.age.secrets.factorio.path ];
     rConBind = "0.0.0.0:25575";
     rConPassword = "$GAME_PASSWORD";
+  };
+  # Factorio bot
+  services.factorio-bot = {
+    enable = true;
+    environmentFile = config.age.secrets.factorio-bot.path;
   };
 
   services.restic.backups = {

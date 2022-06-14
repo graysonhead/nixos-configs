@@ -8,6 +8,7 @@
     jager.url = "github:graysonhead/jager";
     deploy-rs.url = "github:serokell/deploy-rs";
     dns-agent.url = "github:graysonhead/dns-agent";
+    factorio-bot.url = "github:graysonhead/factoriobot";
     agenix.url = "github:ryantm/agenix";
     flake-compat = {
       url = "github:edolstra/flake-compat";

@@ -319,6 +319,7 @@ in
             (optionalString (cfg.admins != [ ]) "--server-adminlist=${serverAdminsFile}")
             (optionalString (cfg.rConPort != null) "--rcon-port=${builtins.toString cfg.rConPort}")
             (optionalString (cfg.rConPassword != null) "--rcon-password=${cfg.rConPassword}")
+            (optionalString (cfg.rConBind != null) "--rcon-bind=${cfg.rConBind}")
           ];
 
           # Sandboxing
