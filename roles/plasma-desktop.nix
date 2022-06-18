@@ -45,10 +45,12 @@
     zoom-us
     lutris
     ark
+    minikube
   ];
   programs.adb.enable = true;
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-  };
+  # virtualisation.podman = {
+  #   enable = true;
+  #   dockerCompat = true;
+  # };
+  virtualisation.docker.enable = true;
 }
