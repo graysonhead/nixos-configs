@@ -46,6 +46,8 @@
     lutris
     ark
     minikube
+    openvpn
+    iodine
   ];
   programs.adb.enable = true;
   # virtualisation.podman = {

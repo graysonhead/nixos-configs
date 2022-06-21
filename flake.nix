@@ -28,7 +28,7 @@
       devShells.x86_64-linux.default = pkgs.mkShell {
         packages = [
           agenix.packages.x86_64-linux.agenix
-
+          deploy-rs.packages.x86_64-linux.deploy-rs
         ];
       };
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;

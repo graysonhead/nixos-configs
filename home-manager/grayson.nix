@@ -36,6 +36,8 @@
     kubectl
     flux
     tilt
+    _1password
+    _1password-gui
   ];
 
   programs.home-manager = {
