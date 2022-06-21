@@ -1,7 +1,7 @@
 { pkgs, ... }:
 # Minimal home manager module for CLI only systems
 {
-
+  home.stateVersion = "21.11";
   home.packages = with pkgs; [
     vim
     bind
@@ -16,7 +16,7 @@
     CARGO_NET_GIT_FETCH_WITH_CLI = "true";
     EDITOR = "vim";
   };
-  
+
   programs.git = {
     package = pkgs.gitAndTools.gitFull;
     enable = true;
