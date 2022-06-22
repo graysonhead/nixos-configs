@@ -50,7 +50,7 @@
     enable = true;
     indicator = true;
   };
-  
+
   home.file = {
     ".config/discord/settings.json" = {
       text = ''
