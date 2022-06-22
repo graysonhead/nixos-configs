@@ -4,7 +4,7 @@
     imports = [
         ./hardware-configuration.nix
     ];
-    networking.hostname = "mombox";
+    networking.hostName = "mombox";
     boot.loader.efi.canTouchEfiVariables = true;
     boot.loader.grub = {
         enable = true;
