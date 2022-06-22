@@ -6,7 +6,8 @@ let
   factorio = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINa0kSfUH79cdUbgC7Tj8bJXLNsNrLiwmtrjnjyeoAP7";
   deckchair = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFbxjqdNMawqU4C99V0OqyMVFxZCUypUQn6mTLErg6Yi";
   notanipad = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDc6PTFN/6mi/eY5lAl3IzdBFhl6ppUYZcJpUrTwEN8P";
-  systems = [ ops nx1 factorio deckchair notanipad ];
+  mombox = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID2POjia3nzKq4rWfndaxKPc7/6G8a+OLSmgOKBL+twp";
+  systems = [ ops nx1 factorio deckchair notanipad mombox ];
 in
 {
   "digitalocean-key.age".publicKeys = users ++ systems;
