@@ -19,5 +19,7 @@
     networking.networkmanager = {
         enable = true;
     };
+    services.xserver.videoDrivers = [ "nvidia" ];
+    hardware.opengl.enable = true;
     system.stateVersion = "22.05";
 }
