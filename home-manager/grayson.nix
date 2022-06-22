@@ -38,6 +38,8 @@
     tilt
     _1password
     _1password-gui
+    keybase
+    keybase-gui
   ];
 
   programs.home-manager = {

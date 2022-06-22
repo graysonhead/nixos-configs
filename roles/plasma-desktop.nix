@@ -21,6 +21,7 @@
     pkgs.brgenml1lpr
     pkgs.brgenml1cupswrapper
   ];
+  services.keybase.enable = true;
   programs.steam = {
     enable = true;
   };

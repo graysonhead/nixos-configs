@@ -57,6 +57,16 @@
           specialArgs = { inherit inputs; };
         };
 
+        mombox = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            agenix.nixosModule
+            ./roles/plasma-desktop.nix
+            ./systems/mombox/configuration.nix
+          ];
+          specialArgs = { inherit inputs; };
+        };
+
         ops = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
