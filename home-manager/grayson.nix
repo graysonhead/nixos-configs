@@ -40,6 +40,7 @@
     _1password-gui
     keybase
     keybase-gui
+    vlc
   ];
 
   programs.home-manager = {
