@@ -29,6 +29,7 @@
         packages = [
           agenix.packages.x86_64-linux.agenix
           deploy-rs.packages.x86_64-linux.deploy-rs
+          nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt
         ];
       };
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
@@ -56,6 +57,17 @@
           ];
           specialArgs = { inherit inputs; };
         };
+
+        green = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            agenix.nixosModule
+            ./roles/plasma-desktop.nix
+            ./systems/green/configuration.nix
+          ];
+          specialArgs = { inherit inputs; };
+        };
+
 
         mombox = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
