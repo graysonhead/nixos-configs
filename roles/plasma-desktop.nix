@@ -33,6 +33,7 @@
   services.avahi.enable = true;
   services.avahi.publish.enable = true;
   services.avahi.nssmdns = true;
+  services.flatpak.enable = true;
   programs.ssh.startAgent = true;
   environment.systemPackages = with pkgs; [
     firefox
@@ -49,6 +50,8 @@
     minikube
     openvpn
     iodine
+    python310Packages.protonup
+    protontricks
   ];
   programs.adb.enable = true;
   # virtualisation.podman = {
