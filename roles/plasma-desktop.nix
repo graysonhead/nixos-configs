@@ -52,6 +52,13 @@
     iodine
     python310Packages.protonup
     protontricks
+    xorg.xkill
+    winetricks
+    wine
+    os-prober
+    fuseiso
+    exfat
+    ntfs3g
   ];
   programs.adb.enable = true;
   # virtualisation.podman = {

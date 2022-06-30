@@ -41,6 +41,7 @@
     keybase
     keybase-gui
     vlc
+    gparted
   ];
 
   programs.home-manager = {

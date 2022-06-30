@@ -11,7 +11,7 @@
     nmon
     screen
     unzip
-    killall
+    p7zip
   ];
   home.sessionVariables = rec {
     CARGO_NET_GIT_FETCH_WITH_CLI = "true";

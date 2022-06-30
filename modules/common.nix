@@ -15,6 +15,8 @@
       curl
       bind
       tcpdump
+      killall
+      efibootmgr
     ];
   };
 
