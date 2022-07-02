@@ -42,6 +42,7 @@
     keybase-gui
     vlc
     gparted
+    obs-studio
   ];
 
   programs.home-manager = {
