@@ -59,6 +59,7 @@
     fuseiso
     exfat
     ntfs3g
+    ksshaskpass
   ];
   programs.adb.enable = true;
   # virtualisation.podman = {

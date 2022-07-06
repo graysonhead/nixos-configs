@@ -44,7 +44,33 @@
     ".tmux.conf" = {
       text = ''
         setw -g mouse on
-        bind -n -C-s set-window-option synchronize-panes
+       '';
+    };
+    ".ssh/config" = {
+      text = ''
+      Host bounce
+        HostName bounce.graysonhead.net
+
+      Host lab3
+              HostName localhost
+              Port 15000
+              ProxyJump bounce
+
+      Host lab2
+              HostName localhost
+              Port 15001
+              ProxyJump bounce
+
+      Host lab1
+              HostName localhost
+              Port 15002
+              ProxyJump bounce
+
+      # FA specific stuff
+      Host *.flightaware.com
+        User grayson.head
+
+      IdentityFile /home/grayson/.ssh/fa_id
       '';
     };
   };

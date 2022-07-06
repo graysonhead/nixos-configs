@@ -19,6 +19,7 @@
     nix-direnv.enable = true;
   };
   home.packages = with pkgs; [
+    calibre
     cargo
     rustc
     rustfmt
@@ -59,6 +60,23 @@
       text = ''
         "SKIP_HOST_UPDATE": true
       '';
+    };
+    ".config/plasma-workspace/env/ssh-agent-startup.sh" = {
+      text = ''
+      #!/bin/bash
+
+      [ -z "$SSH\_AGENT\_PID" ] || eval "$(ssh-agent -s)"
+      '';
+      executable = true;
+    };
+    ".config/autostart-scripts/ssh-add.sh" = {
+      text = ''
+      #!/bin/bash
+
+      export SSH\_ASKPASS=/usr/bin/ksshaskpass
+      ssh-add $HOME/.ssh/id_fa
+      '';
+      executable = true;
     };
   };
 }
