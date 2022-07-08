@@ -29,6 +29,7 @@
     joplin-desktop
     signal-desktop
     gcc
+    gimp
     redis
     transmission-qt
     wireshark
@@ -68,7 +69,7 @@
       [ -z "$SSH\_AGENT\_PID" ] || eval "$(ssh-agent -s)"
       '';
       executable = true;
-    };
+    };    
     ".config/autostart-scripts/ssh-add.sh" = {
       text = ''
       #!/bin/bash

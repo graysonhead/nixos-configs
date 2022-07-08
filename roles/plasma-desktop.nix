@@ -30,9 +30,16 @@
   hardware.bluetooth.enable = true;
   programs.kdeconnect.enable = true;
   programs.wireshark.enable = true;
-  services.avahi.enable = true;
-  services.avahi.publish.enable = true;
-  services.avahi.nssmdns = true;
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    publish = {
+      enable = true;
+      domain = true;
+      addresses = true;
+    };
+  };
+  networking.firewall.allowedUDPPorts = [ 5353 ];
   services.flatpak.enable = true;
   programs.ssh.startAgent = true;
   environment.systemPackages = with pkgs; [
