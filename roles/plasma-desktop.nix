@@ -37,6 +37,8 @@
       enable = true;
       domain = true;
       addresses = true;
+      workstation = true;
+      hinfo = true;
     };
   };
   networking.firewall.allowedUDPPorts = [ 5353 ];
