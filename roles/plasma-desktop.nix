@@ -10,8 +10,8 @@ let
         rev = "v0.15.1";
         sha256 = "sha256-iRaf9/gu9VkGi1VbGpxvC5q+0M8ivezCz/oAKEg5V1M=";
       };
-      patches = [];
-      buildInputs = [ pkgs.autoreconfHook pkgs.pkg-config];
+      patches = [ ];
+      buildInputs = [ pkgs.autoreconfHook pkgs.pkg-config ];
     });
   });
 in
@@ -22,15 +22,15 @@ in
     ../services/syncthing.nix
     ../modules/home-backups.nix
   ];
-  
-  nixpkgs.overlays = [nss-mdns-overlay];
+
+  nixpkgs.overlays = [ nss-mdns-overlay ];
 
   system.nssDatabases.hosts = (lib.mkMerge [
     (lib.mkBefore [ "mdns4_minimal [NOTFOUND=return]" ])
     (lib.mkAfter [ "mdns4" ])
   ]);
 
-  system.nssModules = [pkgs.nssmdns];
+  system.nssModules = [ pkgs.nssmdns ];
 
   nix.extraOptions = ''
     keep-outputs = true

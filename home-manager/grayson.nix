@@ -12,6 +12,7 @@
       ms-python.python
       matklad.rust-analyzer
       arrterian.nix-env-selector
+      eamodio.gitlens
     ];
   };
   programs.direnv = {
@@ -64,18 +65,18 @@
     };
     ".config/plasma-workspace/env/ssh-agent-startup.sh" = {
       text = ''
-      #!/bin/bash
+        #!/bin/bash
 
-      [ -z "$SSH\_AGENT\_PID" ] || eval "$(ssh-agent -s)"
+        [ -z "$SSH\_AGENT\_PID" ] || eval "$(ssh-agent -s)"
       '';
       executable = true;
-    };    
+    };
     ".config/autostart-scripts/ssh-add.sh" = {
       text = ''
-      #!/bin/bash
+        #!/bin/bash
 
-      export SSH\_ASKPASS=/usr/bin/ksshaskpass
-      ssh-add $HOME/.ssh/id_fa
+        export SSH\_ASKPASS=/usr/bin/ksshaskpass
+        ssh-add $HOME/.ssh/id_fa
       '';
       executable = true;
     };

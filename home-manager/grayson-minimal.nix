@@ -27,7 +27,7 @@
     extraConfig = {
       init.defaultBranch = "main";
     };
-  }; 
+  };
   programs.bash = {
     enable = true;
     shellAliases = {
@@ -39,24 +39,24 @@
       k = "kubectl";
     };
     bashrcExtra = ''
-    function kns() {
-      ctx=`kubectl config current-context`
-      ns=$1
+      function kns() {
+        ctx=`kubectl config current-context`
+        ns=$1
 
-      # verify that the namespace exists
-      ns=`kubectl get namespace $1 --no-headers --output=go-template={{.metadata.name}} 2>/dev/null`
-      if [ -z "''${ns}" ]; then
-        echo "Namespace (''${1}) not found, using default"
-        ns="default"
-      fi
+        # verify that the namespace exists
+        ns=`kubectl get namespace $1 --no-headers --output=go-template={{.metadata.name}} 2>/dev/null`
+        if [ -z "''${ns}" ]; then
+          echo "Namespace (''${1}) not found, using default"
+          ns="default"
+        fi
 
-      kubectl config set-context ''${ctx} --namespace="''${ns}"
-    }
+        kubectl config set-context ''${ctx} --namespace="''${ns}"
+      }
 
-    function kcl() {
-            clus=$1
-            export KUBECONFIG=~/fa-kube/''${clus}
-    }
+      function kcl() {
+              clus=$1
+              export KUBECONFIG=~/fa-kube/''${clus}
+      }
     '';
   };
 
@@ -68,33 +68,33 @@
     ".tmux.conf" = {
       text = ''
         setw -g mouse on
-       '';
+      '';
     };
     ".ssh/config" = {
       text = ''
-      Host bounce
-        HostName bounce.graysonhead.net
+        Host bounce
+          HostName bounce.graysonhead.net
 
-      Host lab3
-              HostName localhost
-              Port 15000
-              ProxyJump bounce
+        Host lab3
+                HostName localhost
+                Port 15000
+                ProxyJump bounce
 
-      Host lab2
-              HostName localhost
-              Port 15001
-              ProxyJump bounce
+        Host lab2
+                HostName localhost
+                Port 15001
+                ProxyJump bounce
 
-      Host lab1
-              HostName localhost
-              Port 15002
-              ProxyJump bounce
+        Host lab1
+                HostName localhost
+                Port 15002
+                ProxyJump bounce
 
-      # FA specific stuff
-      Host *.flightaware.com
-        User grayson.head
+        # FA specific stuff
+        Host *.flightaware.com
+          User grayson.head
 
-      IdentityFile /home/grayson/.ssh/fa_id
+        IdentityFile /home/grayson/.ssh/fa_id
       '';
     };
   };
