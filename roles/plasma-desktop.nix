@@ -1,5 +1,20 @@
-{ nixpkgs, pkgs, inputs, ... }:
+{ nixpkgs, pkgs, inputs, lib, ... }:
 
+let
+  nss-mdns-overlay = (self: super: {
+    nssmdns = super.nssmdns.overrideAttrs (prev: {
+      version = "v0.15.1";
+      src = pkgs.fetchFromGitHub {
+        owner = "lathiat";
+        repo = "nss-mdns";
+        rev = "v0.15.1";
+        sha256 = "sha256-iRaf9/gu9VkGi1VbGpxvC5q+0M8ivezCz/oAKEg5V1M=";
+      };
+      patches = [];
+      buildInputs = [ pkgs.autoreconfHook pkgs.pkg-config];
+    });
+  });
+in
 {
   imports = [
     ../home-manager/full-homes.nix
@@ -7,6 +22,16 @@
     ../services/syncthing.nix
     ../modules/home-backups.nix
   ];
+  
+  nixpkgs.overlays = [nss-mdns-overlay];
+
+  system.nssDatabases.hosts = (lib.mkMerge [
+    (lib.mkBefore [ "mdns4_minimal [NOTFOUND=return]" ])
+    (lib.mkAfter [ "mdns4" ])
+  ]);
+
+  system.nssModules = [pkgs.nssmdns];
+
   nix.extraOptions = ''
     keep-outputs = true
     keep-derivations = true
@@ -32,7 +57,8 @@
   programs.wireshark.enable = true;
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns = false;
+    ipv6 = true;
     publish = {
       enable = true;
       domain = true;
@@ -41,7 +67,6 @@
       hinfo = true;
     };
   };
-  networking.firewall.allowedUDPPorts = [ 5353 ];
   services.flatpak.enable = true;
   programs.ssh.startAgent = true;
   environment.systemPackages = with pkgs; [
