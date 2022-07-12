@@ -8,7 +8,8 @@ let
   notanipad = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDc6PTFN/6mi/eY5lAl3IzdBFhl6ppUYZcJpUrTwEN8P";
   mombox = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID2POjia3nzKq4rWfndaxKPc7/6G8a+OLSmgOKBL+twp";
   green = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBCbroGDeBk7doFoaqXfVAelQWErvn6ewdszLQQSuU28";
-  systems = [ ops nx1 factorio deckchair notanipad mombox green ];
+  blue = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDY7vECui8q4vUtq0JR+mLJWoDACkihsec+kCZ7alyve";
+  systems = [ ops nx1 factorio deckchair notanipad mombox green blue ];
 in
 {
   "digitalocean-key.age".publicKeys = users ++ systems;

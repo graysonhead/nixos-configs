@@ -17,8 +17,15 @@
     "rtsx_pci_sdmmc"
     "aesni_intel"
     "cryptd"
+
   ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
+  boot.initrd.kernelModules = [ 
+    "dm-snapshot"
+    "vfat"
+    "nls_cp437"
+    "nls_iso8859-1"
+    "usbhid"
+  ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 

@@ -36,6 +36,16 @@
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
       nixosConfigurations = {
 
+        blue = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            agenix.nixosModule
+            ./roles/minimal-server.nix
+            ./systems/blue/configuration.nix
+          ];
+          specialArgs = { inherit inputs; };
+        };
+
         deckchair = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [

@@ -96,9 +96,5 @@ in
     ksshaskpass
   ];
   programs.adb.enable = true;
-  # virtualisation.podman = {
-  #   enable = true;
-  #   dockerCompat = true;
-  # };
   virtualisation.docker.enable = true;
 }

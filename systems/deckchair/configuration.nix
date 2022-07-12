@@ -26,8 +26,21 @@
     enableCryptodisk = true;
   };
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.initrd.luks.yubikeySupport = true;
   boot.initrd.luks.devices = {
     root = {
+      yubikey = {
+        slot = 2;
+        twoFactor = false;
+        gracePeriod = 30;
+        keyLength = 64;
+        saltLength = 16;
+        storage = {
+          device = "/dev/nvme0n1p1";
+          fsType = "vfat";
+          path = "/crypt-storage/default";
+        };
+      };
       device = "/dev/nvme0n1p2";
       preLVM = true;
     };
