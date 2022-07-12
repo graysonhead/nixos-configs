@@ -9,9 +9,14 @@
     ];
 
   boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" "bcache" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
+  boot.initrd.kernelModules = [ 
+      "dm-snapshot"
+      "dm-raid"
+      "dm-cache-default"
+    ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  services.lvm.boot.thin.enable = true;
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/31ebf6c8-69a4-45fb-a03d-96afa820b6a7";
