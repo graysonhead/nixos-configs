@@ -10,8 +10,8 @@
     version = 2;
     efiSupport = true;
     mirroredBoots = [
-      { devices = [ "nodev" ]; path = "/boot1"; efiSysMountPoint = "/boot1/efi"; }
-      { devices = [ "nodev" ]; path = "/boot2"; efiSysMountPoint = "/boot2/efi"; }
+      { devices = [ "nodev" ]; path = "/boot1"; efiSysMountPoint = "/boot1"; }
+      { devices = [ "nodev" ]; path = "/boot2"; efiSysMountPoint = "/boot2"; }
     ];
   };
   boot.loader.efi.canTouchEfiVariables = true;
