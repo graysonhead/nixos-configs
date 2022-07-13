@@ -40,7 +40,7 @@
           system = "x86_64-linux";
           modules = [
             agenix.nixosModule
-            ./roles/minimal-server.nix
+            ./roles/blue.nix
             ./systems/blue/configuration.nix
           ];
           specialArgs = { inherit inputs; };
