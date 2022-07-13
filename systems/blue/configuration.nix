@@ -13,8 +13,28 @@
       { devices = [ "nodev" ]; path = "/boot1"; efiSysMountPoint = "/boot1"; }
       { devices = [ "nodev" ]; path = "/boot2"; efiSysMountPoint = "/boot2"; }
     ];
+    enableCryptodisk = true;
   };
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.initrd.luks.yubikeySupport = true;
+  boot.initrd.luks.devices = {
+    encrypted_storage = {
+      yubikey = {
+        slot = 2;
+        twoFactor = false;
+        gracePeriod = 30;
+        keyLength = 64;
+        saltLength = 16;
+        storage = {
+          device = "/dev/disk/by-uuid/31ebf6c8-69a4-45fb-a03d-96afa820b6a7";
+          fsType = "ext4";
+          path = "/crypt-storage/default";
+        };
+      };
+      device = "/dev/bcache0";
+      preLVM = false;
+    };
+  };
   age.identityPaths = [
     "/etc/ssh/ssh_host_ed25519_key"
   ];

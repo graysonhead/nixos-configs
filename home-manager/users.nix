@@ -8,6 +8,7 @@
     home = "/home/grayson";
     description = "Grayson Head";
     extraGroups = [
+      "smbsec"
       "wheel"
       "networkmanager"
       "wireshark"
@@ -27,6 +28,7 @@
     home = "/home/maerose";
     description = "Maerose Head";
     extraGroups = [
+      "smbsec"
       "networkmanager"
       "wheel"
     ];

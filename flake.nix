@@ -125,6 +125,14 @@
       };
       deploy = {
 
+        nodes.blue = {
+          hostname = "blue.i.graysonhead.net";
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.blue;
+          };
+        };
+
         nodes.ops = {
           hostname = "ops.i.graysonhead.net";
           profiles.system = {

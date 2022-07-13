@@ -17,7 +17,6 @@
     "rtsx_pci_sdmmc"
     "aesni_intel"
     "cryptd"
-
   ];
   boot.initrd.kernelModules = [ 
     "dm-snapshot"

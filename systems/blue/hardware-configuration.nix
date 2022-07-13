@@ -8,8 +8,21 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" "bcache" ];
+  boot.initrd.availableKernelModules = [ 
+    "ehci_pci" 
+    "ahci" 
+    "usb_storage" 
+    "usbhid" 
+    "sd_mod" 
+    "sr_mod" 
+    "bcache" 
+    "cryptd"
+  ];
   boot.initrd.kernelModules = [ 
+      "vfat"
+      "nls_cp437"
+      "nls_iso8859-1"
+      "usbhid"
       "dm-snapshot"
       "dm-raid"
       "dm-cache-default"
@@ -31,6 +44,11 @@
   fileSystems."/boot2" =
     { device = "/dev/disk/by-uuid/150F-259B";
       fsType = "vfat";
+    };
+  
+  fileSystems."/encrypted_storage" = 
+    { device = "/dev/disk/by-uuid/8f98d1a3-9ad5-4716-8e4a-16d1e18fcf2a";
+      fsType = "ext4";
     };
 
   swapDevices =
