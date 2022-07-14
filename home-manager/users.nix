@@ -33,4 +33,5 @@
       "wheel"
     ];
   };
+  users.groups.smbsec = {};
 }
