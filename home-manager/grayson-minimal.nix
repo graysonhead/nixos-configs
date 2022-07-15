@@ -68,6 +68,7 @@
     ".tmux.conf" = {
       text = ''
         setw -g mouse on
+        bind -n C-s set -g synchronize-panes
       '';
     };
     ".ssh/config" = {

@@ -54,6 +54,8 @@
         8091 
         1880 
         5357 # wsdd
+        80
+        443
     ];
 
     # Plex
@@ -73,7 +75,8 @@
             rpc-bind-address = "0.0.0.0";
             download-dir = "/encrypted_storage/data/T_Downloads/new";
             incomplete-dir = "/encrypted_storage/data/T_Downloads/incomplete";
-            rpc-whitelist = "10.5.5.*";
+            rpc-whitelist = "10.5.5.* 127.0.0.1 localhost";
+            rpc-host-whitelist = "transmission.i.graysonhead.net";
         };
     };
 
@@ -119,9 +122,42 @@
         };
     };
 
+    # Reverse proxy
+    services.nginx = {
+        enable = true;
+        recommendedProxySettings = true;
+        # recommendedTlsSettings = true;
+        virtualHosts."transmission.i.graysonhead.net" = {
+            # enableACME = true;
+            forceSSL = false;
+            locations."/" = {
+                proxyPass = "http://127.0.0.1:9091";
+            };
+        };
+        virtualHosts."zwave.i.graysonhead.net" = {
+            # enableACME = true;
+            forceSSL = false;
+            locations."/" = {
+                proxyPass = "http://[::1]:8091";
+            };
+        };
+        virtualHosts."home.graysonhead.net" = {
+            # enableACME = true;
+            forceSSL = false;
+            extraConfig = ''
+                proxy_buffering off;
+            '';
+            locations."/" = {
+                proxyPass = "http://[::1]:8123";
+                proxyWebsockets = true;
+            };
+        };
+    };
+        
     # DNS Configuration
-    services.dns-agent.extraConfig =
-        {
+    services.dns-agent.extraConfig = let
+        internal_interface = "enp6s0";
+    in {
         settings.external_ipv4_check_url = "https://api.ipify.org/?format=text";
         domains = [
             {
@@ -131,12 +167,32 @@
                     {
                     name = "${config.networking.hostName}";
                     record_type = "A";
-                    interface = "enp6s0";
+                    interface = internal_interface;
                     }
                     {
                     name = "${config.networking.hostName}";
                     record_type = "AAAA";
-                    interface = "enp6s0";
+                    interface = internal_interface;
+                    }
+                    {
+                        name = "transmission";
+                        record_type = "AAAA";
+                        interface = internal_interface;
+                    }
+                    {
+                        name = "transmission";
+                        record_type = "A";
+                        interface = internal_interface;
+                    }
+                    {
+                        name = "zwave";
+                        record_type = "AAAA";
+                        interface = internal_interface;
+                    }
+                    {
+                        name = "zwave";
+                        record_type = "A";
+                        interface = internal_interface;
                     }
                 ];
             }
@@ -152,7 +208,17 @@
                     {
                         name = "home";
                         record_type = "AAAA";
-                        interface = "enp6s0";
+                        interface = internal_interface;
+                    }
+                    {
+                        name = "transmission";
+                        record_type = "AAAA";
+                        interface = internal_interface;
+                    }
+                    {
+                        name = "transmission";
+                        record_type = "A";
+                        interface = internal_interface;
                     }
                 ];
             }

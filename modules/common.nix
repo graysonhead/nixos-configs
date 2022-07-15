@@ -19,7 +19,13 @@
       efibootmgr
     ];
   };
-
+  networking.search = [ 
+    "i.graysonhead.net" 
+    "graysonhead.net" 
+    "flightaware.com" 
+    "hou.flightaware.com" 
+    "dal.flightaware.com"
+  ];
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
