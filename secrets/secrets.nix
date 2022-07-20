@@ -17,5 +17,6 @@ in
   "factorio-bot.age".publicKeys = users ++ [ factorio ];
   "backblaze_restic.age".publicKeys = users ++ systems;
   "restic_password.age".publicKeys = users ++ systems;
+  "dns-acme.age".publicKeys = users ++ systems;
 }
 

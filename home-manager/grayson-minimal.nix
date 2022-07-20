@@ -36,6 +36,7 @@
       dir-size = "sudo du -shx ./* | sort -h";
       exportall = "f(){ set -o allexport; source $1; set +o allexport; }; f";
       nixrestic = "f(){ exportall /run/agenix/restic; restic -r b2:nixos-backups -p /run/agenix/restic_password $@; }; f";
+      bluerestic = "f(){ exportall /run/agenix/restic; restic -r b2:ghead-blue-backup -p /run/agenix/restic_password $@; }; f";
       k = "kubectl";
     };
     bashrcExtra = ''
@@ -93,6 +94,10 @@
 
         # FA specific stuff
         Host *.flightaware.com
+          User grayson.head
+        Host *.hou
+          User grayson.head
+        Host *.dal
           User grayson.head
 
         IdentityFile /home/grayson/.ssh/fa_id

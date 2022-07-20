@@ -42,21 +42,13 @@
         };
         containers.nodered = {
             user = "2000";
-            image = "graysonhead/nodered-homeassistant:0.1.0";
+            image = "graysonhead/nodered-homeassistant:0.2.0";
             volumes = [ "/home/nodered:/data" ];
             extraOptions = [
                 "--network=host"
             ];
         };
     };
-    networking.firewall.allowedTCPPorts = [ 
-        8123 
-        8091 
-        1880 
-        5357 # wsdd
-        80
-        443
-    ];
 
     # Plex
     services.plex = {
@@ -85,6 +77,33 @@
     networking.firewall.allowedUDPPorts = [
         3702 # wsdd
     ];
+
+    age.secrets.dns-acme.file = ../secrets/dns-acme.age;
+
+    security.acme = {
+        acceptTerms = true;
+        defaults = {
+            email = "grayson@graysonhead.net";
+        };
+        certs."home.graysonhead.net" = {
+            dnsProvider = "digitalocean";
+            credentialsFile = config.age.secrets.dns-acme.path;
+        };
+        certs."transmission.i.graysonhead.net" = {
+            dnsProvider = "digitalocean";
+            credentialsFile = config.age.secrets.dns-acme.path;
+        };
+        certs."zwave.i.graysonhead.net" = {
+            dnsProvider = "digitalocean";
+            credentialsFile = config.age.secrets.dns-acme.path;
+        };
+        certs."nodered.i.graysonhead.net" = {
+            dnsProvider = "digitalocean";
+            credentialsFile = config.age.secrets.dns-acme.path;
+        };
+    };
+
+    users.groups.acme.members = [ "nginx" ];
 
     services.samba = {
         enable = true;
@@ -122,28 +141,77 @@
         };
     };
 
+    # Backups
+    age.secrets.restic = {
+        file = ../secrets/backblaze_restic.age;
+        group = "wheel";
+        mode = "0440";
+    };
+    age.secrets.restic_password = {
+        file = ../secrets/restic_password.age;
+        group = "wheel";
+        mode = "0440";
+    };
+    services.restic.backups = {
+        blue_backup = {
+            repository = "b2:ghead-blue-backup";
+            paths = [
+                "/encrypted_storage"
+                "/var"
+                "/etc"
+            ];
+            timerConfig = {
+                OnCalendar = "daily";
+            };
+            pruneOpts = [
+                "--keep-daily 7"
+                "--keep-weekly 5"
+                "--keep-monthly 12"
+                "--keep-yearly 75"
+            ];
+            environmentFile = config.age.secrets.restic.path;
+            passwordFile = config.age.secrets.restic_password.path; 
+            extraBackupArgs = [
+                "--host=blue.i.graysonhead.net"
+                "--tag=systemd.timer"
+                "--verbose"
+            ];
+        };
+    };
+
     # Reverse proxy
     services.nginx = {
         enable = true;
         recommendedProxySettings = true;
-        # recommendedTlsSettings = true;
+        recommendedTlsSettings = true;
         virtualHosts."transmission.i.graysonhead.net" = {
-            # enableACME = true;
-            forceSSL = false;
+            useACMEHost = "transmission.i.graysonhead.net";
+            forceSSL = true;
             locations."/" = {
                 proxyPass = "http://127.0.0.1:9091";
             };
         };
         virtualHosts."zwave.i.graysonhead.net" = {
-            # enableACME = true;
-            forceSSL = false;
+            useACMEHost = "zwave.i.graysonhead.net";
+            forceSSL = true;
+            extraConfig = ''
+                proxy_buffering off;
+            '';
             locations."/" = {
-                proxyPass = "http://[::1]:8091";
+                proxyPass = "http://127.0.0.1:8091";
+            };
+        };
+        virtualHosts."nodered.i.graysonhead.net" = {
+            useACMEHost = "nodered.i.graysonhead.net";
+            forceSSL = true;
+            locations."/" = {
+                proxyPass = "http://127.0.0.1:1880";
+                proxyWebsockets = true;
             };
         };
         virtualHosts."home.graysonhead.net" = {
-            # enableACME = true;
-            forceSSL = false;
+            useACMEHost = "home.graysonhead.net";
+            forceSSL = true;
             extraConfig = ''
                 proxy_buffering off;
             '';
@@ -153,6 +221,16 @@
             };
         };
     };
+
+    # Firewall config
+    networking.firewall.allowedTCPPorts = [ 
+        8123 
+        8091 
+        1880 
+        5357 # wsdd
+        80
+        443
+    ];
         
     # DNS Configuration
     services.dns-agent.extraConfig = let
@@ -191,6 +269,16 @@
                     }
                     {
                         name = "zwave";
+                        record_type = "A";
+                        interface = internal_interface;
+                    }
+                    {
+                        name = "nodered";
+                        record_type = "AAAA";
+                        interface = internal_interface;
+                    }
+                    {
+                        name = "nodered";
                         record_type = "A";
                         interface = internal_interface;
                     }

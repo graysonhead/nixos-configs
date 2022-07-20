@@ -14,6 +14,12 @@ let
       buildInputs = [ pkgs.autoreconfHook pkgs.pkg-config ];
     });
   });
+  unstable-overlay = final: prev: {
+    unstable = import inputs.nixpkgs-unstable {
+      system = "x86_64-linux";
+      config.allowUnfree = true;
+    };
+  };
 in
 {
   imports = [
@@ -22,8 +28,10 @@ in
     ../services/syncthing.nix
     ../modules/home-backups.nix
   ];
-
-  nixpkgs.overlays = [ nss-mdns-overlay ];
+  nixpkgs.overlays = [ 
+    nss-mdns-overlay
+    unstable-overlay
+  ];
 
   system.nssDatabases.hosts = (lib.mkMerge [
     (lib.mkBefore [ "mdns4_minimal [NOTFOUND=return]" ])
@@ -75,8 +83,6 @@ in
     networkmanager-openvpn
     networkmanager-openconnect
     nordic
-    slack
-    discord
     teamspeak_client
     zoom-us
     lutris

@@ -301,11 +301,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1657241847,
-        "narHash": "sha256-/aN3p2LaRNVXf7w92GWgXq9H5f23YRQPOvsm3BrBqzU=",
+        "lastModified": 1658151168,
+        "narHash": "sha256-0uHoOHr20pJTOGzgS4kNgOP4wfrch0fc+9vZ/6LgD44=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "8160b3b45b8457d58d2b3af2aeb2eb6f47042e0f",
+        "rev": "4a724cb84cc3aa464af1713d11bf0cfbbdb56c00",
         "type": "github"
       },
       "original": {
@@ -357,11 +357,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1656933710,
-        "narHash": "sha256-SVG8EqY1OTJWBRY4hpct2ZR2Rk0L8hCFkug3m0ABoZE=",
+        "lastModified": 1658227863,
+        "narHash": "sha256-QoRmU18dCYnZy8ks9cz2ZhsGW+AVo1pioLrs+s/8Tkg=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "3bf48d3587d3f34f745a19ebc968b002ef5b5c5a",
+        "rev": "0015f5cc098fae520aae458b8547e44a38aacf92",
         "type": "github"
       },
       "original": {
@@ -383,6 +383,21 @@
       "original": {
         "owner": "nixos",
         "ref": "nixos-21.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1658290269,
+        "narHash": "sha256-FC/JRKni/SgFiU8AyccTehF/4JFC0r4Ujwzp5RiXsI8=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "e742674265c952f4f0f924dc6ffac29118b686dc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -498,11 +513,11 @@
     },
     "nixpkgs_9": {
       "locked": {
-        "lastModified": 1657296039,
-        "narHash": "sha256-Ghh39+aS+pw5sTP/ZO8VIKE6sBhMadDaQZtf+3yu4Vc=",
+        "lastModified": 1658237535,
+        "narHash": "sha256-z3Ff9oSXEPSZMfXdM+r29oJxtyKUnlUOc18U9E6Q48g=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "71d7a4c037dc4f3e98d5c4a81b941933cf5bf675",
+        "rev": "e732e1fdbf79bec59f7ade4a3675b091b4a9f6d6",
         "type": "github"
       },
       "original": {
@@ -522,7 +537,8 @@
         "home-manager": "home-manager",
         "jager": "jager",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_9"
+        "nixpkgs": "nixpkgs_9",
+        "nixpkgs-unstable": "nixpkgs-unstable"
       }
     },
     "rust-overlay": {

@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, nixpkgs, ... }:
 # Home manager module for full desktop installs
 {
   programs.vscode = {
@@ -26,7 +26,7 @@
     rustfmt
     rust-analyzer
     opera
-    discord
+    (unstable.discord.override { nss = pkgs.nss_latest; })
     joplin-desktop
     signal-desktop
     gcc
@@ -36,6 +36,7 @@
     wireshark
     inputs.deploy-rs.defaultPackage.x86_64-linux
     inputs.agenix.defaultPackage.x86_64-linux
+    slack
     kubectl
     flux
     tilt

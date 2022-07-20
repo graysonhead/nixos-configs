@@ -4,6 +4,7 @@
     google-chrome
     zip
     vlc
+    (unstable.discord.override { nss = pkgs.nss_latest; })
   ];
   programs.bash = {
     enable = true;
