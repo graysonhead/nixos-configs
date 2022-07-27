@@ -1,4 +1,4 @@
-{ nixpkgs, inputs, config, ... }:
+{ nixpkgs, inputs, pkgs, config, ... }:
 
 {
     imports = [
@@ -6,14 +6,13 @@
         ../modules/common.nix
         ../services/common.nix
         ../services/dns-agent.nix
+        ../modules/motion.nix
     ];
     services.openssh.enable = true;
     security.sudo.wheelNeedsPassword = false;
     environment.systemPackages = [
     ];
-
     
-
     # Homeassistant
 
     users.users.nodered = {
@@ -98,6 +97,10 @@
             credentialsFile = config.age.secrets.dns-acme.path;
         };
         certs."nodered.i.graysonhead.net" = {
+            dnsProvider = "digitalocean";
+            credentialsFile = config.age.secrets.dns-acme.path;
+        };
+        certs."motion.i.graysonhead.net" = {
             dnsProvider = "digitalocean";
             credentialsFile = config.age.secrets.dns-acme.path;
         };
@@ -220,6 +223,13 @@
                 proxyWebsockets = true;
             };
         };
+        virtualHosts."motion.i.graysonhead.net" = {
+            useACMEHost = "motion.i.graysonhead.net";
+            forceSSL = true;
+            locations."/" = {
+                proxyPass = "http://127.0.0.1:8080";
+            };
+        };
     };
 
     # Firewall config
@@ -230,7 +240,50 @@
         5357 # wsdd
         80
         443
+        5672 # AMQP
+        15672 # Rabbitmq webui
     ];
+
+    services.motion = {
+        enable = true;
+    };
+
+    # Rabbitmq
+    services.rabbitmq = {
+        enable = true;
+        plugins = [
+            "rabbitmq_mqtt"
+            "rabbitmq_management"
+        ];
+    };
+
+    # Autodiscovery
+    services.avahi = {
+        enable = true;
+        nssmdns = true;
+        ipv6 = true;
+        publish = {
+            enable = true;
+            domain = true;
+            addresses = true;
+            hinfo = true;
+            userServices = true;
+            workstation = true;
+        };
+        extraServiceFiles = {
+            smb = ''
+                <?xml version="1.0" standalone='no'?><!--*-nxml-*-->
+                <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+                <service-group>
+                <name replace-wildcards="yes">%h</name>
+                <service>
+                    <type>_smb._tcp</type>
+                    <port>445</port>
+                </service>
+                </service-group>
+            '';
+        };
+    };
         
     # DNS Configuration
     services.dns-agent.extraConfig = let
@@ -279,6 +332,11 @@
                     }
                     {
                         name = "nodered";
+                        record_type = "A";
+                        interface = internal_interface;
+                    }
+                    {
+                        name = "motion";
                         record_type = "A";
                         interface = internal_interface;
                     }

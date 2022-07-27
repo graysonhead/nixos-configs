@@ -22,6 +22,7 @@
   home.packages = with pkgs; [
     calibre
     cargo
+    chirp
     rustc
     rustfmt
     rust-analyzer
@@ -47,6 +48,7 @@
     vlc
     gparted
     obs-studio
+    kdenlive
   ];
 
   programs.home-manager = {

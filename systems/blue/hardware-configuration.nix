@@ -50,6 +50,11 @@
     { device = "/dev/disk/by-uuid/8f98d1a3-9ad5-4716-8e4a-16d1e18fcf2a";
       fsType = "ext4";
     };
+    
+  fileSystems."/security_footage" =
+    { device = "/dev/disk/by-uuid/02f214e1-fe5f-41db-a4bf-6ba939a32eb0";
+      fsType = "ext4";
+    };
 
   swapDevices =
     [ { device = "/dev/disk/by-uuid/a634380a-5d9f-4041-bc40-c6008363ae13"; }

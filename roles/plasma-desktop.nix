@@ -100,7 +100,25 @@ in
     exfat
     ntfs3g
     ksshaskpass
+    gnome.simple-scan
+    xsane
   ];
   programs.adb.enable = true;
   virtualisation.docker.enable = true;
+  hardware.sane = {
+    enable = true;
+    brscan4 = {
+      enable = true;
+    };
+    brscan5 = {
+      enable = true;
+      # Uncomment this if MDNS fails to find the printer
+      # netDevices = {
+      #   office = { model = "DCP-L2540DW"; ip = "10.5.5.159"; };
+      # };
+    };
+    extraBackends = [
+      pkgs.sane-airscan
+    ];
+  };
 }
