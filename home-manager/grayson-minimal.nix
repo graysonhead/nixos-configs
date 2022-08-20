@@ -31,7 +31,7 @@
   programs.bash = {
     enable = true;
     shellAliases = {
-      update = "sudo nix-collect-garbage && sudo nixos-rebuild switch --flake github:graysonhead/nixos-configs";
+      update = "sudo nixos-rebuild boot --flake github:graysonhead/nixos-configs && sudo shutdown -r now";
       rebuild-from-dir = "nixos-rebuild build --impure --flake . && sudo ./result/bin/switch-to-configuration switch && source ~/.bashrc";
       dir-size = "sudo du -shx ./* | sort -h";
       exportall = "f(){ set -o allexport; source $1; set +o allexport; }; f";

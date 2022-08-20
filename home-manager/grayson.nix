@@ -49,6 +49,12 @@
     gparted
     obs-studio
     kdenlive
+    poetry
+    inputs.cargo2nix.packages.x86_64-linux.cargo2nix
+    nodePackages.create-react-app
+    nodePackages.npm
+    nodejs
+    k9s
   ];
 
   programs.home-manager = {

@@ -15,6 +15,7 @@
       url = "github:edolstra/flake-compat";
       flake = false;
     };
+    cargo2nix.url = "github:cargo2nix/cargo2nix/release-0.11.0";
   };
   outputs =
     { self
@@ -55,6 +56,7 @@
             ./roles/plasma-desktop.nix
             ./systems/deckchair/configuration.nix
             ./jager/install.nix
+            ./roles/sdr.nix
           ];
           specialArgs = { inherit inputs; };
         };
@@ -76,6 +78,7 @@
             agenix.nixosModule
             ./roles/plasma-desktop.nix
             ./systems/green/configuration.nix
+            ./roles/sdr.nix
           ];
           specialArgs = { inherit inputs; };
         };

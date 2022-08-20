@@ -77,7 +77,12 @@ in
   };
   services.flatpak.enable = true;
   programs.ssh.startAgent = true;
+  services.usbmuxd.enable = true;
   environment.systemPackages = with pkgs; [
+    ifuse
+    libimobiledevice
+    libheif
+    kio-fuse
     firefox
     networkmanager-iodine
     networkmanager-openvpn
@@ -112,10 +117,6 @@ in
     };
     brscan5 = {
       enable = true;
-      # Uncomment this if MDNS fails to find the printer
-      # netDevices = {
-      #   office = { model = "DCP-L2540DW"; ip = "10.5.5.159"; };
-      # };
     };
     extraBackends = [
       pkgs.sane-airscan
