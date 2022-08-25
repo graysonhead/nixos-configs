@@ -1,19 +1,6 @@
 { nixpkgs, pkgs, inputs, lib, ... }:
 
 let
-  nss-mdns-overlay = (self: super: {
-    nssmdns = super.nssmdns.overrideAttrs (prev: {
-      version = "v0.15.1";
-      src = pkgs.fetchFromGitHub {
-        owner = "lathiat";
-        repo = "nss-mdns";
-        rev = "v0.15.1";
-        sha256 = "sha256-iRaf9/gu9VkGi1VbGpxvC5q+0M8ivezCz/oAKEg5V1M=";
-      };
-      patches = [ ];
-      buildInputs = [ pkgs.autoreconfHook pkgs.pkg-config ];
-    });
-  });
   unstable-overlay = final: prev: {
     unstable = import inputs.nixpkgs-unstable {
       system = "x86_64-linux";
@@ -29,7 +16,6 @@ in
     ../modules/home-backups.nix
   ];
   nixpkgs.overlays = [ 
-    nss-mdns-overlay
     unstable-overlay
   ];
 
@@ -84,6 +70,7 @@ in
     libheif
     kio-fuse
     firefox
+    unstable.nssmdns
     networkmanager-iodine
     networkmanager-openvpn
     networkmanager-openconnect

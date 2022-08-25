@@ -1,22 +1,27 @@
-{ config }:
+{ config, lib, pkgs, ... }:
 {
     networking.firewall.allowedTCPPorts = [
         3000
-        9090
-        9093
+        9190
+        9192
     ];
-    services.promethus = {
+    services.prometheus = {
         enable = true;
+        port = 9190;
         pushgateway = {
             enable = true;
+            web.listen-address = ":9192";
         };
         scrapeConfigs = [
             {
-                job_name = "local";
+                job_name = "prometheus";
                 honor_labels = true;
-                static_configss = [
+                static_configs = [
                     {
-                        targets = ["localhost:9091" ];
+                        targets = [
+                            "localhost:9100"
+                            "localhost:9190"
+                            ];
                     }
                 ];
             }

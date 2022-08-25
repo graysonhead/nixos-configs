@@ -7,6 +7,8 @@
         ../services/common.nix
         ../services/dns-agent.nix
         ../modules/motion.nix
+        ./prometheus_exporter.nix
+        ./prometheus.nix
     ];
     services.openssh.enable = true;
     security.sudo.wheelNeedsPassword = false;
@@ -140,6 +142,13 @@
                 "guest ok" = "no";
                 "create mask" = "0644";
                 "directory mask" = "0755";
+            };
+            security_footage = {
+                path = "/security_footage";
+                browseable = "yes";
+                public = "no";
+                "read only" = "no";
+                "guest ok" = "no";
             };
         };
     };
