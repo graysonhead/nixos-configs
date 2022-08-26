@@ -40,6 +40,7 @@ in
     pkgs.brgenml1lpr
     pkgs.brgenml1cupswrapper
   ];
+  services.kbfs.enable = true;
   services.keybase.enable = true;
   programs.steam = {
     enable = true;
@@ -49,7 +50,7 @@ in
   hardware.bluetooth.enable = true;
   programs.kdeconnect.enable = true;
   programs.wireshark.enable = true;
-  services.avahi = {
+  services.avahi = { 
     enable = true;
     nssmdns = false;
     ipv6 = true;
@@ -64,6 +65,11 @@ in
   services.flatpak.enable = true;
   programs.ssh.startAgent = true;
   services.usbmuxd.enable = true;
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "qt";
+  };
   environment.systemPackages = with pkgs; [
     ifuse
     libimobiledevice
@@ -78,11 +84,14 @@ in
     teamspeak_client
     zoom-us
     lutris
+    pass
+    pinentry-curses
     ark
     minikube
     openvpn
     iodine
     python310Packages.protonup
+    libreoffice
     protontricks
     xorg.xkill
     winetricks
@@ -94,7 +103,13 @@ in
     ksshaskpass
     gnome.simple-scan
     xsane
+    yubikey-agent
+    yubikey-manager
+    yubikey-manager-qt
+    yubico-piv-tool
+    pinentry-qt
   ];
+  services.yubikey-agent.enable = true;
   programs.adb.enable = true;
   virtualisation.docker.enable = true;
   hardware.sane = {

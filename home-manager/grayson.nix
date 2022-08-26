@@ -1,6 +1,13 @@
 { pkgs, inputs, nixpkgs, ... }:
 # Home manager module for full desktop installs
 {
+  imports = [
+    ../modules/protonmail-bridge.nix
+  ];
+  services.protonmail-bridge = {
+    enable = true;
+    nonInteractive = true;
+  };
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
@@ -50,11 +57,14 @@
     obs-studio
     kdenlive
     poetry
+    protonmail-bridge
     inputs.cargo2nix.packages.x86_64-linux.cargo2nix
     nodePackages.create-react-app
     nodePackages.npm
     nodejs
     k9s
+    libsForQt5.kmail
+    libsForQt5.kwrited
   ];
 
   programs.home-manager = {
@@ -88,6 +98,11 @@
         ssh-add $HOME/.ssh/id_fa
       '';
       executable = true;
+    };
+    ".gnupg/gpg-agent.conf" = {
+      text = ''
+        pinentry-program /run/current-system/sw/bin/pinentry
+      '';
     };
   };
 }

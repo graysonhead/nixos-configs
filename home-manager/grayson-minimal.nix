@@ -27,6 +27,9 @@
     extraConfig = {
       init.defaultBranch = "main";
     };
+    signing = {
+      key = "1F5820610A829D10BE2D236A3ED82391AFC8671F";
+    };
   };
   programs.bash = {
     enable = true;
