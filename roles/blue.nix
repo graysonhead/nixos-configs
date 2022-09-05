@@ -9,6 +9,7 @@
         ../modules/motion.nix
         ./prometheus_exporter.nix
         ./prometheus.nix
+        ./radicale.nix
     ];
     services.openssh.enable = true;
     security.sudo.wheelNeedsPassword = false;
@@ -373,6 +374,16 @@
                     {
                         name = "transmission";
                         record_type = "A";
+                        interface = internal_interface;
+                    }
+                    {
+                        name = "calendar";
+                        record_type = "A";
+                        interface = "external";
+                    }
+                    {
+                        name = "calendar";
+                        record_type = "AAAA";
                         interface = internal_interface;
                     }
                 ];

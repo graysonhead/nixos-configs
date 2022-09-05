@@ -57,6 +57,7 @@
     obs-studio
     kdenlive
     poetry
+    libsForQt5.kalendar
     protonmail-bridge
     inputs.cargo2nix.packages.x86_64-linux.cargo2nix
     nodePackages.create-react-app

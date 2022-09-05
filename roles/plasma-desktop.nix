@@ -124,4 +124,5 @@ in
       pkgs.sane-airscan
     ];
   };
+  networking.firewall.allowedUDPPorts = [ 43210 ];
 }

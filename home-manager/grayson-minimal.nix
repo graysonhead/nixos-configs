@@ -43,6 +43,9 @@
       k = "kubectl";
     };
     bashrcExtra = ''
+      export PATH=~/.npm-packages/bin:$PATH
+      export PATH=~/.cargo/bin/:$PATH
+      export NODE_PATH=~/.npm-packages/lib/node_modules
       function kns() {
         ctx=`kubectl config current-context`
         ns=$1
@@ -69,6 +72,11 @@
   };
 
   home.file = {
+    ".npmrc" = {
+      text = ''
+        prefix = ''${HOME}/.npm-packages
+      '';
+    };
     ".tmux.conf" = {
       text = ''
         setw -g mouse on
