@@ -5,5 +5,6 @@
     openDefaultPorts = true;
     user = "grayson";
     configDir = "/home/grayson/.config/syncthing";
+    dataDir = "/home/grayson";
   };
 }

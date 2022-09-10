@@ -9,12 +9,15 @@
         ../modules/motion.nix
         ./prometheus_exporter.nix
         ./prometheus.nix
+        ./blue-syncthing.nix
         ./radicale.nix
     ];
     services.openssh.enable = true;
     security.sudo.wheelNeedsPassword = false;
     environment.systemPackages = [
     ];
+
+
     
     # Homeassistant
 

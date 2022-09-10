@@ -108,6 +108,14 @@ in
     yubikey-manager-qt
     yubico-piv-tool
     pinentry-qt
+    libsForQt5.akonadi-mime
+    libsForQt5.akonadi-calendar
+    libsForQt5.akonadi-mime
+    libsForQt5.kontact
+    libsForQt5.kmail
+    libsForQt5.kwrited
+    libsForQt5.kontact
+    libsForQt5.korganizer
   ];
   services.yubikey-agent.enable = true;
   programs.adb.enable = true;

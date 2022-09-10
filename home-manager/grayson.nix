@@ -11,6 +11,17 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
+    userSettings = {
+          "git.enableCommitSigning" = true;
+          "workbench.colorTheme" = "Default Dark+";
+          "files.autoSave" = "afterDelay";
+          "git.confirmSync" = false;
+          "explorer.confirmDelete" = false;
+          "security.workspace.trust.untrustedFiles" = "open";
+          "diffEditor.ignoreTrimWhitespace" = false;
+          "explorer.confirmDragAndDrop" = false;
+          "editor.formatOnSave" = true;
+    };
     extensions = with pkgs.vscode-extensions; [
       bbenoist.nix
       bungcip.better-toml
@@ -64,8 +75,6 @@
     nodePackages.npm
     nodejs
     k9s
-    libsForQt5.kmail
-    libsForQt5.kwrited
   ];
 
   programs.home-manager = {
