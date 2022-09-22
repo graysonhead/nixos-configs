@@ -30,6 +30,14 @@
     signing = {
       key = "1F5820610A829D10BE2D236A3ED82391AFC8671F";
     };
+    extraConfig = {
+      pull = {
+        rebase = "false";
+      };
+      credential = {
+        helper = "store";
+      };
+    };
   };
   programs.bash = {
     enable = true;
@@ -40,6 +48,7 @@
       exportall = "f(){ set -o allexport; source $1; set +o allexport; }; f";
       nixrestic = "f(){ exportall /run/agenix/restic; restic -r b2:nixos-backups -p /run/agenix/restic_password $@; }; f";
       bluerestic = "f(){ exportall /run/agenix/restic; restic -r b2:ghead-blue-backup -p /run/agenix/restic_password $@; }; f";
+      tilt-hardreset = "tilt down && minikube delete && minikube start && tilt up";
       k = "kubectl";
     };
     bashrcExtra = ''
@@ -87,6 +96,7 @@
       text = ''
         Host bounce
           HostName bounce.graysonhead.net
+          ForwardAgent yes
 
         Host lab3
                 HostName localhost
@@ -106,10 +116,13 @@
         # FA specific stuff
         Host *.flightaware.com
           User grayson.head
+          ForwardAgent yes
         Host *.hou
           User grayson.head
+          ForwardAgent yes
         Host *.dal
           User grayson.head
+          ForwardAgent yes
 
         IdentityFile /home/grayson/.ssh/fa_id
       '';

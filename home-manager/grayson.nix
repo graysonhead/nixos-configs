@@ -21,6 +21,7 @@
           "diffEditor.ignoreTrimWhitespace" = false;
           "explorer.confirmDragAndDrop" = false;
           "editor.formatOnSave" = true;
+          "rust-analyzer.checkOnSave.command" = "clippy";
     };
     extensions = with pkgs.vscode-extensions; [
       bbenoist.nix
@@ -31,6 +32,7 @@
       matklad.rust-analyzer
       arrterian.nix-env-selector
       eamodio.gitlens
+      ms-azuretools.vscode-docker
     ];
   };
   programs.direnv = {
