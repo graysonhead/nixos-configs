@@ -38,6 +38,16 @@
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
       nixosConfigurations = {
 
+        chromebook = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./roles/plasma-desktop.nix
+            ./roles/sdr.nix
+            ./systems/chromebook/configuration.nix
+          ];
+          specialArgs = { inherit inputs; };
+        };
+
         blue = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [

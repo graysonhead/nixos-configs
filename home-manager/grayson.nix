@@ -52,6 +52,7 @@
     signal-desktop
     gcc
     gimp
+    godot
     redis
     transmission-qt
     wireshark

@@ -97,21 +97,26 @@
         Host bounce
           HostName bounce.graysonhead.net
           ForwardAgent yes
+        
+        Host teamspeak.lazerhawks.net
+          Port 922
+          HostKeyAlgorithms +ssh-rsa
+          PubkeyAcceptedKeyTypes +ssh-rsa
 
         Host lab3
-                HostName localhost
-                Port 15000
-                ProxyJump bounce
+          HostName localhost
+          Port 15000
+          ProxyJump bounce
 
         Host lab2
-                HostName localhost
-                Port 15001
-                ProxyJump bounce
+          HostName localhost
+          Port 15001
+          ProxyJump bounce
 
         Host lab1
-                HostName localhost
-                Port 15002
-                ProxyJump bounce
+          HostName localhost
+          Port 15002
+          ProxyJump bounce
 
         # FA specific stuff
         Host *.flightaware.com
