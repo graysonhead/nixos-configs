@@ -41,6 +41,7 @@
         chromebook = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+            agenix.nixosModule
             ./roles/plasma-desktop.nix
             ./roles/sdr.nix
             ./systems/chromebook/configuration.nix
