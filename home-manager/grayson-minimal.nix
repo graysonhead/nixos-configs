@@ -88,8 +88,12 @@
     };
     ".tmux.conf" = {
       text = ''
+        unbind '"'
+        unbind "%"
         setw -g mouse on
-        bind -n C-s set -g synchronize-panes
+        bind C-s set -g synchronize-panes
+        bind | split-window -h
+        bind _ split-window -v
       '';
     };
     ".ssh/config" = {

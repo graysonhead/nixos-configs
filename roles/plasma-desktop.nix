@@ -108,6 +108,9 @@ in
     yubikey-manager-qt
     yubico-piv-tool
     pinentry-qt
+    libsForQt5.kdeApplications.akonadi 
+    libsForQt5.kdeApplications.akonadiconsole 
+    libsForQt5.kdeApplications.akonadi-search
     libsForQt5.akonadi-mime
     libsForQt5.akonadi-calendar
     libsForQt5.akonadi-mime

@@ -54,6 +54,7 @@
           modules = [
             agenix.nixosModule
             ./roles/blue.nix
+            ./roles/libvirt.nix
             ./systems/blue/configuration.nix
           ];
           specialArgs = { inherit inputs; };
