@@ -75,7 +75,6 @@ in
     libimobiledevice
     libheif
     kio-fuse
-    firefox
     unstable.nssmdns
     networkmanager-iodine
     networkmanager-openvpn

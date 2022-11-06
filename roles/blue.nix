@@ -11,7 +11,6 @@
         ./prometheus.nix
         ./blue-syncthing.nix
         ./radicale.nix
-        ./webdav.nix
     ];
     services.openssh.enable = true;
     security.sudo.wheelNeedsPassword = false;
@@ -92,10 +91,6 @@
             email = "grayson@graysonhead.net";
         };
         certs."home.graysonhead.net" = {
-            dnsProvider = "digitalocean";
-            credentialsFile = config.age.secrets.dns-acme.path;
-        };
-        certs."wdv.graysonhead.net" = {
             dnsProvider = "digitalocean";
             credentialsFile = config.age.secrets.dns-acme.path;
         };
@@ -212,16 +207,6 @@
                 proxyPass = "http://127.0.0.1:9091";
             };
         };
-        virtualHosts."wdv.graysonhead.net" = {
-            useACMEHost= "wdv.graysonhead.net";
-            forceSSL = true;
-            extraConfig = ''
-                proxy_buffering off;
-            '';
-            locations."/" = {
-                proxyPass = "http://127.0.0.1:4918";
-            };
-        };
         virtualHosts."zwave.i.graysonhead.net" = {
             useACMEHost = "zwave.i.graysonhead.net";
             forceSSL = true;
@@ -311,18 +296,7 @@
                 </service-group>
             '';
         };
-    };
-
-    networking.interfaces.enp6s0.useDHCP = true;
-    networking.interfaces.enp11s0.useDHCP = false;
-    networking.interfaces.br0.useDHCP = true;
-    networking.bridges = {
-        "br0" = {
-            interfaces = [ "enp11s0" ];
-            rstp = true;
-        };
-    };
-        
+    };   
     # DNS Configuration
     services.dns-agent.extraConfig = let
         internal_interface = "enp6s0";
@@ -384,16 +358,6 @@
                 name = "graysonhead.net";
                 digital_ocean_backend.api_key = "$DO_API_KEY";
                 records = [
-                    {
-                        name = "wdv";
-                        record_type = "A";
-                        interface = "external";
-                    }
-                    {
-                        name = "wdv";
-                        record_type = "AAAA";
-                        interface = internal_interface;
-                    }
                     {
                         name = "home";
                         record_type = "A";

@@ -33,6 +33,7 @@
       arrterian.nix-env-selector
       eamodio.gitlens
       ms-azuretools.vscode-docker
+      streetsidesoftware.code-spell-checker
     ];
   };
   programs.direnv = {
@@ -46,22 +47,27 @@
     rustc
     rustfmt
     rust-analyzer
-    opera
-    (unstable.discord.override { nss = pkgs.nss_latest; })
-    joplin-desktop
-    signal-desktop
+    unstable.opera
+    (unstable.discord.override { nss = nss_latest; })
+    unstable.firefox
+    unstable.joplin-desktop
+    unstable.signal-desktop
     gcc
     gimp
-    godot
+    unstable.godot
     redis
     transmission-qt
     wireshark
     inputs.deploy-rs.defaultPackage.x86_64-linux
     inputs.agenix.defaultPackage.x86_64-linux
-    slack
+    inputs.cargo2nix.packages.x86_64-linux.default
+    cargo
+    unstable.slack
     kubectl
     flux
     tilt
+    texstudio
+    texlive.combined.scheme-full
     _1password
     _1password-gui
     keybase
@@ -76,7 +82,7 @@
     nodePackages.create-react-app
     nodePackages.npm
     nodejs
-    k9s
+    unstable.k9s
     foxitreader
     virt-manager
   ];

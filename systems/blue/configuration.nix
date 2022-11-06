@@ -42,6 +42,15 @@
   networking.networkmanager.enable = true;
   time.timeZone = "America/Chicago";
   system.stateVersion = "22.05";
+  networking.interfaces.enp6s0.useDHCP = true;
+  networking.interfaces.enp11s0.useDHCP = false;
+  networking.interfaces.br0.useDHCP = true;
+  networking.bridges = {
+      "br0" = {
+          interfaces = [ "enp11s0" ];
+          rstp = true;
+      };
+    };
 
 }
 
