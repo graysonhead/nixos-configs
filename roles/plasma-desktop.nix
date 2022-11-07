@@ -15,8 +15,20 @@ in
     ../services/syncthing.nix
     ../modules/home-backups.nix
   ];
-  nixpkgs.overlays = [ 
+  nixpkgs.overlays = [
     unstable-overlay
+    (self: super:
+    {
+   zoomUsFixed = pkgs.zoom-us.overrideAttrs (old: {
+      postFixup = old.postFixup + ''
+        wrapProgram $out/bin/zoom-us --unset XDG_SESSION_TYPE
+      '';});
+   zoom = pkgs.zoom-us.overrideAttrs (old: {
+      postFixup = old.postFixup + ''
+        wrapProgram $out/bin/zoom --unset XDG_SESSION_TYPE
+      '';});
+      }
+      )
   ];
 
   system.nssDatabases.hosts = (lib.mkMerge [
@@ -45,8 +57,8 @@ in
   programs.steam = {
     enable = true;
   };
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
+  # hardware.pulseaudio.enable = true;
+  # hardware.pulseaudio.package = pkgs.pulseaudioFull;
   hardware.bluetooth.enable = true;
   programs.kdeconnect.enable = true;
   programs.wireshark.enable = true;
@@ -81,7 +93,12 @@ in
     networkmanager-openconnect
     nordic
     teamspeak_client
-    zoom-us
+    # ( zoom-us.overrideAttrs (old: {
+    #   postFixup = old.postFixup + ''
+    #     wrapProgram $out/bin/zoom-us --unset XDG_SESSION_TYPE
+    #   '';})
+    # )
+    zoom
     lutris
     pass
     pinentry-curses
@@ -133,5 +150,13 @@ in
     extraBackends = [
       pkgs.sane-airscan
     ];
+  };
+
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
   };
 }

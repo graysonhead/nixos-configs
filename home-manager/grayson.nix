@@ -97,11 +97,6 @@
   };
 
   home.file = {
-    ".config/discord/settings.json" = {
-      text = ''
-        "SKIP_HOST_UPDATE": true
-      '';
-    };
     ".config/plasma-workspace/env/ssh-agent-startup.sh" = {
       text = ''
         #!/bin/bash
