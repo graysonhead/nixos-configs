@@ -2,12 +2,7 @@
 # Home manager module for full desktop installs
 {
   imports = [
-    ../modules/protonmail-bridge.nix
   ];
-  services.protonmail-bridge = {
-    enable = true;
-    nonInteractive = true;
-  };
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
@@ -78,7 +73,6 @@
     kdenlive
     poetry
     libsForQt5.kalendar
-    protonmail-bridge
     nodePackages.create-react-app
     nodePackages.npm
     nodejs

@@ -27,7 +27,6 @@
         "--keep-yearly 75"
       ];
       extraBackupArgs = [
-        "--exclude=.*"
         "--exclude=target/**"
         "--exclude=Downloads/**"
         "--exclude=Builds/**"

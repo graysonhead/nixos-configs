@@ -50,6 +50,7 @@
       bluerestic = "f(){ exportall /run/agenix/restic; restic -r b2:ghead-blue-backup -p /run/agenix/restic_password $@; }; f";
       tilt-hardreset = "tilt down && minikube delete && minikube start && tilt up";
       k = "kubectl";
+      list-generations = "nix-env --list-generations --profile /nix/var/nix/profiles/system";
     };
     bashrcExtra = ''
       export PATH=~/.npm-packages/bin:$PATH
