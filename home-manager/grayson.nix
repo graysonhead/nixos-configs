@@ -70,6 +70,7 @@
     vlc
     gparted
     obs-studio
+    unstable.manuskript
     kdenlive
     poetry
     libsForQt5.kalendar
