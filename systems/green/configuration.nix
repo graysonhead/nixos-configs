@@ -25,4 +25,5 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
   system.stateVersion = "22.05";
+  networking.extraHosts = "10.42.3.8 podinfo.test.flightaware.com";
 }

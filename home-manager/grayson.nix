@@ -25,7 +25,6 @@
       golang.go
       ms-python.python
       matklad.rust-analyzer
-      arrterian.nix-env-selector
       eamodio.gitlens
       ms-azuretools.vscode-docker
       streetsidesoftware.code-spell-checker
@@ -36,6 +35,7 @@
     nix-direnv.enable = true;
   };
   home.packages = with pkgs; [
+    (unstable.blender.override { cudaSupport = true; })
     calibre
     chirp
     dia
@@ -52,6 +52,7 @@
     unstable.godot
     redis
     transmission-qt
+    thunderbird
     wireshark
     inputs.deploy-rs.defaultPackage.x86_64-linux
     inputs.agenix.defaultPackage.x86_64-linux
@@ -80,6 +81,7 @@
     unstable.k9s
     foxitreader
     virt-manager
+    youtube-dl
   ];
 
   programs.home-manager = {

@@ -108,6 +108,7 @@ in
     iodine
     python310Packages.protonup
     libreoffice
+    hunspellDicts.en_US
     protontricks
     xorg.xkill
     winetricks
@@ -135,6 +136,7 @@ in
     libsForQt5.kwrited
     libsForQt5.kontact
     libsForQt5.korganizer
+    libsForQt5.filelight
   ];
   services.yubikey-agent.enable = true;
   programs.adb.enable = true;

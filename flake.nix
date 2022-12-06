@@ -91,6 +91,7 @@
             ./roles/plasma-desktop.nix
             ./systems/green/configuration.nix
             ./roles/sdr.nix
+            ./roles/cuda.nix
           ];
           specialArgs = { inherit inputs; };
         };
