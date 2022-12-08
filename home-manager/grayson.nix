@@ -5,18 +5,18 @@
   ];
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode;
+    package = pkgs.unstable.vscode;
     userSettings = {
-          "git.enableCommitSigning" = true;
-          "workbench.colorTheme" = "Default Dark+";
-          "files.autoSave" = "afterDelay";
-          "git.confirmSync" = false;
-          "explorer.confirmDelete" = false;
-          "security.workspace.trust.untrustedFiles" = "open";
-          "diffEditor.ignoreTrimWhitespace" = false;
-          "explorer.confirmDragAndDrop" = false;
-          "editor.formatOnSave" = true;
-          "rust-analyzer.checkOnSave.command" = "clippy";
+      "git.enableCommitSigning" = true;
+      "workbench.colorTheme" = "Default Dark+";
+      "files.autoSave" = "afterDelay";
+      "git.confirmSync" = false;
+      "explorer.confirmDelete" = false;
+      "security.workspace.trust.untrustedFiles" = "open";
+      "diffEditor.ignoreTrimWhitespace" = false;
+      "explorer.confirmDragAndDrop" = false;
+      "editor.formatOnSave" = true;
+      "rust-analyzer.checkOnSave.command" = "clippy";
     };
     extensions = with pkgs.vscode-extensions; [
       bbenoist.nix
