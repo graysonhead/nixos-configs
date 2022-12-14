@@ -6,7 +6,7 @@
     ./default-system-packages.nix
   ];
   programs.vim.defaultEditor = true;
-  nix.requireSignedBinaryCaches = false;
+  nix.settings.require-sigs = false;
   nixpkgs.config.allowUnfree = true;
   environment = {
     systemPackages = with pkgs; [
@@ -19,9 +19,9 @@
       efibootmgr
     ];
   };
-  networking.search = [ 
-    "i.graysonhead.net" 
-    "hou.flightaware.com" 
+  networking.search = [
+    "i.graysonhead.net"
+    "hou.flightaware.com"
     "dal.flightaware.com"
   ];
   nix = {

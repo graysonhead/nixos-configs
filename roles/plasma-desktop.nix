@@ -18,17 +18,19 @@ in
   nixpkgs.overlays = [
     unstable-overlay
     (self: super:
-    {
-   zoomUsFixed = pkgs.zoom-us.overrideAttrs (old: {
-      postFixup = old.postFixup + ''
-        wrapProgram $out/bin/zoom-us --unset XDG_SESSION_TYPE
-      '';});
-   zoom = pkgs.zoom-us.overrideAttrs (old: {
-      postFixup = old.postFixup + ''
-        wrapProgram $out/bin/zoom --unset XDG_SESSION_TYPE
-      '';});
+      {
+        zoomUsFixed = pkgs.zoom-us.overrideAttrs (old: {
+          postFixup = old.postFixup + ''
+            wrapProgram $out/bin/zoom-us --unset XDG_SESSION_TYPE
+          '';
+        });
+        zoom = pkgs.zoom-us.overrideAttrs (old: {
+          postFixup = old.postFixup + ''
+            wrapProgram $out/bin/zoom --unset XDG_SESSION_TYPE
+          '';
+        });
       }
-      )
+    )
   ];
 
   system.nssDatabases.hosts = (lib.mkMerge [
@@ -37,7 +39,7 @@ in
   ]);
 
   system.nssModules = [ pkgs.nssmdns ];
-  
+
   nix.extraOptions = ''
     keep-outputs = true
     keep-derivations = true
@@ -62,7 +64,7 @@ in
   hardware.bluetooth.enable = true;
   programs.kdeconnect.enable = true;
   programs.wireshark.enable = true;
-  services.avahi = { 
+  services.avahi = {
     enable = true;
     nssmdns = false;
     ipv6 = true;
@@ -125,8 +127,8 @@ in
     yubikey-manager-qt
     yubico-piv-tool
     pinentry-qt
-    libsForQt5.kdeApplications.akonadi 
-    libsForQt5.kdeApplications.akonadiconsole 
+    libsForQt5.kdeApplications.akonadi
+    libsForQt5.kdeApplications.akonadiconsole
     libsForQt5.kdeApplications.akonadi-search
     libsForQt5.akonadi-mime
     libsForQt5.akonadi-calendar
@@ -161,4 +163,9 @@ in
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "qtwebkit-5.212.0-alpha4"
+  ];
+
 }

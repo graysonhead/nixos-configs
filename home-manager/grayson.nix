@@ -57,6 +57,7 @@
     inputs.deploy-rs.defaultPackage.x86_64-linux
     inputs.agenix.defaultPackage.x86_64-linux
     inputs.cargo2nix.packages.x86_64-linux.default
+    qalculate-qt
     cargo
     unstable.slack
     kubectl
@@ -68,12 +69,11 @@
     _1password-gui
     keybase
     keybase-gui
-    vlc
+    unstable.vlc
     gparted
     obs-studio
     unstable.manuskript
     kdenlive
-    poetry
     libsForQt5.kalendar
     nodePackages.create-react-app
     nodePackages.npm
