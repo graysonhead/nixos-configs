@@ -36,6 +36,7 @@
   };
   home.packages = with pkgs; [
     (unstable.blender.override { cudaSupport = true; })
+    imagemagick
     calibre
     chirp
     dia
