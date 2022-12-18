@@ -1,7 +1,8 @@
 { pkgs, ... }: {
   home.stateVersion = "21.11";
   home.packages = with pkgs; [
-    google-chrome
+    unstable.google-chrome
+    unstable.firefox
     zip
     vlc
     (unstable.discord.override { nss = pkgs.nss_latest; })

@@ -30,6 +30,7 @@
         "--exclude=target/**"
         "--exclude=Downloads/**"
         "--exclude=Builds/**"
+        "--exclude=keybase/**"
       ];
       environmentFile = config.age.secrets.restic.path;
       passwordFile = config.age.secrets.restic_password.path;
