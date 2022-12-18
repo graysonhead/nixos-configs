@@ -10,7 +10,6 @@ let
 in
 {
   imports = [
-    ../home-manager/full-homes.nix
     ../modules/common.nix
     ../services/syncthing.nix
     ../modules/home-backups.nix
@@ -168,4 +167,13 @@ in
     "qtwebkit-5.212.0-alpha4"
   ];
 
+  # Set limits for esync.
+  systemd.extraConfig = "DefaultLimitNOFILE=1048576";
+
+  security.pam.loginLimits = [{
+      domain = "*";
+      type = "hard";
+      item = "nofile";
+      value = "1048576";
+  }];
 }

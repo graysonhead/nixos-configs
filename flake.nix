@@ -65,6 +65,7 @@
           modules = [
             agenix.nixosModule
             inputs.nixos-hardware.nixosModules.dell-xps-13-9370
+            ./home-manager/full-homes.nix
             ./roles/plasma-desktop.nix
             ./systems/deckchair/configuration.nix
             ./jager/install.nix
@@ -78,6 +79,7 @@
           modules = [
             agenix.nixosModule
             inputs.nixos-hardware.nixosModules.dell-precision-5530
+            ./home-manager/maerose-homes.nix
             ./roles/plasma-desktop.nix
             ./systems/notanipad/configuration.nix
           ];
@@ -88,6 +90,7 @@
           system = "x86_64-linux";
           modules = [
             agenix.nixosModule
+            ./home-manager/full-homes.nix
             ./roles/plasma-desktop.nix
             ./systems/green/configuration.nix
             ./roles/sdr.nix
@@ -101,6 +104,7 @@
           system = "x86_64-linux";
           modules = [
             agenix.nixosModule
+            ./home-manager/maerose-homes.nix
             ./roles/plasma-desktop.nix
             ./systems/mombox/configuration.nix
           ];
