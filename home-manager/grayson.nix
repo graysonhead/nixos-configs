@@ -1,5 +1,20 @@
-{ pkgs, inputs, nixpkgs, ... }:
+{ pkgs, inputs, nixpkgs, config, lib, ... }:
 # Home manager module for full desktop installs
+  let
+    defaultIconFileName = "g.icon";
+    defaultIcon = pkgs.stdenvNoCC.mkDerivation {
+      name = "default-icon";
+      src = ./. + "/icons/${defaultIconFileName}";
+
+      dontUnpack = true;
+
+      installPhase = ''
+        cp $src $out
+      '';
+
+      passthru = { fileName = defaultIconFileName; };
+    };
+  in
 {
   imports = [
   ];
@@ -93,8 +108,10 @@
     enable = true;
     indicator = true;
   };
-
   home.file = {
+    ".face.icon" = {
+      source = defaultIcon;
+    };
     ".config/plasma-workspace/env/ssh-agent-startup.sh" = {
       text = ''
         #!/bin/bash
@@ -117,5 +134,11 @@
         pinentry-program /run/current-system/sw/bin/pinentry
       '';
     };
+  };
+  home.activation = {
+    text = ''
+    chmod a+x ~
+    setfacl -m u:sddm:x ~
+    '';
   };
 }
