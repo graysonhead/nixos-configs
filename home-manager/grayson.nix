@@ -50,8 +50,6 @@
     nix-direnv.enable = true;
   };
   home.packages = with pkgs; [
-    (unstable.blender.override { cudaSupport = true; })
-    imagemagick
     calibre
     chirp
     dia
@@ -64,8 +62,6 @@
     unstable.joplin-desktop
     unstable.signal-desktop
     gcc
-    gimp
-    unstable.godot
     redis
     transmission-qt
     thunderbird

@@ -70,6 +70,7 @@
             ./systems/deckchair/configuration.nix
             ./jager/install.nix
             ./roles/sdr.nix
+            ./roles/gamedev.nix
           ];
           specialArgs = { inherit inputs; };
         };
@@ -79,7 +80,7 @@
           modules = [
             agenix.nixosModule
             inputs.nixos-hardware.nixosModules.dell-precision-5530
-            ./home-manager/maerose-homes.nix
+            ./home-manager/full-homes.nix
             ./roles/plasma-desktop.nix
             ./systems/notanipad/configuration.nix
           ];
@@ -95,6 +96,7 @@
             ./systems/green/configuration.nix
             ./roles/sdr.nix
             ./roles/cuda.nix
+            ./roles/gamedev.nix
           ];
           specialArgs = { inherit inputs; };
         };
@@ -104,7 +106,7 @@
           system = "x86_64-linux";
           modules = [
             agenix.nixosModule
-            ./home-manager/maerose-homes.nix
+            ./home-manager/full-homes.nix
             ./roles/plasma-desktop.nix
             ./systems/mombox/configuration.nix
           ];
