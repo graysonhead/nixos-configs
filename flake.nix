@@ -113,28 +113,6 @@
           specialArgs = { inherit inputs; };
         };
 
-        ops = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            agenix.nixosModule
-            ./roles/ops-server.nix
-            ./systems/ops/configuration.nix
-            ./services/dns-agent.nix
-          ];
-          specialArgs = { inherit inputs; };
-        };
-
-        nx1 = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            agenix.nixosModule
-            ./systems/nx1/configuration.nix
-            ./roles/minimal-server.nix
-            ./services/dns-agent.nix
-          ];
-          specialArgs = { inherit inputs; };
-        };
-
         factorio = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
@@ -147,7 +125,6 @@
 
       };
       deploy = {
-
         nodes.blue = {
           hostname = "blue.i.graysonhead.net";
           profiles.system = {
@@ -155,32 +132,6 @@
             path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.blue;
           };
         };
-
-        nodes.ops = {
-          hostname = "ops.i.graysonhead.net";
-          profiles.system = {
-            sshUser = "grayson";
-            user = "root";
-            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.ops;
-          };
-
-        };
-        nodes.nx1 = {
-          hostname = "nx1.i.graysonhead.net";
-          profiles.system = {
-            user = "root";
-            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.nx1;
-          };
-        };
-
-        nodes.factorio = {
-          hostname = "factorio.i.graysonhead.net";
-          profiles.system = {
-            user = "root";
-            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.factorio;
-          };
-        };
-
       };
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };

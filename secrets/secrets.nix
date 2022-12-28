@@ -19,5 +19,6 @@ in
   "backblaze_restic.age".publicKeys = users ++ systems;
   "restic_password.age".publicKeys = users ++ systems;
   "dns-acme.age".publicKeys = users ++ systems;
+  "vaultwarden.age".publicKeys = users ++ [ blue ];
 }
 

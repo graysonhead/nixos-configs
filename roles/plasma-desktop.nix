@@ -84,6 +84,9 @@ in
     pinentryFlavor = "qt";
   };
   environment.systemPackages = with pkgs; [
+    appimage-run
+    bitwarden
+    bitwarden-cli
     ifuse
     libimobiledevice
     libheif

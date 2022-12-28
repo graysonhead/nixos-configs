@@ -50,6 +50,7 @@
     nix-direnv.enable = true;
   };
   home.packages = with pkgs; [
+    ltwheelconf
     calibre
     chirp
     dia

@@ -11,13 +11,12 @@
     ./prometheus.nix
     ./blue-syncthing.nix
     ./radicale.nix
+    ./vaultwarden.nix
   ];
   services.openssh.enable = true;
   security.sudo.wheelNeedsPassword = false;
   environment.systemPackages = [
   ];
-
-
 
   # Homeassistant
 
@@ -388,6 +387,16 @@
             }
             {
               name = "calendar";
+              record_type = "AAAA";
+              interface = internal_interface;
+            }
+            {
+              name = "vault";
+              record_type = "A";
+              interface = "external";
+            }
+            {
+              name = "vault";
               record_type = "AAAA";
               interface = internal_interface;
             }
