@@ -16,20 +16,20 @@ in
   ];
   nixpkgs.overlays = [
     unstable-overlay
-    (self: super:
-      {
-        zoomUsFixed = pkgs.zoom-us.overrideAttrs (old: {
-          postFixup = old.postFixup + ''
-            wrapProgram $out/bin/zoom-us --unset XDG_SESSION_TYPE
-          '';
-        });
-        zoom = pkgs.zoom-us.overrideAttrs (old: {
-          postFixup = old.postFixup + ''
-            wrapProgram $out/bin/zoom --unset XDG_SESSION_TYPE
-          '';
-        });
-      }
-    )
+    # (self: super:
+    #   {
+    #     zoomUsFixed = pkgs.zoom-us.overrideAttrs (old: {
+    #       postFixup = old.postFixup + ''
+    #         wrapProgram $out/bin/zoom-us --unset XDG_SESSION_TYPE
+    #       '';
+    #     });
+    #     zoom = pkgs.zoom-us.overrideAttrs (old: {
+    #       postFixup = old.postFixup + ''
+    #         wrapProgram $out/bin/zoom --unset XDG_SESSION_TYPE
+    #       '';
+    #     });
+    #   }
+    # )
   ];
 
   system.nssDatabases.hosts = (lib.mkMerge [
@@ -97,12 +97,7 @@ in
     networkmanager-openconnect
     nordic
     teamspeak_client
-    # ( zoom-us.overrideAttrs (old: {
-    #   postFixup = old.postFixup + ''
-    #     wrapProgram $out/bin/zoom-us --unset XDG_SESSION_TYPE
-    #   '';})
-    # )
-    zoom
+    unstable.zoom-us
     lutris
     pass
     pinentry-curses
@@ -141,6 +136,11 @@ in
     libsForQt5.kontact
     libsForQt5.korganizer
     libsForQt5.filelight
+    libsForQt5.kate
+    aspell
+    aspellDicts.en
+    aspellDicts.en-computers
+    aspellDicts.en-science
   ];
   services.yubikey-agent.enable = true;
   programs.adb.enable = true;
@@ -174,9 +174,11 @@ in
   systemd.extraConfig = "DefaultLimitNOFILE=1048576";
 
   security.pam.loginLimits = [{
-      domain = "*";
-      type = "hard";
-      item = "nofile";
-      value = "1048576";
+    domain = "*";
+    type = "hard";
+    item = "nofile";
+    value = "1048576";
   }];
+  networking.extraHosts = ''
+  '';
 }

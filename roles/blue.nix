@@ -12,6 +12,7 @@
     ./blue-syncthing.nix
     ./radicale.nix
     ./vaultwarden.nix
+    ./jellyfin.nix
   ];
   services.openssh.enable = true;
   security.sudo.wheelNeedsPassword = false;
