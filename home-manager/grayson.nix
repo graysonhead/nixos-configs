@@ -68,7 +68,7 @@
     thunderbird
     wireshark
     inputs.deploy-rs.defaultPackage.x86_64-linux
-    inputs.agenix.defaultPackage.x86_64-linux
+    inputs.agenix.packages.x86_64-linux.agenix
     inputs.cargo2nix.packages.x86_64-linux.default
     qalculate-qt
     cargo

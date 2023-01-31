@@ -23,6 +23,10 @@
   };
   # networking.firewall.allowedUDPPorts = [ 43210 ];
   services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia = {
+    modesetting.enable = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
   hardware.opengl.enable = true;
   system.stateVersion = "22.05";
 }

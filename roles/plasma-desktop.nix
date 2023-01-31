@@ -181,4 +181,7 @@ in
   }];
   networking.extraHosts = ''
   '';
+  programs.xwayland.enable = true;
+
+  nix.settings.trusted-users = [ "root" "grayson" ];
 }

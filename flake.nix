@@ -41,7 +41,7 @@
         chromebook = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            agenix.nixosModule
+            agenix.nixosModules.age
             ./roles/plasma-desktop.nix
             ./roles/sdr.nix
             ./systems/chromebook/configuration.nix
@@ -52,7 +52,7 @@
         blue = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            agenix.nixosModule
+            agenix.nixosModules.age
             ./roles/blue.nix
             ./roles/libvirt.nix
             ./systems/blue/configuration.nix
@@ -63,7 +63,7 @@
         deckchair = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            agenix.nixosModule
+            agenix.nixosModules.age
             inputs.nixos-hardware.nixosModules.dell-xps-13-9370
             ./home-manager/full-homes.nix
             ./roles/plasma-desktop.nix
@@ -78,7 +78,7 @@
         notanipad = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            agenix.nixosModule
+            agenix.nixosModules.age
             inputs.nixos-hardware.nixosModules.dell-precision-5530
             ./home-manager/full-homes.nix
             ./roles/plasma-desktop.nix
@@ -90,7 +90,7 @@
         green = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            agenix.nixosModule
+            agenix.nixosModules.age
             ./home-manager/full-homes.nix
             ./roles/plasma-desktop.nix
             ./systems/green/configuration.nix
@@ -105,7 +105,7 @@
         mombox = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            agenix.nixosModule
+            agenix.nixosModules.age
             ./home-manager/full-homes.nix
             ./roles/plasma-desktop.nix
             ./systems/mombox/configuration.nix
@@ -116,7 +116,7 @@
         factorio = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            agenix.nixosModule
+            agenix.nixosModules.age
             ./systems/factorio.nix
             ./roles/factorio-server.nix
           ];
