@@ -1,4 +1,4 @@
-{ nixpkgs, pkgs, inputs, lib, ... }:
+{ nixpkgs, pkgs, inputs, lib, config, ... }:
 
 let
   unstable-overlay = final: prev: {
@@ -7,6 +7,12 @@ let
       config.allowUnfree = true;
     };
   };
+  fontsPkg = pkgs: (pkgs.runCommand "share-fonts" { preferLocalBuild = true; } ''
+    mkdir -p "$out/share/fonts"
+    font_regexp='.*\.\(ttf\|ttc\|otf\|pcf\|pfa\|pfb\|bdf\)\(\.gz\)?'
+    find ${toString (config.fonts.fonts)} -regex "$font_regexp" \
+      -exec ln -sf -t "$out/share/fonts" '{}' \;
+  '');
 in
 {
   imports = [
@@ -57,7 +63,14 @@ in
   services.keybase.enable = true;
   programs.steam = {
     enable = true;
+    remotePlay.openFirewall = true;
+    package = pkgs.steam.override {
+      extraPkgs = pkgs: with pkgs; [
+        (fontsPkg pkgs)
+      ];
+    };
   };
+  hardware.steam-hardware.enable = true;
   # hardware.pulseaudio.enable = true;
   # hardware.pulseaudio.package = pkgs.pulseaudioFull;
   hardware.bluetooth.enable = true;

@@ -1,20 +1,20 @@
 { pkgs, inputs, nixpkgs, config, lib, ... }:
 # Home manager module for full desktop installs
-  let
-    defaultIconFileName = "g.icon";
-    defaultIcon = pkgs.stdenvNoCC.mkDerivation {
-      name = "default-icon";
-      src = ./. + "/icons/${defaultIconFileName}";
+let
+  defaultIconFileName = "g.icon";
+  defaultIcon = pkgs.stdenvNoCC.mkDerivation {
+    name = "default-icon";
+    src = ./. + "/icons/${defaultIconFileName}";
 
-      dontUnpack = true;
+    dontUnpack = true;
 
-      installPhase = ''
-        cp $src $out
-      '';
+    installPhase = ''
+      cp $src $out
+    '';
 
-      passthru = { fileName = defaultIconFileName; };
-    };
-  in
+    passthru = { fileName = defaultIconFileName; };
+  };
+in
 {
   imports = [
   ];
@@ -50,6 +50,7 @@
     nix-direnv.enable = true;
   };
   home.packages = with pkgs; [
+    ckan
     ltwheelconf
     calibre
     chirp
@@ -134,8 +135,8 @@
   };
   home.activation = {
     text = ''
-    chmod a+x ~
-    setfacl -m u:sddm:x ~
+      chmod a+x ~
+      setfacl -m u:sddm:x ~
     '';
   };
 }
