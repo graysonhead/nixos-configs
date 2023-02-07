@@ -21,13 +21,12 @@
   };
   networking.search = [
     "i.graysonhead.net"
-    "hou.flightaware.com"
-    "dal.flightaware.com"
+    "flightaware.com"
   ];
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
-      experimental-features = nix-command flakes
+      experimental-features = nix-command flakes repl-flake
     '';
   };
 }

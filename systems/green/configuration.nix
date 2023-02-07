@@ -25,8 +25,9 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     modesetting.enable = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   hardware.opengl.enable = true;
   system.stateVersion = "22.05";
+  boot.kernelParams = [ "module_blacklist=i915" ];
 }
