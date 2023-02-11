@@ -123,6 +123,7 @@ in
     foxitreader
     virt-manager
     youtube-dl
+    terminator
   ];
 
   programs.home-manager = {
