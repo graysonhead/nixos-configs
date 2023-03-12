@@ -13,6 +13,7 @@
     ./radicale.nix
     ./vaultwarden.nix
     ./jellyfin.nix
+    ./photoprism.nix
   ];
   services.openssh.enable = true;
   security.sudo.wheelNeedsPassword = false;
@@ -60,12 +61,13 @@
     enable = true;
     openFirewall = true;
     user = "plex";
-    group = "plex";
+    group = "users";
   };
 
   # Transmission
   services.transmission = {
     enable = true;
+    group = "users";
     openFirewall = true;
     openRPCPort = true;
     settings = {

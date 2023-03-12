@@ -71,6 +71,7 @@
             ./jager/install.nix
             ./roles/sdr.nix
             ./roles/gamedev.nix
+            ./roles/weylus.nix
           ];
           specialArgs = { inherit inputs; };
         };
@@ -97,11 +98,10 @@
             ./roles/sdr.nix
             ./roles/cuda.nix
             ./roles/gamedev.nix
+            ./roles/weylus.nix
           ];
           specialArgs = { inherit inputs; };
         };
-
-
         mombox = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
@@ -112,7 +112,6 @@
           ];
           specialArgs = { inherit inputs; };
         };
-
         factorio = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [

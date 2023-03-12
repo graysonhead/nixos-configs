@@ -20,5 +20,6 @@ in
   "restic_password.age".publicKeys = users ++ systems;
   "dns-acme.age".publicKeys = users ++ systems;
   "vaultwarden.age".publicKeys = users ++ [ blue ];
+  "photoprism_admin_password.age".publicKeys = users ++ [ blue ];
 }
 

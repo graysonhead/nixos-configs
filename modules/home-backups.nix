@@ -18,7 +18,7 @@
       paths = [ "/home" ];
       initialize = true;
       timerConfig = {
-        OnCalendar = "daily";
+        OnCalendar = "*-*-* 02:00:00";
       };
       pruneOpts = [
         "--keep-daily 7"

@@ -79,7 +79,7 @@ in
     })
     ckan
     ltwheelconf
-    calibre
+    unstable.calibre
     chirp
     dia
     rustc
@@ -124,6 +124,8 @@ in
     virt-manager
     youtube-dl
     terminator
+    krita
+    qt6.full
   ];
 
   programs.home-manager = {
