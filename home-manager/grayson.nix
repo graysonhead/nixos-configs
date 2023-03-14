@@ -50,33 +50,33 @@ in
     nix-direnv.enable = true;
   };
   home.packages = with pkgs; [
-    (pkgs.writeShellApplication {
-      name = "discord-nogl";
-      text = "${pkgs.unstable.discord}/bin/discord --use-gl=desktop";
-    })
-    (pkgs.makeDesktopItem {
-      name = "discord-nogl";
-      exec = "discord-nogl";
-      desktopName = "Discord (GPU Disabled)";
-    })
-    (pkgs.writeShellApplication {
-      name = "slack-nogl";
-      text = "${pkgs.unstable.slack}/bin/slack --disable-gpu";
-    })
-    (pkgs.makeDesktopItem {
-      name = "slack-nogl";
-      exec = "slack-nogl";
-      desktopName = "Slack (GPU Disabled)";
-    })
-    (pkgs.writeShellApplication {
-      name = "code-nogl";
-      text = "${pkgs.unstable.vscode}/bin/code --disable-gpu";
-    })
-    (pkgs.makeDesktopItem {
-      name = "code-nogl";
-      exec = "code-nogl";
-      desktopName = "VSCode (GPU Disabled)";
-    })
+    # (pkgs.writeShellApplication {
+    #   name = "discord-nogl";
+    #   text = "${pkgs.unstable.discord}/bin/discord --use-gl=desktop";
+    # })
+    # (pkgs.makeDesktopItem {
+    #   name = "discord-nogl";
+    #   exec = "discord-nogl";
+    #   desktopName = "Discord (GPU Disabled)";
+    # })
+    # (pkgs.writeShellApplication {
+    #   name = "slack-nogl";
+    #   text = "${pkgs.unstable.slack}/bin/slack --disable-gpu";
+    # })
+    # (pkgs.makeDesktopItem {
+    #   name = "slack-nogl";
+    #   exec = "slack-nogl";
+    #   desktopName = "Slack (GPU Disabled)";
+    # })
+    # (pkgs.writeShellApplication {
+    #   name = "code-nogl";
+    #   text = "${pkgs.unstable.vscode}/bin/code --disable-gpu";
+    # })
+    # (pkgs.makeDesktopItem {
+    #   name = "code-nogl";
+    #   exec = "code-nogl";
+    #   desktopName = "VSCode (GPU Disabled)";
+    # })
     ckan
     ltwheelconf
     unstable.calibre
