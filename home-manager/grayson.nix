@@ -50,10 +50,10 @@ in
     nix-direnv.enable = true;
   };
   home.packages = with pkgs; [
-    # (pkgs.writeShellApplication {
-    #   name = "discord-nogl";
-    #   text = "${pkgs.unstable.discord}/bin/discord --use-gl=desktop";
-    # })
+    (pkgs.writeShellApplication {
+      name = "discord-nogl";
+      text = "${pkgs.unstable.discord}/bin/discord --use-gl=desktop";
+    })
     # (pkgs.makeDesktopItem {
     #   name = "discord-nogl";
     #   exec = "discord-nogl";
