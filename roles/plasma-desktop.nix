@@ -111,7 +111,7 @@ in
     nordic
     teamspeak_client
     unstable.zoom-us
-    lutris
+    unstable.lutris
     pass
     pinentry-curses
     ark

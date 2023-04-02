@@ -11,6 +11,7 @@
     dns-agent.url = "github:graysonhead/dns-agent";
     factorio-bot.url = "github:graysonhead/factoriobot";
     agenix.url = "github:ryantm/agenix";
+    mach-nix.url = "github:DavHau/mach-nix";
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;

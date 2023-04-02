@@ -77,6 +77,7 @@ in
     #   exec = "code-nogl";
     #   desktopName = "VSCode (GPU Disabled)";
     # })
+    inputs.mach-nix.defaultPackage.x86_64-linux
     ckan
     ltwheelconf
     unstable.calibre
