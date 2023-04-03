@@ -78,11 +78,11 @@ in
     #   desktopName = "VSCode (GPU Disabled)";
     # })
     inputs.mach-nix.defaultPackage.x86_64-linux
-    ckan
+    unstable.ckan
     ltwheelconf
     unstable.calibre
     chirp
-    dia
+    unstable.dia
     rustc
     rustfmt
     rust-analyzer
@@ -95,7 +95,7 @@ in
     redis
     transmission-qt
     thunderbird
-    wireshark
+    unstable.wireshark
     inputs.deploy-rs.defaultPackage.x86_64-linux
     inputs.agenix.packages.x86_64-linux.agenix
     inputs.cargo2nix.packages.x86_64-linux.default
