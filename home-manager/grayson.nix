@@ -32,6 +32,12 @@ in
       "explorer.confirmDragAndDrop" = false;
       "editor.formatOnSave" = true;
       "rust-analyzer.checkOnSave.command" = "clippy";
+      "files.exclude" = {
+        "**/.git" = false;
+        "**/.svn" = true;
+        "**/.hg" = true;
+        "**/.DS_Store" = true;
+      };
     };
     extensions = with pkgs.vscode-extensions; [
       bbenoist.nix
