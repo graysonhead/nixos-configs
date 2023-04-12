@@ -92,9 +92,9 @@ in
     rustc
     rustfmt
     rust-analyzer
-    unstable.opera
+    opera
     (unstable.discord.override { nss = nss_latest; })
-    unstable.firefox
+    firefox
     unstable.joplin-desktop
     unstable.signal-desktop
     gcc

@@ -1,23 +1,24 @@
-{ pkgs, ... }: 
+{ pkgs, ... }:
 let
-    defaultIconFileName = "m.icon";
-    defaultIcon = pkgs.stdenvNoCC.mkDerivation {
-      name = "default-icon";
-      src = ./. + "/icons/${defaultIconFileName}";
+  defaultIconFileName = "m.icon";
+  defaultIcon = pkgs.stdenvNoCC.mkDerivation {
+    name = "default-icon";
+    src = ./. + "/icons/${defaultIconFileName}";
 
-      dontUnpack = true;
+    dontUnpack = true;
 
-      installPhase = ''
-        cp $src $out
-      '';
+    installPhase = ''
+      cp $src $out
+    '';
 
-      passthru = { fileName = defaultIconFileName; };
-    };
-  in {
+    passthru = { fileName = defaultIconFileName; };
+  };
+in
+{
   home.stateVersion = "21.11";
   home.packages = with pkgs; [
-    unstable.google-chrome
-    unstable.firefox
+    google-chrome
+    firefox
     zip
     vlc
     (unstable.discord.override { nss = pkgs.nss_latest; })
@@ -37,8 +38,8 @@ let
   };
   home.activation = {
     text = ''
-    chmod a+x ~
-    setfacl -m u:sddm:x ~
+      chmod a+x ~
+      setfacl -m u:sddm:x ~
     '';
   };
 }
