@@ -19,6 +19,7 @@ in
     ../modules/common.nix
     ../services/syncthing.nix
     ../modules/home-backups.nix
+    ../services/auto-dns.nix
   ];
   nixpkgs.overlays = [
     unstable-overlay

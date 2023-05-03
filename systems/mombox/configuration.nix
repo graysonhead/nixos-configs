@@ -4,9 +4,6 @@
   imports = [
     ./hardware-configuration.nix
   ];
-  services.udev.extraRules = ''
-    KERNEL=="enp*", ATTR{address}=="58:11:22:94:67:1c", NAME="lan0"
-  '';
   networking.hostName = "mombox";
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub = {

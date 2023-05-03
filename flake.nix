@@ -112,7 +112,6 @@
             ./home-manager/full-homes.nix
             ./roles/plasma-desktop.nix
             ./roles/ssh-server.nix
-            ./roles/dynamic-dns.nix
             ./systems/mombox/configuration.nix
           ];
           specialArgs = { inherit inputs; };
