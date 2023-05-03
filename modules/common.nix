@@ -6,7 +6,10 @@
     ./default-system-packages.nix
   ];
   programs.vim.defaultEditor = true;
-  nix.settings.require-sigs = false;
+  nix.settings = {
+    require-sigs = false;
+    trusted-users = [ "grayson" "root" ];
+  };
   nixpkgs.config.allowUnfree = true;
   environment = {
     systemPackages = with pkgs; [

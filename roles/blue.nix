@@ -11,12 +11,9 @@
     ./prometheus.nix
     ./blue-syncthing.nix
     ./radicale.nix
-    ./vaultwarden.nix
     ./jellyfin.nix
     ./photoprism.nix
   ];
-  services.openssh.enable = true;
-  security.sudo.wheelNeedsPassword = false;
   environment.systemPackages = [
   ];
 

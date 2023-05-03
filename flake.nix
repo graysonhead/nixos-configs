@@ -56,6 +56,7 @@
             agenix.nixosModules.age
             ./roles/blue.nix
             ./roles/libvirt.nix
+            ./roles/ssh-server.nix
             ./systems/blue/configuration.nix
           ];
           specialArgs = { inherit inputs; };
@@ -100,6 +101,7 @@
             ./roles/cuda.nix
             ./roles/gamedev.nix
             ./roles/weylus.nix
+            ./roles/remote-builders.nix
           ];
           specialArgs = { inherit inputs; };
         };
@@ -109,6 +111,8 @@
             agenix.nixosModules.age
             ./home-manager/full-homes.nix
             ./roles/plasma-desktop.nix
+            ./roles/ssh-server.nix
+            ./roles/dynamic-dns.nix
             ./systems/mombox/configuration.nix
           ];
           specialArgs = { inherit inputs; };

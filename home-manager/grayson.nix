@@ -20,7 +20,7 @@ in
   ];
   programs.vscode = {
     enable = true;
-    package = pkgs.unstable.vscode;
+    package = pkgs.vscode;
     userSettings = {
       "git.enableCommitSigning" = true;
       "workbench.colorTheme" = "Default Dark+";
@@ -83,15 +83,16 @@ in
     #   exec = "code-nogl";
     #   desktopName = "VSCode (GPU Disabled)";
     # })
+    # cargo
+    # rustc
+    # rust-analyzer
+    # clippy
     inputs.mach-nix.defaultPackage.x86_64-linux
     unstable.ckan
     ltwheelconf
     unstable.calibre
     chirp
     unstable.dia
-    rustc
-    rustfmt
-    rust-analyzer
     opera
     (unstable.discord.override { nss = nss_latest; })
     firefox
@@ -106,7 +107,6 @@ in
     inputs.agenix.packages.x86_64-linux.agenix
     inputs.cargo2nix.packages.x86_64-linux.default
     qalculate-qt
-    cargo
     unstable.slack
     kubectl
     flux

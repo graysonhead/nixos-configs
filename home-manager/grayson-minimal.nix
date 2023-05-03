@@ -1,9 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 # Minimal home manager module for CLI only systems
 {
   home.stateVersion = "21.11";
   home.packages = with pkgs; [
-    vim
     bind
     pciutils
     tmux
@@ -17,6 +16,7 @@
   home.sessionVariables = rec {
     CARGO_NET_GIT_FETCH_WITH_CLI = "true";
     EDITOR = "vim";
+    RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
   };
 
   programs.git = {
@@ -39,8 +39,70 @@
       };
     };
   };
+
+  programs.vim = {
+    enable = true;
+    plugins = with pkgs.vimPlugins; [
+      ale
+      vim-airline
+      rust-vim
+      direnv-vim
+      coc-rust-analyzer
+      coc-nvim
+      coc-pyright
+      coc-spell-checker
+    ];
+    settings = { ignorecase = true; };
+    extraConfig = ''
+      colorscheme slate
+      
+      set mouse=a
+      set nocompatible
+      filetype off
+      set encoding=utf-8
+
+      set spell spelllang=en_us
+
+      let g:rustfmt_autosave = 1
+      let g:rustfmt_emit_files = 1
+      let g:rustfmt_fail_silently = 0
+
+      let g:netrw_banner = 0
+      let g:netrw_liststyle = 3
+      let g:netrw_browse_split = 4
+      let g:netrw_altv = 1
+      let g:netrw_winsize = 25
+      augroup ProjectDrawer
+        autocmd!
+          autocmd VimEnter * :Vexplore
+      augroup END
+
+      " Auto close with matching bracket
+      inoremap { {}<c-g>U<left>
+
+      " if between 2 brackets: "enter" to start inserting between them                                                             
+      inoremap <expr> <cr> getline('.')[col('.')-2:col('.')-1]=='{}' ? '<cr><esc>O' : '<cr>'
+
+      " If on a closing bracket: trying to reclose just skips the character
+      inoremap <expr> } getline('.')[col('.')-1]=='}' ? '<c-g>U<right>' : '}'
+
+     " inoremap { {}<Esc>ha
+     " inoremap ( ()<Esc>ha
+     " inoremap [ []<Esc>ha
+     " inoremap " ""<Esc>ha
+     " inoremap ' '''<Esc>ha
+     " inoremap ` ``<Esc>ha
+     inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+     inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
+     inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+    '';
+  };
+
   programs.bash = {
     enable = true;
+    initExtra = ''
+      . \"$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh\"
+    '';
     shellAliases = {
       update = "sudo nixos-rebuild boot --flake github:graysonhead/nixos-configs && sudo shutdown -r now";
       rebuild-from-dir = "nixos-rebuild build --impure --flake . && sudo ./result/bin/switch-to-configuration switch && source ~/.bashrc";
@@ -49,6 +111,8 @@
       nixrestic = "f(){ exportall /run/agenix/restic; restic -r b2:nixos-backups -p /run/agenix/restic_password $@; }; f";
       bluerestic = "f(){ exportall /run/agenix/restic; restic -r b2:ghead-blue-backup -p /run/agenix/restic_password $@; }; f";
       tilt-hardreset = "tilt down && minikube delete && minikube start && tilt up";
+      tilt-up = "minikube start && tilt up";
+      tilt-down = "tilt down &&  minikube stop";
       k = "kubectl";
       list-generations = "nix-env --list-generations --profile /nix/var/nix/profiles/system";
     };
@@ -82,6 +146,28 @@
   };
 
   home.file = {
+    # Use same configs and store for joplin desktop and cli
+    ".config/joplin".source = config.lib.file.mkOutOfStoreSymlink "~.config/joplin-desktop";
+    ".vim/coc-settings.json" = {
+      text = builtins.toJSON {
+        rust-analyzer = {
+          enable = true;
+          checkOnSave.command = "clippy";
+        };
+        pyright = {
+          enable = true;
+        };
+        diagnostic.errorSign = "X";
+        diagnostic.infoSign = "i";
+        languageserver = {
+          rust = {
+            command = "rust-analyzer";
+            filetypes = [ "rust" ];
+            rootPatterns = [ "Cargo.toml" ];
+          };
+        };
+      };
+    };
     ".npmrc" = {
       text = ''
         prefix = ''${HOME}/.npm-packages
