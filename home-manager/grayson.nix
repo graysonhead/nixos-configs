@@ -132,6 +132,7 @@ in
     youtube-dl
     terminator
     krita
+    minecraft
     qt6.full
   ];
 
