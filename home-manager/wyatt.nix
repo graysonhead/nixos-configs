@@ -18,7 +18,11 @@ in
   home.stateVersion = "21.11";
   home.packages = with pkgs; [
     celestia
+    krita
     tuxtype
+    tuxpaint
+    supertuxkart
+    supertux
     zip
     vlc
     (unstable.discord.override { nss = pkgs.nss_latest; })
