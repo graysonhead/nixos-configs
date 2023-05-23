@@ -21,7 +21,7 @@ in
     krita
     tuxtype
     tuxpaint
-    supertuxkart
+    superTuxKart
     supertux
     zip
     vlc
