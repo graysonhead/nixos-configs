@@ -40,5 +40,17 @@
       "lp"
     ];
   };
-  users.groups.smbsec = {};
+  users.groups.smbsec = { };
+
+  users.users.wyatt = {
+    isNormalUser = true;
+    uid = 1002;
+    home = "/home/wyatt";
+    description = "Wyatt Head";
+    extraGroups = [
+      "networkmanager"
+      "scanner"
+      "lp"
+    ];
+  };
 }

@@ -14,4 +14,5 @@
     _module.args.inputs = inputs;
   };
   home-manager.users.maerose = import ./maerose.nix;
+  home-manager.users.wyatt = import ./wyatt.nix;
 }
