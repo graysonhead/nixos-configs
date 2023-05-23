@@ -25,6 +25,7 @@ in
     superTux
     zip
     vlc
+    minecraft
     (unstable.discord.override { nss = pkgs.nss_latest; })
   ];
   home.file = {
