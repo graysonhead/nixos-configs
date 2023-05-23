@@ -22,7 +22,7 @@ in
     tuxtype
     tuxpaint
     superTuxKart
-    supertux
+    superTux
     zip
     vlc
     (unstable.discord.override { nss = pkgs.nss_latest; })
