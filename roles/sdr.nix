@@ -1,8 +1,10 @@
 { nixpkgs, pkgs, inputs, lib, ... }:
 
 {
-    environment.systemPackages = with pkgs; [
-            gqrx
-    ];
-    hardware.rtl-sdr.enable = true;
+  environment.systemPackages = with pkgs; [
+    gqrx
+    direwolf
+    audacity
+  ];
+  hardware.rtl-sdr.enable = true;
 }

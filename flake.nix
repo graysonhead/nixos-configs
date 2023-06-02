@@ -70,10 +70,12 @@
             ./home-manager/full-homes.nix
             ./roles/plasma-desktop.nix
             ./systems/deckchair/configuration.nix
+            ./roles/libvirt.nix
             ./jager/install.nix
             ./roles/sdr.nix
             ./roles/gamedev.nix
             ./roles/weylus.nix
+            ./roles/remote-builders.nix
           ];
           specialArgs = { inherit inputs; };
         };
@@ -97,6 +99,8 @@
             ./home-manager/full-homes.nix
             ./roles/plasma-desktop.nix
             ./systems/green/configuration.nix
+            ./roles/ssh-server.nix
+            ./roles/libvirt.nix
             ./roles/sdr.nix
             ./roles/cuda.nix
             ./roles/gamedev.nix
