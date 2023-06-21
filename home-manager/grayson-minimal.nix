@@ -100,9 +100,9 @@
 
   programs.bash = {
     enable = true;
-    initExtra = ''
-      . \"$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh\"
-    '';
+    # initExtra = ''
+    #   . \"$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh\"
+    # '';
     shellAliases = {
       update = "sudo nixos-rebuild boot --flake github:graysonhead/nixos-configs && sudo shutdown -r now";
       rebuild-from-dir = "nixos-rebuild build --impure --flake . && sudo ./result/bin/switch-to-configuration switch && source ~/.bashrc";

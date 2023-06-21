@@ -40,6 +40,7 @@
   ];
   networking.hostName = "blue";
   networking.networkmanager.enable = true;
+
   time.timeZone = "America/Chicago";
   system.stateVersion = "22.05";
   networking.interfaces.enp6s0.useDHCP = true;

@@ -12,7 +12,6 @@
     ./blue-syncthing.nix
     ./radicale.nix
     ./jellyfin.nix
-    ./photoprism.nix
   ];
   environment.systemPackages = [
   ];
