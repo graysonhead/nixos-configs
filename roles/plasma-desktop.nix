@@ -133,6 +133,8 @@ in
     ksshaskpass
     gnome.simple-scan
     xsane
+    xsettingsd
+    kmag
     yubikey-agent
     yubikey-manager
     yubikey-manager-qt
@@ -151,6 +153,7 @@ in
     libsForQt5.korganizer
     libsForQt5.filelight
     libsForQt5.kate
+    libsForQt5.kde-gtk-config
     aspell
     aspellDicts.en
     aspellDicts.en-computers

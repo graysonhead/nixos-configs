@@ -127,7 +127,6 @@ in
     nodePackages.npm
     nodejs
     unstable.k9s
-    foxitreader
     virt-manager
     youtube-dl
     terminator
