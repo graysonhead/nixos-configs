@@ -5,61 +5,72 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ 
-    "ehci_pci" 
-    "ahci" 
-    "usb_storage" 
-    "usbhid" 
-    "sd_mod" 
-    "sr_mod" 
-    "bcache" 
+  boot.initrd.availableKernelModules = [
+    "ehci_pci"
+    "ahci"
+    "usb_storage"
+    "usbhid"
+    "sd_mod"
+    "sr_mod"
+    "bcache"
     "cryptd"
   ];
-  boot.initrd.kernelModules = [ 
-      "vfat"
-      "nls_cp437"
-      "nls_iso8859-1"
-      "usbhid"
-      "dm-snapshot"
-      "dm-raid"
-      "dm-cache-default"
-    ];
+  boot.initrd.kernelModules = [
+    "vfat"
+    "nls_cp437"
+    "nls_iso8859-1"
+    "usbhid"
+    "dm-snapshot"
+    "dm-raid"
+    "dm-cache-default"
+  ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   services.lvm.boot.thin.enable = true;
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/31ebf6c8-69a4-45fb-a03d-96afa820b6a7";
+    {
+      device = "/dev/disk/by-uuid/31ebf6c8-69a4-45fb-a03d-96afa820b6a7";
       fsType = "ext4";
     };
 
   fileSystems."/boot1" =
-    { device = "/dev/disk/by-uuid/14AA-F2C9";
+    {
+      device = "/dev/disk/by-uuid/14AA-F2C9";
       fsType = "vfat";
     };
 
   fileSystems."/boot2" =
-    { device = "/dev/disk/by-uuid/150F-259B";
+    {
+      device = "/dev/disk/by-uuid/150F-259B";
       fsType = "vfat";
     };
-  
-  fileSystems."/encrypted_storage" = 
-    { device = "/dev/disk/by-uuid/8f98d1a3-9ad5-4716-8e4a-16d1e18fcf2a";
+
+  fileSystems."/encrypted_storage" =
+    {
+      device = "/dev/disk/by-uuid/8f98d1a3-9ad5-4716-8e4a-16d1e18fcf2a";
       fsType = "ext4";
     };
-    
+
   fileSystems."/security_footage" =
-    { device = "/dev/disk/by-uuid/02f214e1-fe5f-41db-a4bf-6ba939a32eb0";
+    {
+      device = "/dev/disk/by-uuid/02f214e1-fe5f-41db-a4bf-6ba939a32eb0";
       fsType = "ext4";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/a634380a-5d9f-4041-bc40-c6008363ae13"; }
-      { device = "/dev/disk/by-uuid/f8fa65cf-b481-47ed-b099-9fe54dd1230a"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/a634380a-5d9f-4041-bc40-c6008363ae13"; }
+      { device = "/dev/disk/by-uuid/f8fa65cf-b481-47ed-b099-9fe54dd1230a"; }];
+
+
+  fileSystems."/var/lib/private/photoprism" = {
+    device = "/encrypted_storage/data/photoprism";
+    options = [ "bind" ];
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

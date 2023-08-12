@@ -1,4 +1,4 @@
-{ nixpkgs, inputs, pkgs, config, ... }:
+{ nixpkgs, inputs, pkgs, lib, config, ... }:
 
 {
   imports = [
@@ -72,6 +72,13 @@
       incomplete-dir = "/encrypted_storage/data/T_Downloads/incomplete";
       rpc-whitelist = "10.5.5.* 127.0.0.1 localhost";
       rpc-host-whitelist = "transmission.i.graysonhead.net";
+    };
+  };
+
+  systemd.services.transmission = {
+    serviceConfig = {
+      BindPaths = [ "/encrypted_storage/data/Media" ];
+      ProtectSystem = lib.mkForce true;
     };
   };
 
@@ -396,6 +403,16 @@
             }
             {
               name = "vault";
+              record_type = "AAAA";
+              interface = internal_interface;
+            }
+            {
+              name = "photos";
+              record_type = "A";
+              interface = "external";
+            }
+            {
+              name = "photos";
               record_type = "AAAA";
               interface = internal_interface;
             }

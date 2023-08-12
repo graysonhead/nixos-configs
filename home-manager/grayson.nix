@@ -87,6 +87,8 @@ in
     # rustc
     # rust-analyzer
     # clippy
+    qgis
+    gh
     inputs.mach-nix.defaultPackage.x86_64-linux
     unstable.ckan
     ltwheelconf
@@ -95,7 +97,6 @@ in
     unstable.dia
     opera
     (unstable.discord.override { nss = nss_latest; })
-    firefox
     unstable.joplin-desktop
     unstable.signal-desktop
     gcc
@@ -136,6 +137,10 @@ in
   ];
 
   programs.home-manager = {
+    enable = true;
+  };
+
+  programs.firefox = {
     enable = true;
   };
 

@@ -120,12 +120,12 @@ in
     openvpn
     iodine
     python310Packages.protonup
-    libreoffice
+    libreoffice-qt
     hunspellDicts.en_US
     protontricks
     xorg.xkill
     winetricks
-    wine
+    wineWowPackages.stable
     os-prober
     fuseiso
     exfat
@@ -154,10 +154,14 @@ in
     libsForQt5.filelight
     libsForQt5.kate
     libsForQt5.kde-gtk-config
+    libsForQt5.krecorder
+    opendrop
     aspell
     aspellDicts.en
     aspellDicts.en-computers
     aspellDicts.en-science
+    gamescope
+    mangohud
   ];
   services.yubikey-agent.enable = true;
   programs.adb.enable = true;
