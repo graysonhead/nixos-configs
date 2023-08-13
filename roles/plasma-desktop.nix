@@ -162,6 +162,7 @@ in
     aspellDicts.en-science
     gamescope
     mangohud
+    iotop
   ];
   services.yubikey-agent.enable = true;
   programs.adb.enable = true;
@@ -205,4 +206,8 @@ in
   programs.xwayland.enable = true;
 
   nix.settings.trusted-users = [ "root" "grayson" ];
+
+
+  # Fixes iotop
+  boot.kernel.sysctl = { "kernel.task_delayacct" = 1; };
 }
