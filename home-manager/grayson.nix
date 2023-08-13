@@ -83,7 +83,7 @@ in
     #   exec = "code-nogl";
     #   desktopName = "VSCode (GPU Disabled)";
     # })
-    # cargo
+    cargo
     # rustc
     # rust-analyzer
     # clippy
