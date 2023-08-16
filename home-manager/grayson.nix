@@ -84,9 +84,6 @@ in
     #   desktopName = "VSCode (GPU Disabled)";
     # })
     cargo
-    # rustc
-    # rust-analyzer
-    # clippy
     qgis
     gh
     inputs.mach-nix.defaultPackage.x86_64-linux

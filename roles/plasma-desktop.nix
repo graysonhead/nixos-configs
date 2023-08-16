@@ -84,6 +84,7 @@ in
     pinentryFlavor = "qt";
   };
   environment.systemPackages = with pkgs; [
+    gimp
     appimage-run
     bitwarden
     bitwarden-cli
