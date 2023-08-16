@@ -23,20 +23,6 @@ in
   ];
   nixpkgs.overlays = [
     unstable-overlay
-    # (self: super:
-    #   {
-    #     zoomUsFixed = pkgs.zoom-us.overrideAttrs (old: {
-    #       postFixup = old.postFixup + ''
-    #         wrapProgram $out/bin/zoom-us --unset XDG_SESSION_TYPE
-    #       '';
-    #     });
-    #     zoom = pkgs.zoom-us.overrideAttrs (old: {
-    #       postFixup = old.postFixup + ''
-    #         wrapProgram $out/bin/zoom --unset XDG_SESSION_TYPE
-    #       '';
-    #     });
-    #   }
-    # )
   ];
 
   system.nssDatabases.hosts = (lib.mkMerge [
