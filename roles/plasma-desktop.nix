@@ -142,6 +142,7 @@ in
     libsForQt5.kate
     libsForQt5.kde-gtk-config
     libsForQt5.krecorder
+    libsForQt5.kcalc
     opendrop
     aspell
     aspellDicts.en
