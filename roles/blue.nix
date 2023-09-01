@@ -372,6 +372,11 @@
               interface = "external";
             }
             {
+              name = "ils";
+              record_type = "A";
+              interface = "external";
+            }
+            {
               name = "home";
               record_type = "AAAA";
               interface = internal_interface;
