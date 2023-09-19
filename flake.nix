@@ -46,6 +46,7 @@
             ./roles/plasma-desktop.nix
             ./roles/sdr.nix
             ./systems/chromebook/configuration.nix
+            ./roles/laptop.nix
           ];
           specialArgs = { inherit inputs; };
         };
@@ -77,6 +78,7 @@
             ./roles/gamedev.nix
             ./roles/weylus.nix
             ./roles/remote-builders.nix
+            ./roles/laptop.nix
           ];
           specialArgs = { inherit inputs; };
         };
@@ -89,6 +91,7 @@
             ./home-manager/full-homes.nix
             ./roles/plasma-desktop.nix
             ./systems/notanipad/configuration.nix
+            ./roles/laptop.nix
           ];
           specialArgs = { inherit inputs; };
         };
