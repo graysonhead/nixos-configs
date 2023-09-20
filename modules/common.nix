@@ -4,6 +4,7 @@
   imports = [
     ./dns-agent.nix
     ./default-system-packages.nix
+    ./nix-gc.nix
   ];
   programs.vim.defaultEditor = true;
   nix.settings = {
