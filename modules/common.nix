@@ -2,7 +2,7 @@
 # Enable nix flakes, set default systempackages, disable package signing for deploy-rs
 {
   imports = [
-    ./dns-agent.nix
+    inputs.dns-agent.nixosModules.x86_64-linux.dns-agent
     ./default-system-packages.nix
     ./nix-gc.nix
   ];
