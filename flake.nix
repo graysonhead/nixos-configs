@@ -109,7 +109,7 @@
             ./roles/cuda.nix
             ./roles/gamedev.nix
             ./roles/weylus.nix
-            # ./roles/remote-builders.nix
+            ./roles/remote-builders.nix
           ];
           specialArgs = { inherit inputs; };
         };
