@@ -54,47 +54,47 @@
     ];
     settings = { ignorecase = true; };
     extraConfig = ''
-      colorscheme slate
+       colorscheme slate
       
-      set mouse=a
-      set nocompatible
-      filetype off
-      set encoding=utf-8
+       set mouse=a
+       set nocompatible
+       filetype off
+       set encoding=utf-8
 
-      set spell spelllang=en_us
+       set spell spelllang=en_us
 
-      let g:rustfmt_autosave = 1
-      let g:rustfmt_emit_files = 1
-      let g:rustfmt_fail_silently = 0
+       let g:rustfmt_autosave = 1
+       let g:rustfmt_emit_files = 1
+       let g:rustfmt_fail_silently = 0
 
-      let g:netrw_banner = 0
-      let g:netrw_liststyle = 3
-      let g:netrw_browse_split = 4
-      let g:netrw_altv = 1
-      let g:netrw_winsize = 25
-      augroup ProjectDrawer
-        autocmd!
-          autocmd VimEnter * :Vexplore
-      augroup END
+       let g:netrw_banner = 0
+       let g:netrw_liststyle = 3
+       let g:netrw_browse_split = 4
+       let g:netrw_altv = 1
+       let g:netrw_winsize = 25
+       augroup ProjectDrawer
+         autocmd!
+           autocmd VimEnter * :Vexplore
+       augroup END
 
-      " Auto close with matching bracket
-      inoremap { {}<c-g>U<left>
+       " Auto close with matching bracket
+       inoremap { {}<c-g>U<left>
 
-      " if between 2 brackets: "enter" to start inserting between them                                                             
-      inoremap <expr> <cr> getline('.')[col('.')-2:col('.')-1]=='{}' ? '<cr><esc>O' : '<cr>'
+       " if between 2 brackets: "enter" to start inserting between them                                                             
+       inoremap <expr> <cr> getline('.')[col('.')-2:col('.')-1]=='{}' ? '<cr><esc>O' : '<cr>'
 
-      " If on a closing bracket: trying to reclose just skips the character
-      inoremap <expr> } getline('.')[col('.')-1]=='}' ? '<c-g>U<right>' : '}'
+       " If on a closing bracket: trying to reclose just skips the character
+       inoremap <expr> } getline('.')[col('.')-1]=='}' ? '<c-g>U<right>' : '}'
 
-     " inoremap { {}<Esc>ha
-     " inoremap ( ()<Esc>ha
-     " inoremap [ []<Esc>ha
-     " inoremap " ""<Esc>ha
-     " inoremap ' '''<Esc>ha
-     " inoremap ` ``<Esc>ha
-     inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
-     inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
-     inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+      " inoremap { {}<Esc>ha
+      " inoremap ( ()<Esc>ha
+      " inoremap [ []<Esc>ha
+      " inoremap " ""<Esc>ha
+      " inoremap ' '''<Esc>ha
+      " inoremap ` ``<Esc>ha
+      inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+      inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
+      inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
     '';
   };
 
@@ -220,7 +220,7 @@
           User grayson.head
           ForwardAgent yes
 
-        IdentityFile /home/grayson/.ssh/fa_id
+        IdentityFile /home/grayson/.ssh/id_fa
       '';
     };
   };

@@ -131,6 +131,7 @@ in
     krita
     minecraft
     qt6.full
+    unstable.lapce
   ];
 
   programs.home-manager = {

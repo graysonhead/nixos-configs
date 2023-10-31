@@ -7,7 +7,6 @@
     ];
   boot.loader.grub = {
     enable = true;
-    version = 2;
     efiSupport = true;
     mirroredBoots = [
       { devices = [ "nodev" ]; path = "/boot1"; efiSysMountPoint = "/boot1"; }

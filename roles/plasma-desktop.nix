@@ -198,4 +198,6 @@ in
 
   # Fixes iotop
   boot.kernel.sysctl = { "kernel.task_delayacct" = 1; };
+
+  boot.kernelPackages = with pkgs; unstable.linuxPackages;
 }
