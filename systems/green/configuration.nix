@@ -22,6 +22,7 @@ in
     efiSupport = true;
     useOSProber = true;
   };
+  boot.loader.timeout = 10;
   boot.loader.efi.canTouchEfiVariables = true;
   age.identityPaths = [
     "/etc/ssh/ssh_host_ed25519_key"
@@ -39,11 +40,22 @@ in
   hardware.opengl.enable = true;
   system.stateVersion = "22.05";
   boot.kernelParams = [ "module_blacklist=i915" ];
-  services.xserver.dpi = 180;
-  environment.variables = {
-    GDK_SCALE = "2";
-    GDK_DPI_SCALE = "0.5";
-    _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
+  # services.xserver.dpi = 180;
+  # environment.variables = {
+  #   GDK_SCALE = "2";
+  #   GDK_DPI_SCALE = "0.5";
+  #   _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
+  # };
+
+  environment.etc = {
+    "pipewire/pipewire.conf.d/92-latency.conf".text = ''
+      context.properties = {
+        default.clock.rate = 48000
+        default.clock.quantum = 512
+        default.clock.min-quantum = 512
+        default.clock.max-quantum = 512
+      }
+    '';
   };
 
 }

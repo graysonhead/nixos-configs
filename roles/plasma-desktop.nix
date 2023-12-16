@@ -48,15 +48,6 @@ in
   ];
   services.kbfs.enable = true;
   services.keybase.enable = true;
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    package = pkgs.steam.override {
-      extraPkgs = pkgs: with pkgs; [
-        (fontsPkg pkgs)
-      ];
-    };
-  };
   hardware.steam-hardware.enable = true;
   # hardware.pulseaudio.enable = true;
   # hardware.pulseaudio.package = pkgs.pulseaudioFull;

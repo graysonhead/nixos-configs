@@ -89,7 +89,7 @@ in
     inputs.mach-nix.defaultPackage.x86_64-linux
     unstable.ckan
     ltwheelconf
-    unstable.calibre
+    calibre
     chirp
     unstable.dia
     opera
@@ -120,7 +120,7 @@ in
     obs-studio
     unstable.manuskript
     kdenlive
-    libsForQt5.kalendar
+    libsForQt5.merkuro
     nodePackages.create-react-app
     nodePackages.npm
     nodejs
