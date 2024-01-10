@@ -34,6 +34,7 @@ in
   };
   boot.loader.timeout = 10;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
   age.identityPaths = [
     "/etc/ssh/ssh_host_ed25519_key"
   ];
