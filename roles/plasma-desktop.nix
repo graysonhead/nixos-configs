@@ -70,6 +70,7 @@ in
   programs.ssh.startAgent = true;
   services.usbmuxd.enable = true;
   services.pcscd.enable = true;
+  services.ratbagd.enable = true;
   programs.gnupg.agent = {
     enable = true;
     pinentryFlavor = "qt";
@@ -89,9 +90,10 @@ in
     networkmanager-openconnect
     nordic
     teamspeak_client
+    teamspeak5_client
     unstable.zoom-us
-    unstable.lutris
     pass
+    piper
     pinentry-curses
     ark
     minikube

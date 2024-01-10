@@ -23,6 +23,7 @@
     uid = 2000;
     group = "nodered";
   };
+  users.groups.nodered = {};
 
   virtualisation.oci-containers = {
     backend = "podman";
@@ -267,14 +268,14 @@
     enable = true;
   };
 
-  # Rabbitmq
-  services.rabbitmq = {
-    enable = true;
-    plugins = [
-      "rabbitmq_mqtt"
-      "rabbitmq_management"
-    ];
-  };
+  # # Rabbitmq
+  # services.rabbitmq = {
+  #   enable = true;
+  #   plugins = [
+  #     "rabbitmq_mqtt"
+  #     "rabbitmq_management"
+  #   ];
+  # };
 
   # Autodiscovery
   services.avahi = {

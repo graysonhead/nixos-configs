@@ -93,7 +93,7 @@ in
     chirp
     unstable.dia
     opera
-    (unstable.discord.override { nss = nss_latest; })
+    # (unstable.discord.override { nss = nss_latest; })
     unstable.joplin-desktop
     unstable.signal-desktop
     gcc
