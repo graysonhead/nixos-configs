@@ -31,6 +31,7 @@ in
     device = "nodev";
     efiSupport = true;
     useOSProber = true;
+    enableCryptodisk = true;
   };
   boot.loader.timeout = 10;
   boot.loader.efi.canTouchEfiVariables = true;
