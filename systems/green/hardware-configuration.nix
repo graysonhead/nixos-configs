@@ -9,32 +9,37 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/d0bbbb10-8c5d-4c54-9d04-642105bfe0cc";
+      device = "/dev/disk/by-uuid/be29aff0-1565-4452-b7dd-64f3743bcb3e";
       fsType = "ext4";
     };
 
-  fileSystems."/boot" =
+  boot.initrd.luks.devices."luks-3c950d86-edc2-4037-8289-7fa5b26aebd2".device = "/dev/disk/by-uuid/3c950d86-edc2-4037-8289-7fa5b26aebd2";
+
+  fileSystems."/boot/efi" =
     {
-      device = "/dev/disk/by-uuid/E442-6844";
+      device = "/dev/disk/by-uuid/3FC5-5430";
       fsType = "vfat";
     };
 
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/ffffdfa0-a282-4219-8056-a448829edbb1"; }];
+    [{ device = "/dev/disk/by-uuid/b51bbb4f-9c03-4ffc-af81-712567f51e16"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp7s0.useDHCP = lib.mkDefault true;
 
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  # high-resolution display
+  hardware.video.hidpi.enable = lib.mkDefault true;
 }
