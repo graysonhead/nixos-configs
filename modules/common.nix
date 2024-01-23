@@ -21,6 +21,8 @@
       tcpdump
       killall
       efibootmgr
+      usbutils
+      dmidecode
     ];
   };
   networking.search = [
