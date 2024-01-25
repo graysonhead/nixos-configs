@@ -10,6 +10,10 @@
   nix.settings = {
     require-sigs = false;
     trusted-users = [ "grayson" "root" ];
+    trusted-substituters = [
+      "ssh://green.i.graysonhead.net"
+      "ssh://blue.i.graysonhead.net"
+    ];
   };
   nixpkgs.config.allowUnfree = true;
   environment = {

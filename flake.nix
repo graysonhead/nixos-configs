@@ -61,6 +61,7 @@
             ./roles/ssh-server.nix
             ./roles/photoprism.nix
             ./systems/blue/configuration.nix
+            ./roles/nix-substituter.nix
           ];
           specialArgs = { inherit inputs; };
         };
@@ -110,6 +111,7 @@
             ./roles/cuda.nix
             ./roles/gamedev.nix
             ./roles/weylus.nix
+            ./roles/nix-substituter.nix
           ];
           specialArgs = { inherit inputs; };
         };
