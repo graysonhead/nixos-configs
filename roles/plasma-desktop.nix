@@ -49,8 +49,6 @@ in
   services.kbfs.enable = true;
   services.keybase.enable = true;
   hardware.steam-hardware.enable = true;
-  # hardware.pulseaudio.enable = true;
-  # hardware.pulseaudio.package = pkgs.pulseaudioFull;
   hardware.bluetooth.enable = true;
   programs.kdeconnect.enable = true;
   programs.wireshark.enable = true;
@@ -71,10 +69,7 @@ in
   services.usbmuxd.enable = true;
   services.pcscd.enable = true;
   services.ratbagd.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    pinentryFlavor = "qt";
-  };
+  programs.gnupg.agent.enable = false;
   environment.systemPackages = with pkgs; [
     gimp
     appimage-run

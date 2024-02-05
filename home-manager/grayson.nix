@@ -132,6 +132,7 @@ in
     minecraft
     qt6.full
     unstable.lapce
+    gnupg
   ];
 
   programs.home-manager = {
@@ -146,6 +147,12 @@ in
     enable = true;
     indicator = true;
   };
+
+  services.gpg-agent = {
+    enable = true;
+    pinentryFlavor = "qt";
+  };
+
   home.file = {
     ".face.icon" = {
       source = defaultIcon;
@@ -167,11 +174,11 @@ in
       '';
       executable = true;
     };
-    ".gnupg/gpg-agent.conf" = {
-      text = ''
-        pinentry-program /run/current-system/sw/bin/pinentry
-      '';
-    };
+    # ".gnupg/gpg-agent.conf" = {
+    #   text = ''
+    #     pinentry-program /run/current-system/sw/bin/pinentry
+    #   '';
+    # };
   };
   home.activation = {
     text = ''
