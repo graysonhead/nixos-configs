@@ -23,7 +23,7 @@
     uid = 2000;
     group = "nodered";
   };
-  users.groups.nodered = {};
+  users.groups.nodered = { };
 
   virtualisation.oci-containers = {
     backend = "podman";
@@ -365,7 +365,11 @@
         }
         {
           name = "graysonhead.net";
-          digital_ocean_backend.api_key = "$DO_API_KEY";
+          cloudflare_backend = {
+            api_token = "$CF_API_TOKEN";
+            zone_identifier = "$CF_GRAYSONHEAD_NET_ZONE_IDENTIFIER";
+            zone = "graysonhead.net";
+          };
           records = [
             {
               name = "home";

@@ -112,6 +112,7 @@
             ./roles/gamedev.nix
             ./roles/weylus.nix
             ./roles/nix-substituter.nix
+            # ./roles/vr.nix
           ];
           specialArgs = { inherit inputs; };
         };
