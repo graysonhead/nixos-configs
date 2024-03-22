@@ -77,7 +77,6 @@
             ./roles/libvirt.nix
             ./jager/install.nix
             ./roles/sdr.nix
-            ./roles/gamedev.nix
             ./roles/weylus.nix
             ./roles/remote-builders.nix
             ./roles/laptop.nix

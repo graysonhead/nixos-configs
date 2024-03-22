@@ -12,11 +12,11 @@
       supportedFeatures = [ "nixos-test" "benchmark" "kvm" ];
     }
     {
-      hostName = "mombox.i.graysonhead.net";
+      hostName = "green.i.graysonhead.net";
       sshUser = "grayson";
       sshKey = "/home/grayson/.ssh/id_ed25519";
       system = "x86_64-linux";
-      maxJobs = 4;
+      maxJobs = 8;
       speedFactor = 4;
       supportedFeatures = [ "nixos-test" "benchmark" "kvm" ];
     }
