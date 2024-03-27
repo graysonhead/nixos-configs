@@ -153,6 +153,13 @@
             path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.blue;
           };
         };
+        nodes.bounce-ksfo = {
+          hostname = "146.190.137.22";
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.bounce-ksfo;
+          };
+        };
       };
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };

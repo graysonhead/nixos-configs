@@ -31,7 +31,7 @@
   };
   networking.search = [
     "i.graysonhead.net"
-    "flightaware.com"
+    "graysonhead.net"
   ];
   nix = {
     package = pkgs.nixFlakes;
