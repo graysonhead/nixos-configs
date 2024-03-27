@@ -15,6 +15,7 @@
     "/etc/ssh/ssh_host_ed25519_key"
   ];
 
+
   # Use the systemd-boot EFI boot loader.
 
   boot.loader.efi.canTouchEfiVariables = true;
@@ -45,6 +46,7 @@
       preLVM = true;
     };
   };
+  boot.kernelParams = [ "atkbd.reset" ];
 
   #### NETWORKING
   networking.hostName = "deckchair"; # Define your hostname.
