@@ -137,10 +137,11 @@
         };
         bounce-ksfo = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          modules= [
+          specialArgs = { inherit inputs; };
+          modules = [
             agenix.nixosModules.age
+            # ./roles/bounce-node.nix
             ./systems/ksfo-bounce/configuration.nix
-            ./roles/bounce-node.nix
           ];
         };
 
