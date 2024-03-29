@@ -10,7 +10,8 @@ let
   green = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP1WTvOABaXAllVH7vq0bOkKbEuKZ6FKXNYDwJMSJ7Kw";
   blue = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII/+eOT7BTvdV2SgWeObYOEuAMrLiMHFg21VzXX8Wlku";
   chromebook = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPYaZ5RV6vfa1wiWaFFC1pgspnzcvIb6yfnBhhVNe4U4";
-  systems = [ ops nx1 factorio deckchair notanipad mombox green blue chromebook ];
+  bounce-ksfo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE1xVQxbyh553AkA/O+tg5lu4jkb4eb1jjZyBeV1Oe0M";
+  systems = [ ops nx1 factorio deckchair notanipad mombox green blue chromebook bounce-ksfo ];
 in
 {
   "digitalocean-key.age".publicKeys = users ++ systems;
@@ -22,5 +23,9 @@ in
   "dns-acme.age".publicKeys = users ++ systems;
   "vaultwarden.age".publicKeys = users ++ [ blue ];
   "photoprism_admin_password.age".publicKeys = users ++ [ blue ];
+  "bounce.graysonhead.net.key.age".publicKeys = users ++ [ bounce-ksfo ];
+  "bounce.dh.pem.age".publicKeys = users ++ [ bounce-ksfo ];
+  "bounce.graysonhead.net.crt.pem.age".publicKeys = users ++ systems;
+  "graysonhead.net.crt.pem.age".publicKeys = users ++ systems;
 }
 

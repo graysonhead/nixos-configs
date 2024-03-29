@@ -140,7 +140,7 @@
           specialArgs = { inherit inputs; };
           modules = [
             agenix.nixosModules.age
-            # ./roles/bounce-node.nix
+            ./roles/bounce-node.nix
             ./systems/ksfo-bounce/configuration.nix
           ];
         };
@@ -155,7 +155,7 @@
           };
         };
         nodes.bounce-ksfo = {
-          hostname = "146.190.137.22";
+          hostname = "bounce-ksfo.i.graysonhead.net";
           profiles.system = {
             user = "root";
             path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.bounce-ksfo;
