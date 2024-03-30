@@ -2,10 +2,12 @@
 
 let
   vpn-interface = "tun0";
+  external-interface = "eth0";
 in
 {
   imports = [
     ../home-manager/minimal-homes.nix
+    ../services/dns-agent.nix
     ../services/auto-dns.nix
     ../modules/common.nix
   ];
@@ -13,28 +15,54 @@ in
   age.secrets.bounce-crt.file = ../secrets/bounce.graysonhead.net.crt.pem.age;
   age.secrets.bounce-key.file = ../secrets/bounce.graysonhead.net.key.age;
   age.secrets.dh.file = ../secrets/bounce.dh.pem.age;
+  services.dns-agent.extraConfig = {
+    domains = [
+      {
+        name = "graysonhead.net";
+        cloudflare_backend = {
+          api_token = "$CF_API_TOKEN";
+          zone_identifier = "$CF_GRAYSONHEAD_NET_ZONE_IDENTIFIER";
+          zone = "graysonhead.net";
+        };
+        records = [
+          {
+            name = "${config.networking.hostName}";
+            record_type = "A";
+            interface = "external";
+          }
+          {
+            name = "${config.networking.hostName}";
+            record_type = "AAAA";
+            interface = "${external-interface}";
+          }
+        ];
+      }
+    ];
+  };
   networking = {
     nat = {
       enable = true;
-      externalInterface = "eth0";
+      externalInterface = "${external-interface}";
       internalInterfaces = [ vpn-interface ];
     };
     firewall = {
       trustedInterfaces = [ vpn-interface ];
       allowedUDPPorts = [ 1194 ];
+      checkReversePath = "loose";
     };
     firewall.extraCommands = ''
       # Allow IPv6 traffic for OpenVPN
+      echo 1 > /proc/sys/net/ipv6/conf/all/forwarding
       ip6tables -A INPUT -p udp --dport 1194 -j ACCEPT
-      ip6tables -A FORWARD -m state --state NEW -i ${vpn-interface} -o eth0 -s 2604:a880:4:1d0::542:e000/124 -j ACCEPT
-      ip6tables -A FORWARD -m state --state NEW -i ${vpn-interface} -o eth0 -s 2604:a880:4:1d0::542:e000/124 -j ACCEPT
+      ip6tables -A FORWARD -m state --state NEW -i ${vpn-interface} -o ${external-interface} -s 2604:a880:4:1d0::542:e000/124 -j ACCEPT
+      ip6tables -A FORWARD -m state --state NEW -i ${vpn-interface} -o ${external-interface} -s 2604:a880:4:1d0::542:e000/124 -j ACCEPT
       ip6tables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
-
     '';
   };
   services.openvpn = {
     servers.roadwarrior.config = ''
       dev ${vpn-interface}
+      proto udp6
       persist-key
       persist-tun
       verb 3
