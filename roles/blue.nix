@@ -97,7 +97,7 @@
       email = "grayson@graysonhead.net";
     };
     certs."home.graysonhead.net" = {
-      dnsProvider = "digitalocean";
+      dnsProvider = "cloudflare";
       credentialsFile = config.age.secrets.dns-acme.path;
     };
     certs."transmission.i.graysonhead.net" = {
