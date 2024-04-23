@@ -91,6 +91,7 @@ in
     ltwheelconf
     calibre
     chirp
+    element-desktop
     unstable.dia
     opera
     # (unstable.discord.override { nss = nss_latest; })

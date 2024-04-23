@@ -13,6 +13,7 @@
     trusted-substituters = [
       "ssh://green.i.graysonhead.net"
       "ssh://blue.i.graysonhead.net"
+      "https://simula.cachix.org"
     ];
   };
   nixpkgs.config.allowUnfree = true;
