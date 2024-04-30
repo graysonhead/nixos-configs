@@ -29,6 +29,7 @@
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
     in
+    rec
     {
       devShells.x86_64-linux.default = pkgs.mkShell {
         packages = [
@@ -51,7 +52,6 @@
           ];
           specialArgs = { inherit inputs; };
         };
-
         blue = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
@@ -145,7 +145,16 @@
           ];
         };
 
+        dashboard = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./systems/rasberry-pi.nix
+          ];
+        };
+
       };
+
       deploy = {
         nodes.blue = {
           hostname = "blue.i.graysonhead.net";
