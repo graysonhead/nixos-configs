@@ -78,6 +78,7 @@
             ./jager/install.nix
             ./roles/sdr.nix
             ./roles/weylus.nix
+            ./roles/cross-compile.nix
             ./roles/remote-builders.nix
             ./roles/laptop.nix
           ];
@@ -110,6 +111,7 @@
             ./roles/cuda.nix
             ./roles/gamedev.nix
             ./roles/weylus.nix
+            ./roles/cross-compile.nix
             ./roles/nix-substituter.nix
             ./roles/vr.nix
           ];
@@ -149,7 +151,10 @@
           system = "aarch64-linux";
           specialArgs = { inherit inputs; };
           modules = [
+            ./home-manager/minimal-homes.nix
             ./systems/rasberry-pi.nix
+            ./roles/ssh-server.nix
+            ./roles/gnome.nix
           ];
         };
 
@@ -168,6 +173,13 @@
           profiles.system = {
             user = "root";
             path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.bounce-ksfo;
+          };
+        };
+        nodes.dashboard = {
+          hostname = "10.5.5.39";
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.dashboard;
           };
         };
       };
