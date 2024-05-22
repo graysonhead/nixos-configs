@@ -10,7 +10,7 @@
       email = "grayson@graysonhead.net";
     };
     certs."photos.graysonhead.net" = {
-      dnsProvider = "digitalocean";
+      dnsProvider = "cloudflare";
       credentialsFile = config.age.secrets.dns-acme.path;
     };
   };

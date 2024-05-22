@@ -4,5 +4,6 @@
     (unstable.blender.override { cudaSupport = true; })
     imagemagick
     unstable.godot_4
+    unityhub
   ];
 }

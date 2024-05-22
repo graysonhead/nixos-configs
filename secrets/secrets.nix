@@ -27,5 +27,5 @@ in
   "bounce.dh.pem.age".publicKeys = users ++ [ bounce-ksfo ];
   "bounce.graysonhead.net.crt.pem.age".publicKeys = users ++ systems;
   "graysonhead.net.crt.pem.age".publicKeys = users ++ systems;
+  "fr24feed.age".publicKeys = users ++ systems;
 }
-

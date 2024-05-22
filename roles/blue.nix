@@ -12,6 +12,7 @@
     ./blue-syncthing.nix
     ./radicale.nix
     ./jellyfin.nix
+    ./adsb.nix
   ];
   environment.systemPackages = [
   ];

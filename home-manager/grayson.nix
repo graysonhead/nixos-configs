@@ -134,6 +134,7 @@ in
     qt6.full
     unstable.lapce
     gnupg
+    rpi-imager
   ];
 
   programs.home-manager = {

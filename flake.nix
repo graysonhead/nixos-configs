@@ -81,6 +81,7 @@
             ./roles/cross-compile.nix
             ./roles/remote-builders.nix
             ./roles/laptop.nix
+            ./roles/adsb.nix
           ];
           specialArgs = { inherit inputs; };
         };
