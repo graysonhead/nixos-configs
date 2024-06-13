@@ -48,7 +48,6 @@ in
   ];
   services.kbfs.enable = true;
   services.keybase.enable = true;
-  hardware.steam-hardware.enable = true;
   hardware.bluetooth.enable = true;
   programs.kdeconnect.enable = true;
   programs.wireshark.enable = true;

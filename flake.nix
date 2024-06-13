@@ -115,6 +115,7 @@
             ./roles/cross-compile.nix
             ./roles/nix-substituter.nix
             ./roles/vr.nix
+            ./roles/steam.nix
           ];
           specialArgs = { inherit inputs; };
         };

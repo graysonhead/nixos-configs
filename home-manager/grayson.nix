@@ -135,6 +135,8 @@ in
     unstable.lapce
     gnupg
     rpi-imager
+    vulkan-tools
+    git-lfs
   ];
 
   programs.home-manager = {

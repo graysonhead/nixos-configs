@@ -188,9 +188,9 @@
       };
       pruneOpts = [
         "--keep-daily 7"
-        "--keep-weekly 5"
-        "--keep-monthly 12"
-        "--keep-yearly 75"
+        "--keep-weekly 3"
+        "--keep-monthly 6"
+        "--keep-yearly 3"
       ];
       environmentFile = config.age.secrets.restic.path;
       passwordFile = config.age.secrets.restic_password.path;
@@ -198,6 +198,7 @@
         "--host=blue.i.graysonhead.net"
         "--tag=systemd.timer"
         "--verbose"
+        "--exclude=/encrypted_storage/Media/**"
       ];
     };
   };

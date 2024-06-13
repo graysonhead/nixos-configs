@@ -22,9 +22,9 @@
       };
       pruneOpts = [
         "--keep-daily 7"
-        "--keep-weekly 5"
-        "--keep-monthly 12"
-        "--keep-yearly 75"
+        "--keep-weekly 3"
+        "--keep-monthly 6"
+        "--keep-yearly 3"
       ];
       extraBackupArgs = [
         "--exclude=target/**"

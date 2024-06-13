@@ -26,6 +26,10 @@
     userEmail = "grayson@graysonhead.net";
     extraConfig = {
       init.defaultBranch = "main";
+      filter.lfs.clean = "git-lfs clean -- %f";
+      filter.lfs.smudge = "git-lfs smudge -- %f";
+      filter.lfs.process = "git-lfs filter-process";
+      filter.lfs.required = true;
     };
     signing = {
       key = "1F5820610A829D10BE2D236A3ED82391AFC8671F";
