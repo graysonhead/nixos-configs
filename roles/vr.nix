@@ -1,8 +1,8 @@
 { nixpkgs, inputs, pkgs, config, ... }:
 let
-  overlay = final: prev: {
-    xr-hardware = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux.xr-hardware;
-  };
+  # overlay = final: prev: {
+  #   xr-hardware = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux.xr-hardware;
+  # };
   monado_source = pkgs.fetchFromGitLab {
     domain = "gitlab.freedesktop.org";
     owner = "monado";
@@ -36,10 +36,10 @@ let
   };
 in
 {
-  nixpkgs.overlays = [ overlay ];
-  imports = [
-    "${inputs.nixpkgs-unstable}/nixos/modules/services/hardware/monado.nix"
-  ];
+  # nixpkgs.overlays = [ overlay ];
+  # imports = [
+  #   "${inputs.nixpkgs-unstable}/nixos/modules/services/hardware/monado.nix"
+  # ];
   environment.systemPackages = [ custom-basalt pkgs.xrgears ];
   services.monado = {
     enable = true;

@@ -130,7 +130,6 @@ in
     youtube-dl
     terminator
     krita
-    minecraft
     qt6.full
     unstable.lapce
     gnupg
@@ -154,7 +153,7 @@ in
 
   services.gpg-agent = {
     enable = true;
-    pinentryFlavor = "qt";
+    pinentryPackage = pkgs.pinentry-qt;
   };
 
   home.file = {

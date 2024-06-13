@@ -37,7 +37,7 @@ in
     keep-derivations = true
   '';
   services.xserver.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   services.printing.enable = true;
   services.printing.drivers = [
@@ -53,7 +53,7 @@ in
   programs.wireshark.enable = true;
   services.avahi = {
     enable = true;
-    nssmdns = false;
+    nssmdns4 = false;
     ipv6 = true;
     publish = {
       enable = true;

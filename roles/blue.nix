@@ -113,10 +113,6 @@
       dnsProvider = "digitalocean";
       credentialsFile = config.age.secrets.dns-acme.path;
     };
-    certs."motion.i.graysonhead.net" = {
-      dnsProvider = "digitalocean";
-      credentialsFile = config.age.secrets.dns-acme.path;
-    };
   };
 
   users.groups.acme.members = [ "nginx" ];
@@ -245,8 +241,7 @@
       };
     };
     virtualHosts."motion.i.graysonhead.net" = {
-      useACMEHost = "motion.i.graysonhead.net";
-      forceSSL = true;
+      forceSSL = false;
       locations."/" = {
         proxyPass = "http://127.0.0.1:8080";
       };
@@ -282,7 +277,7 @@
   # Autodiscovery
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns4 = true;
     ipv6 = true;
     publish = {
       enable = true;

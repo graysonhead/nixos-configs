@@ -21,7 +21,6 @@ in
     firefox
     zip
     vlc
-    minecraft
     (unstable.discord.override { nss = pkgs.nss_latest; })
   ];
   programs.bash = {
