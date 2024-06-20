@@ -13,16 +13,16 @@ let
 
   custom-basalt = pkgs.stdenv.mkDerivation rec {
     pname = "basalt";
-    version = "c03cbb38";
+    version = "36d49117";
     src = pkgs.fetchFromGitLab {
       domain = "gitlab.freedesktop.org";
       owner = "mateosss";
       repo = "basalt";
-      rev = "c03cbb38fd3b8c1bbc4addae013d7fd6e17ba102";
-      sha256 = "sha256-vGtt78E09ZKCLH+9m+IuLQvyGv/uxCo6w+iJOFbvXU4=";
+      rev = "36d49117f2d5066a638d74d5f53c738240727286";
+      sha256 = "sha256-Rwhg5L7VnZXfDAcNUb1ERRHtHSGblJQqf26KS4dgfSk=";
       fetchSubmodules = true;
     };
-    buildInputs = with pkgs; [ boost bzip2 opencv eigen lz4 tbb glew ccache fmt llvm doxygen ];
+    buildInputs = with pkgs; [ boost bzip2 opencv eigen lz4 tbb glew ccache fmt llvm doxygen libepoxy ];
     nativeBuildInputs = with pkgs; [ cmake ninja pkg-config ];
     cmakeFlags = [
       "-DEIGEN3_INCLUDE_DIR=${pkgs.eigen}/include/eigen3"
