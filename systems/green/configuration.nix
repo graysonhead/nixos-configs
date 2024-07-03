@@ -67,7 +67,7 @@ in
 
   hardware.opengl.enable = true;
   system.stateVersion = "22.11";
-  boot.kernelParams = [ "module_blacklist=i915" ];
+  boot.kernelParams = [ "module_blacklist=i915" "GBM_BACKEND=nvidia-drm" ];
   # services.xserver.dpi = 180;
   # environment.variables = {
   #   GDK_SCALE = "2";

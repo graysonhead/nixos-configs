@@ -83,6 +83,7 @@ in
     #   exec = "code-nogl";
     #   desktopName = "VSCode (GPU Disabled)";
     # })
+    dump1090
     cargo
     qgis
     gh
