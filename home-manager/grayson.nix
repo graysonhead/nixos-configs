@@ -128,7 +128,6 @@ in
     nodejs
     unstable.k9s
     virt-manager
-    youtube-dl
     terminator
     krita
     qt6.full
