@@ -21,16 +21,21 @@
         OnCalendar = "*-*-* 02:00:00";
       };
       pruneOpts = [
-        "--keep-daily 7"
-        "--keep-weekly 3"
-        "--keep-monthly 6"
-        "--keep-yearly 3"
+        "--keep-daily 5"
+        "--keep-weekly 2"
+        "--keep-monthly 3"
+        "--keep-yearly 1"
       ];
       extraBackupArgs = [
         "--exclude=target/**"
         "--exclude=Downloads/**"
         "--exclude=Builds/**"
         "--exclude=keybase/**"
+        "--exclude=Games/**"
+        "--exclude=.var/**"
+        "--exclude=.local/**"
+        "--exclude=.cargo/**"
+        "--exclude=.steam/**"
       ];
       environmentFile = config.age.secrets.restic.path;
       passwordFile = config.age.secrets.restic_password.path;
