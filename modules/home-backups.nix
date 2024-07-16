@@ -33,7 +33,6 @@
         "--exclude=keybase/**"
         "--exclude=Games/**"
         "--exclude=.var/**"
-        "--exclude=.local/**"
         "--exclude=.cargo/**"
         "--exclude=.steam/**"
       ];

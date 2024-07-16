@@ -195,6 +195,7 @@
         "--tag=systemd.timer"
         "--verbose"
         "--exclude=/encrypted_storage/Media/**"
+        "--exclude=/encrypted_storage/containers/**"
       ];
     };
   };
