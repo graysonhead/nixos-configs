@@ -194,7 +194,7 @@
         "--host=blue.i.graysonhead.net"
         "--tag=systemd.timer"
         "--verbose"
-        "--exclude=/encrypted_storage/Media/**"
+        "--exclude=/encrypted_storage/data/Media/**"
         "--exclude=/encrypted_storage/containers/**"
       ];
     };
