@@ -74,7 +74,7 @@ in
   #   GDK_DPI_SCALE = "0.5";
   #   _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
   # };
-  networking.firewall.allowedUDPPorts = [ 8765 8123 ];
+  networking.firewall.allowedUDPPorts = [ 8765 8123 23253 65458 ];
 
   services.pipewire.extraConfig.pipewire = {
     "92-latency" = {

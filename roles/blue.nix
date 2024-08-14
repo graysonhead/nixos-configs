@@ -302,6 +302,7 @@
       '';
     };
   };
+  systemd.services.NetworkManager-wait-online.enable = false;
   # DNS Configuration
   services.dns-agent.extraConfig =
     let
