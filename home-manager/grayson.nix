@@ -131,7 +131,6 @@ in
     terminator
     krita
     qt6.full
-    unstable.lapce
     gnupg
     rpi-imager
     vulkan-tools

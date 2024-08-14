@@ -113,11 +113,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1723610036,
-        "narHash": "sha256-f0x3WI8oqek5v7Q94RMG7L3qSw5lsTHvEzZFW7MDukE=",
+        "lastModified": 1723641462,
+        "narHash": "sha256-EsrQGKy19MSV7U2fijBEPD2eecEvS1RNtadxUVoenVA=",
         "owner": "graysonhead",
         "repo": "dns-agent",
-        "rev": "94b33969d4da1a1181f903b3b780e3e47736b890",
+        "rev": "7143472731344ee14c61b272007738bf86142055",
         "type": "github"
       },
       "original": {
@@ -493,11 +493,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1723609573,
-        "narHash": "sha256-4Dpnh4cjE3/JoaRM10AKM5TZpwiewq68ZvlHk6mRu7g=",
+        "lastModified": 1723641282,
+        "narHash": "sha256-VZAtm8UBGU8aLH/OnDLw5Pb24s84uqRMvsaXyaDWCr8=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2dfa14cc546e4fe8887b7525bacb8286c608b293",
+        "rev": "370ecf3c9de563a845583474ae9a7a35c538a292",
         "type": "github"
       },
       "original": {
