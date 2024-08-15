@@ -114,22 +114,23 @@ in
     yubikey-manager-qt
     yubico-piv-tool
     pinentry-qt
-    libsForQt5.kdeApplications.akonadi
-    libsForQt5.kdeApplications.akonadiconsole
-    libsForQt5.kdeApplications.akonadi-search
-    libsForQt5.akonadi-mime
-    libsForQt5.akonadi-calendar
-    libsForQt5.akonadi-mime
-    libsForQt5.kontact
-    libsForQt5.kmail
-    libsForQt5.kwrited
-    libsForQt5.kontact
-    libsForQt5.korganizer
-    libsForQt5.filelight
-    libsForQt5.kate
-    libsForQt5.kde-gtk-config
-    libsForQt5.krecorder
-    libsForQt5.kcalc
+    kdePackages.akonadi
+    kdePackages.akonadiconsole
+    kdePackages.akonadi-search
+    kdePackages.akonadi-mime
+    kdePackages.akonadi-calendar
+    kdePackages.akonadi-mime
+    kdePackages.kontact
+    kdePackages.kmail
+    kdePackages.kwrited
+    kdePackages.kontact
+    kdePackages.korganizer
+    kdePackages.filelight
+    kdePackages.kate
+    kdePackages.kde-gtk-config
+    kdePackages.krecorder
+    kdePackages.kcalc
+    kdePackages.merkuro
     opendrop
     aspell
     aspellDicts.en

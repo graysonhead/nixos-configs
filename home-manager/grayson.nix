@@ -120,9 +120,8 @@ in
     unstable.vlc
     gparted
     obs-studio
-    unstable.manuskript
+    manuskript
     kdenlive
-    libsForQt5.merkuro
     nodePackages.create-react-app
     nodePackages.npm
     nodejs
