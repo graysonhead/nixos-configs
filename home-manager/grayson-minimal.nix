@@ -177,6 +177,11 @@
         prefix = ''${HOME}/.npm-packages
       '';
     };
+    ".iex.exs" = {
+      text = ''
+      IEx.configure colors: [ eval_result: [:cyan, :bright]]
+      '';
+    };
     ".tmux.conf" = {
       text = ''
         unbind '"'

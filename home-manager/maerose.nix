@@ -36,10 +36,10 @@ in
       source = defaultIcon;
     };
   };
-  home.activation = {
-    text = ''
-      chmod a+x ~
-      setfacl -m u:sddm:x ~
-    '';
-  };
+  # home.activation = {
+  #   text = ''
+  #     chmod a+x ~
+  #     setfacl -m u:sddm:x ~
+  #   '';
+  # };
 }

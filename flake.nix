@@ -17,6 +17,10 @@
       flake = false;
     };
     cargo2nix.url = "github:cargo2nix/cargo2nix/release-0.11.0";
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     { self
@@ -72,14 +76,16 @@
             agenix.nixosModules.age
             inputs.nixos-hardware.nixosModules.dell-xps-13-9370
             ./home-manager/full-homes.nix
-            ./roles/plasma-desktop.nix
+            inputs.nixos-cosmic.nixosModules.default
+            ./roles/cosmic-desktop.nix
+            # ./roles/plasma-desktop.nix
             ./systems/deckchair/configuration.nix
             ./roles/libvirt.nix
             ./jager/install.nix
             ./roles/sdr.nix
             ./roles/weylus.nix
             ./roles/cross-compile.nix
-            ./roles/remote-builders.nix
+            # ./roles/remote-builders.nix
             ./roles/laptop.nix
           ];
           specialArgs = { inherit inputs; };

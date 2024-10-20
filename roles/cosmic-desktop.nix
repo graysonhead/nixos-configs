@@ -36,9 +36,14 @@ in
     keep-outputs = true
     keep-derivations = true
   '';
-  services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  nix.settings = {
+    substituters = [ "https://cosmic.cachix.org/" ];
+    trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+  };
+
+  # services.xserver.enable = true;
+  # services.displayManager.sddm.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
   services.printing.enable = true;
   services.printing.drivers = [
     pkgs.gutenprint
@@ -47,7 +52,7 @@ in
     pkgs.brgenml1cupswrapper
   ];
   hardware.bluetooth.enable = true;
-  programs.kdeconnect.enable = true;
+  # programs.kdeconnect.enable = true;
   programs.wireshark.enable = true;
   services.avahi = {
     enable = true;
@@ -67,27 +72,31 @@ in
   services.pcscd.enable = true;
   services.ratbagd.enable = true;
   programs.gnupg.agent.enable = false;
+  # environment.systemPackages = with pkgs; [
+  #   networkmanagerapplet
+  #   gnome.networkmanager-openvpn
+  # ];
   environment.systemPackages = with pkgs; [
     gimp
-    appimage-run
+    #   appimage-run
     bitwarden
     bitwarden-cli
-    ifuse
-    libimobiledevice
-    libheif
-    kio-fuse
-    unstable.nssmdns
+    #   ifuse
+    #   libimobiledevice
+    #   libheif
+    #   kio-fuse
+    #   unstable.nssmdns
     networkmanager-iodine
     networkmanager-openvpn
     networkmanager-openconnect
-    nordic
-    teamspeak_client
-    teamspeak5_client
-    unstable.zoom-us
-    pass
-    piper
+    #   nordic
+    #   teamspeak_client
+    #   teamspeak5_client
+    #   unstable.zoom-us
+    #   pass
+    #   piper
     pinentry-curses
-    ark
+    #   ark
     minikube
     openvpn
     iodine
@@ -95,41 +104,41 @@ in
     libreoffice-qt
     hunspellDicts.en_US
     protontricks
-    xorg.xkill
+    # xorg.xkill
     winetricks
     wineWowPackages.stable
     os-prober
     fuseiso
-    exfat
-    ntfs3g
+    #   exfat
+    #   ntfs3g
     ksshaskpass
     gnome.simple-scan
     xsane
     xsettingsd
-    kmag
+    #   kmag
     yubikey-agent
     yubikey-manager
     yubikey-manager-qt
     yubico-piv-tool
-    pinentry-qt
-    kdePackages.akonadi
-    kdePackages.akonadiconsole
-    kdePackages.akonadi-search
-    kdePackages.akonadi-mime
-    kdePackages.akonadi-calendar
-    kdePackages.akonadi-mime
-    kdePackages.kontact
-    kdePackages.kmail
-    kdePackages.kwrited
-    kdePackages.kontact
-    kdePackages.korganizer
-    kdePackages.filelight
-    kdePackages.kate
-    kdePackages.kde-gtk-config
-    kdePackages.krecorder
-    kdePackages.kcalc
-    kdePackages.merkuro
-    opendrop
+    #   pinentry-qt
+    #   kdePackages.akonadi
+    #   kdePackages.akonadiconsole
+    #   kdePackages.akonadi-search
+    #   kdePackages.akonadi-mime
+    #   kdePackages.akonadi-calendar
+    #   kdePackages.akonadi-mime
+    #   kdePackages.kontact
+    #   kdePackages.kmail
+    #   kdePackages.kwrited
+    #   kdePackages.kontact
+    #   kdePackages.korganizer
+    #   kdePackages.filelight
+    #   kdePackages.kate
+    #   kdePackages.kde-gtk-config
+    #   kdePackages.krecorder
+    #   kdePackages.kcalc
+    #   kdePackages.merkuro
+    #   opendrop
     aspell
     aspellDicts.en
     aspellDicts.en-computers
@@ -138,6 +147,10 @@ in
     mangohud
     iotop
   ];
+
+  services.desktopManager.cosmic.enable = true;
+  services.displayManager.cosmic-greeter.enable = true;
+
   services.yubikey-agent.enable = true;
   programs.adb.enable = true;
   virtualisation.docker.enable = true;
@@ -175,7 +188,27 @@ in
     item = "nofile";
     value = "1048576";
   }];
-  networking.extraHosts = ''
+  # networking.networkmanager = {
+  #   enable = true;
+  #   settings = {
+  #     main = {
+  #       auth-polkit=false;
+  #     };
+  #   };
+  # };
+  security.polkit.extraConfig = ''
+    # polkit.addRule(function(action, subject) {
+    #   if (action.id == "org.freedesktop.NetworkManager" &&
+    #       subject.isInGroup("networkmanager")) {
+    #       return polkit.Result.YES;
+    #   }
+    # });
+    polkit.addRule(function(action, subject) {
+      if (subject.user == "root") {
+          polkit.log("Granting full NetworkManager permissions to " + subject.user);
+          return polkit.Result.YES;
+      }
+    });
   '';
   programs.xwayland.enable = true;
 

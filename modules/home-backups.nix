@@ -30,7 +30,6 @@
         "--exclude=target/**"
         "--exclude=Downloads/**"
         "--exclude=Builds/**"
-        "--exclude=keybase/**"
         "--exclude=Games/**"
         "--exclude=.var/**"
         "--exclude=.cargo/**"
