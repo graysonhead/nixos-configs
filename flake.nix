@@ -2,8 +2,8 @@
   description = "Grayson's NixOS Configurations";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    #nixpkgs-unstable.url = "github:graysonhead/nixpkgs/factorio-rcon-args";
-    nixpkgs-unstable.url = "/home/grayson/nix/nixpkgs";
+    nixpkgs-unstable.url = "github:graysonhead/nixpkgs/factorio-rcon-args";
+    #nixpkgs-unstable.url = "/home/grayson/nix/nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
