@@ -13,6 +13,7 @@
     ./radicale.nix
     ./jellyfin.nix
     ./adsb.nix
+    ./veilid.nix
   ];
   environment.systemPackages = [
   ];
@@ -121,25 +122,43 @@
     enable = true;
     securityType = "user";
     openFirewall = true;
-    extraConfig = ''
-      workgroup = HEADQRTRS
-      server string = blue
-      netbios name = blue
-      security = user 
-      #use sendfile = yes
-      #max protocol = smb2
-      # note: localhost is the ipv6 localhost ::1
-      hosts allow = 10.5.5. 127.0.0.1 2603:8080:1e03:a700:b498:c38b: localhost
-      hosts deny = 0.0.0.0/0
-      guest account = nobody
-      map to guest = bad user
+    settings = {
+      global = {
+        workgroup = "HEADQRTRS";
+        "server string" = "blue";
+        "netbios name" = "blue";
+        security = "user";
+        "hosts allow" = [ "10.5.5." "127.0.0.1" "2603:8080:1e03:a700:b498:c38b:" "localhost" ];
+        "hosts deny" = [ "0.0.0.0/0" ];
+        # "guest account" = "nobody";
+        # "map to guest" = "bad user";
+      };
+      homes = {
+        comment = "Home Directories";
+        browseable = "yes";
+        writeable = "yes";
+        "valid users" = "%S";
+      };
+    };
+    # extraConfig = ''
+    #   workgroup = HEADQRTRS
+    #   server string = blue
+    #   netbios name = blue
+    #   security = user 
+    #   #use sendfile = yes
+    #   #max protocol = smb2
+    #   # note: localhost is the ipv6 localhost ::1
+    #   hosts allow = 10.5.5. 127.0.0.1 2603:8080:1e03:a700:b498:c38b: localhost
+    #   hosts deny = 0.0.0.0/0
+    #   guest account = nobody
+    #   map to guest = bad user
 
-      [homes]
-      comment = Home Directories
-      browseable = yes
-      writable = yes
-      valid users = %S
-    '';
+    #   [homes]
+    #   comment = Home Directories
+    #   browseable = yes
+    #   writable = yes
+    #   valid users = %S
+    # '';
     shares = {
       data = {
         path = "/encrypted_storage/data";
@@ -360,6 +379,16 @@
               record_type = "A";
               interface = internal_interface;
             }
+            {
+              name = "factorio";
+              record_type = "AAAA";
+              interface = internal_interface;
+            }
+            {
+              name = "factorio";
+              record_type = "A";
+              interface = "external";
+            }
           ];
         }
         {
@@ -370,6 +399,16 @@
             zone = "graysonhead.net";
           };
           records = [
+            {
+              name = "factorio";
+              record_type = "AAAA";
+              interface = internal_interface;
+            }
+            {
+              name = "factorio";
+              record_type = "A";
+              interface = "external";
+            }
             {
               name = "home";
               record_type = "A";

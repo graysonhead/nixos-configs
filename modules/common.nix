@@ -6,7 +6,6 @@
     ./default-system-packages.nix
     ./nix-gc.nix
   ];
-  programs.vim.defaultEditor = true;
   nix.settings = {
     require-sigs = false;
     trusted-users = [ "grayson" "root" ];
@@ -35,9 +34,9 @@
     "graysonhead.net"
   ];
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.stable;
     extraOptions = ''
-      experimental-features = nix-command flakes repl-flake
+      experimental-features = nix-command flakes
     '';
   };
 }

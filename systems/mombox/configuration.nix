@@ -19,6 +19,7 @@
     enable = true;
   };
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
+  hardware.nvidia.open = true;
   system.stateVersion = "22.05";
 }

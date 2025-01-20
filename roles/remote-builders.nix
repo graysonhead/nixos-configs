@@ -1,6 +1,7 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
+
   nix.buildMachines = [
     {
       hostName = "blue.i.graysonhead.net";
@@ -22,4 +23,12 @@
     }
   ];
   nix.distributedBuilds = true;
+  #   lib.mkIf (config.specialisation != { }) {
+  #   nix.distributedBuilds = true;
+  # };
+  # specialisation = {
+  #   localbuilds.configuration = {
+  #     nix.distributedBuilds = false;
+  #   };
+  # };
 }

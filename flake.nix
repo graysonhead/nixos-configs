@@ -1,17 +1,16 @@
 {
   description = "Grayson's NixOS Configurations";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs";
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    #nixpkgs-unstable.url = "github:graysonhead/nixpkgs/factorio-rcon-args";
+    nixpkgs-unstable.url = "/home/grayson/nix/nixpkgs";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    jager.url = "github:graysonhead/jager";
     deploy-rs.url = "github:serokell/deploy-rs";
     dns-agent.url = "github:graysonhead/dns-agent";
     factorio-bot.url = "github:graysonhead/factoriobot";
     agenix.url = "github:ryantm/agenix";
-    mach-nix.url = "github:DavHau/mach-nix";
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
@@ -66,6 +65,7 @@
             ./roles/photoprism.nix
             ./systems/blue/configuration.nix
             ./roles/nix-substituter.nix
+            ./roles/factorio-server.nix
           ];
           specialArgs = { inherit inputs; };
         };
@@ -77,15 +77,31 @@
             inputs.nixos-hardware.nixosModules.dell-xps-13-9370
             ./home-manager/full-homes.nix
             inputs.nixos-cosmic.nixosModules.default
-            ./roles/cosmic-desktop.nix
-            # ./roles/plasma-desktop.nix
+            # ./roles/cosmic-desktop.nix
+            ./roles/plasma-desktop.nix
             ./systems/deckchair/configuration.nix
             ./roles/libvirt.nix
-            ./jager/install.nix
             ./roles/sdr.nix
             ./roles/weylus.nix
             ./roles/cross-compile.nix
-            # ./roles/remote-builders.nix
+            ./roles/remote-builders.nix
+            ./roles/laptop.nix
+          ];
+          specialArgs = { inherit inputs; };
+        };
+
+        skippy = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            agenix.nixosModules.age
+            inputs.nixos-hardware.nixosModules.framework-13-7040-amd
+            ./home-manager/full-homes.nix
+            ./roles/plasma-desktop.nix
+            ./systems/skippy/configuration.nix
+            ./roles/libvirt.nix
+            ./roles/sdr.nix
+            ./roles/cross-compile.nix
+            #./roles/remote-builders.nix
             ./roles/laptop.nix
           ];
           specialArgs = { inherit inputs; };
@@ -114,9 +130,9 @@
             ./roles/ssh-server.nix
             ./roles/libvirt.nix
             ./roles/sdr.nix
-            ./roles/cuda.nix
-            ./roles/gamedev.nix
-            ./roles/weylus.nix
+            #./roles/cuda.nix
+            #./roles/gamedev.nix
+            #./roles/weylus.nix
             ./roles/cross-compile.nix
             ./roles/nix-substituter.nix
             ./roles/vr.nix
@@ -135,15 +151,15 @@
           ];
           specialArgs = { inherit inputs; };
         };
-        factorio = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            agenix.nixosModules.age
-            ./systems/factorio.nix
-            ./roles/factorio-server.nix
-          ];
-          specialArgs = { inherit inputs; };
-        };
+        # factorio = nixpkgs.lib.nixosSystem {
+        #   system = "x86_64-linux";
+        #   modules = [
+        #     agenix.nixosModules.age
+        #     ./systems/factorio.nix
+        #     ./roles/factorio-server.nix
+        #   ];
+        #   specialArgs = { inherit inputs; };
+        # };
         bounce-ksfo = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
@@ -153,18 +169,6 @@
             ./systems/ksfo-bounce/configuration.nix
           ];
         };
-
-        dashboard = nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./home-manager/minimal-homes.nix
-            ./systems/rasberry-pi.nix
-            ./roles/ssh-server.nix
-            ./roles/gnome.nix
-          ];
-        };
-
       };
 
       deploy = {

@@ -27,7 +27,7 @@ in
       format = """
       [](color_orange)\
       $os\
-      $username\
+      $username$hostname\
       [](bg:color_yellow fg:color_orange)\
       $directory\
       [](fg:color_yellow bg:color_aqua)\
@@ -69,6 +69,14 @@ in
       disabled = false
       style = "bg:color_orange fg:color_fg0"
 
+      [hostname]
+      ssh_only = true
+      format = "[@$hostname]($style)"
+      trim_at = "."
+      disabled = false
+      style = "bg:color_orange fg:color_fg0"
+
+
       [os.symbols]
       Windows = "󰍲"
       Ubuntu = "󰕈"
@@ -95,7 +103,7 @@ in
       show_always = true
       style_user = "bg:color_orange fg:color_fg0"
       style_root = "bg:color_orange fg:color_fg0"
-      format = '[ $user ]($style)'
+      format = '[ $user]($style)'
 
       [directory]
       style = "fg:color_fg0 bg:color_yellow"
@@ -222,7 +230,7 @@ in
       formulahendry.code-runner
       golang.go
       ms-python.python
-      matklad.rust-analyzer
+      rust-lang.rust-analyzer
       eamodio.gitlens
       ms-azuretools.vscode-docker
       streetsidesoftware.code-spell-checker
@@ -264,7 +272,6 @@ in
     cargo
     qgis
     gh
-    inputs.mach-nix.defaultPackage.x86_64-linux
     unstable.ckan
     ltwheelconf
     calibre
@@ -273,7 +280,7 @@ in
     unstable.dia
     opera
     unstable.joplin-desktop
-    unstable.signal-desktop
+    #unstable.signal-desktop
     gcc
     redis
     transmission-qt
@@ -291,7 +298,7 @@ in
     texlive.combined.scheme-full
     unstable.vlc
     gparted
-    obs-studio
+    unstable.obs-studio
     manuskript
     kdenlive
     nodePackages.create-react-app
@@ -308,6 +315,24 @@ in
     vulkan-tools
     git-lfs
     devenv
+    ventoy
+    (python311.withPackages (ps: with ps; [
+
+      requests
+      pip
+      numpy
+
+      scipy
+
+      flake8
+      pytest
+      coverage
+      cython
+      wheel
+      jupyterlab
+      flax
+      matplotlib
+    ]))
   ];
 
   programs.home-manager = {
@@ -316,6 +341,12 @@ in
 
   programs.firefox = {
     enable = true;
+    package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
+      extraPolicies = {
+        DisableTelemetry = true;
+        OfferToSaveLogins = false;
+      };
+    };
   };
 
   services.kdeconnect = {
@@ -355,10 +386,10 @@ in
     #   '';
     # };
   };
-  # home.activation = {
-  #   text = ''
-  #     chmod a+x ~
-  #     setfacl -m u:sddm:x ~
-  #   '';
-  # };
+  home.activation = {
+    text = ''
+      chmod a+x ~
+      setfacl -m u:sddm:x ~
+    '';
+  };
 }

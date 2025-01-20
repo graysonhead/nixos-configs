@@ -112,7 +112,7 @@ in
     #   exfat
     #   ntfs3g
     ksshaskpass
-    gnome.simple-scan
+    simple-scan
     xsane
     xsettingsd
     #   kmag

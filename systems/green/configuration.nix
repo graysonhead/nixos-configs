@@ -8,6 +8,11 @@ let
   };
 in
 {
+
+  environment.variables = {
+    KWIN_FORCE_SW_CURSOR = "1";
+    KWIN_DRM_NO_AMS = "1";
+  };
   imports =
     [
       ./hardware-configuration.nix
@@ -44,11 +49,18 @@ in
   networking.networkmanager = {
     enable = true;
   };
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia = {
-    modesetting.enable = true;
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+  #services.xserver.videoDrivers = [ "modesetting" ];
+  hardware.amdgpu = {
+    amdvlk.enable = true;
+    initrd.enable = true;
+    opencl.enable = true;
   };
+  # hardware.nvidia = {
+  #   open = true;
+  #   modesetting.enable = true;
+  #   package = config.boot.kernelPackages.nvidiaPackages.beta;
+  # };
+
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -65,9 +77,9 @@ in
     LC_TIME = "en_US.UTF-8";
   };
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
   system.stateVersion = "22.11";
-  boot.kernelParams = [ "module_blacklist=i915" "GBM_BACKEND=nvidia-drm" ];
+  boot.kernelParams = [ "module_blacklist=i915" "GBM_BACKEND=nvidia-drm" "gpu_sched.sched_policy=0" ];
   # services.xserver.dpi = 180;
   # environment.variables = {
   #   GDK_SCALE = "2";

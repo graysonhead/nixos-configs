@@ -44,19 +44,25 @@
     };
   };
 
-  programs.vim = {
+  programs.neovim = {
     enable = true;
+    viAlias = true;
+    vimAlias = true;
+    coc.enable = true;
     plugins = with pkgs.vimPlugins; [
       ale
+      autoclose-nvim
       vim-airline
       rust-vim
       direnv-vim
+      nerdtree
       coc-rust-analyzer
       coc-nvim
       coc-pyright
       coc-spell-checker
+      vim-elixir
     ];
-    settings = { ignorecase = true; };
+    #settings = { ignorecase = true; };
     extraConfig = ''
        colorscheme slate
       
@@ -64,31 +70,35 @@
        set nocompatible
        filetype off
        set encoding=utf-8
-
+       set termguicolors
        set spell spelllang=en_us
 
        let g:rustfmt_autosave = 1
        let g:rustfmt_emit_files = 1
        let g:rustfmt_fail_silently = 0
 
-       let g:netrw_banner = 0
-       let g:netrw_liststyle = 3
-       let g:netrw_browse_split = 4
-       let g:netrw_altv = 1
-       let g:netrw_winsize = 25
-       augroup ProjectDrawer
-         autocmd!
-           autocmd VimEnter * :Vexplore
-       augroup END
+        function! StartUp()
+         if !argc() && !exists("s:std_in")
+           NERDTree
+         end
+         if argc() && isdirectory(argv()[0]) && !exists("s:std_in")
+          exe 'NERDTree' argv()[0]
+          wincmd p
+          ene
+         end
+       endfunction
 
-       " Auto close with matching bracket
-       inoremap { {}<c-g>U<left>
+       autocmd StdinReadPre * let s:std_in=1
+       autocmd VimEnter * call StartUp()
 
-       " if between 2 brackets: "enter" to start inserting between them                                                             
-       inoremap <expr> <cr> getline('.')[col('.')-2:col('.')-1]=='{}' ? '<cr><esc>O' : '<cr>'
+      " " Auto close with matching bracket
+      inoremap { {}<c-g>U<left>
 
-       " If on a closing bracket: trying to reclose just skips the character
-       inoremap <expr> } getline('.')[col('.')-1]=='}' ? '<c-g>U<right>' : '}'
+      " " if between 2 brackets: "enter" to start inserting between them                                                             
+      " inoremap <expr> <cr> getline('.')[col('.')-2:col('.')-1]=='{}' ? '<cr><esc>O' : '<cr>'
+
+      " " If on a closing bracket: trying to reclose just skips the character
+      " inoremap <expr> } getline('.')[col('.')-1]=='}' ? '<c-g>U<right>' : '}'
 
       " inoremap { {}<Esc>ha
       " inoremap ( ()<Esc>ha
@@ -121,6 +131,7 @@
       list-generations = "nix-env --list-generations --profile /nix/var/nix/profiles/system";
     };
     bashrcExtra = ''
+      export TERM='xterm-256color'
       export PATH=~/.npm-packages/bin:$PATH
       export PATH=~/.cargo/bin/:$PATH
       export NODE_PATH=~/.npm-packages/lib/node_modules

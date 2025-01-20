@@ -16,8 +16,9 @@ in
 {
   "digitalocean-key.age".publicKeys = users ++ systems;
   "cloudflare-dns.age".publicKeys = users ++ systems;
-  "factorio.age".publicKeys = users ++ [ factorio ];
-  "factorio-bot.age".publicKeys = users ++ [ factorio ];
+  "factorio.age".publicKeys = users ++ systems;
+  "factorio-bot.age".publicKeys = users ++ systems;
+  "factorio-rcon-password.age".publicKeys = users ++ systems;
   "backblaze_restic.age".publicKeys = users ++ systems;
   "restic_password.age".publicKeys = users ++ systems;
   "dns-acme.age".publicKeys = users ++ systems;

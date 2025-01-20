@@ -30,6 +30,13 @@ in
     (lib.mkAfter [ "mdns4" ])
   ]);
 
+  # xdg.portal = {
+  #   enable = true;
+  #   wlr = {
+  #     enable = true;
+  #   };
+  # };
+
   system.nssModules = [ pkgs.nssmdns ];
 
   nix.extraOptions = ''
@@ -38,7 +45,7 @@ in
   '';
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.desktopManager.plasma6.enable = true;
   services.printing.enable = true;
   services.printing.drivers = [
     pkgs.gutenprint
@@ -84,6 +91,8 @@ in
     teamspeak_client
     teamspeak5_client
     unstable.zoom-us
+    unstable.discord
+    unstable.vesktop
     pass
     piper
     pinentry-curses
@@ -103,7 +112,7 @@ in
     exfat
     ntfs3g
     ksshaskpass
-    gnome.simple-scan
+    simple-scan
     xsane
     xsettingsd
     kmag
@@ -129,6 +138,7 @@ in
     kdePackages.krecorder
     kdePackages.kcalc
     kdePackages.merkuro
+    kdePackages.xwaylandvideobridge
     opendrop
     aspell
     aspellDicts.en
@@ -182,8 +192,11 @@ in
   nix.settings.trusted-users = [ "root" "grayson" ];
 
 
+
   # Fixes iotop
   boot.kernel.sysctl = { "kernel.task_delayacct" = 1; };
 
   boot.kernelPackages = with pkgs; unstable.linuxPackages;
+
+  services.fwupd.enable = true;
 }
