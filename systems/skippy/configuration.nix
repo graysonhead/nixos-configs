@@ -36,6 +36,8 @@
           path = "/crypt-storage/default";
         };
       };
+      device = "/dev/nvme0n1p2";
+      preLVM = true;
     };
   };
 

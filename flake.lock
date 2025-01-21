@@ -423,16 +423,18 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1735390897,
-        "narHash": "sha256-FaWcRTe43G9bs+PkqWNJz+ZexOiiALOSQLssRrnrE8k=",
-        "rev": "46ab315b69eae147fd67b5acc1ebc299a2ec4b7a",
-        "revCount": 729376,
-        "type": "git",
-        "url": "file:///home/grayson/nix/nixpkgs"
+        "lastModified": 1731184170,
+        "narHash": "sha256-7r/VvV/knKxi2lWeU/kvZyo7fznFWhL+Fy1dpWAOaeU=",
+        "owner": "graysonhead",
+        "repo": "nixpkgs",
+        "rev": "022324e507ed0942da78014904edc3f3ec270ae4",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/grayson/nix/nixpkgs"
+        "owner": "graysonhead",
+        "ref": "factorio-rcon-args",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "nixpkgs_2": {
