@@ -19,6 +19,7 @@
   hardware.framework.enableKmod = true;
 
   # Bootloader.
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.luks.yubikeySupport = true;
@@ -26,8 +27,8 @@
     root = {
       yubikey = {
         slot = 2;
-        twoFactor = false;
-        gracePeriod = 3;
+        twoFactor = true;
+        gracePeriod = 8;
         keyLength = 64;
         saltLength = 16;
         storage = {
