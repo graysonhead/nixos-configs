@@ -103,6 +103,7 @@
             ./roles/cross-compile.nix
             #./roles/remote-builders.nix
             ./roles/laptop.nix
+            ./roles/steam.nix
           ];
           specialArgs = { inherit inputs; };
         };

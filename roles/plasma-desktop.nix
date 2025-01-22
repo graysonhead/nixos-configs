@@ -129,6 +129,7 @@ in
     kdePackages.akonadi-mime
     kdePackages.kontact
     kdePackages.kmail
+    kdePackages.kmail-account-wizard
     kdePackages.kwrited
     kdePackages.kontact
     kdePackages.korganizer
