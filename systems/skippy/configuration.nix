@@ -39,6 +39,22 @@
       device = "/dev/nvme0n1p2";
       preLVM = true;
     };
+    swap = {
+      yubikey = {
+        slot = 2;
+        twoFactor = true;
+        gracePeriod = 8;
+        keyLength = 64;
+        saltLength = 16;
+        storage = {
+          device = "/dev/nvme0n1p1";
+          fsType = "vfat";
+          path = "/crypt-storage/default";
+        };
+      };
+      device = "/dev/nvme0n1p3";
+      preLVM = true;
+    };
   };
 
   networking.hostName = "skippy"; # Define your hostname.
