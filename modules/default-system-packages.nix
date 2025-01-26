@@ -11,6 +11,7 @@
       unzip
       unrar
       libtelnet
+      openssl
     ];
   };
 }
