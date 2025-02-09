@@ -268,6 +268,7 @@ in
     #   exec = "code-nogl";
     #   desktopName = "VSCode (GPU Disabled)";
     # })
+    google-chrome
     dump1090
     cargo
     qgis
@@ -316,6 +317,7 @@ in
     git-lfs
     devenv
     ventoy
+    obsidian
     (python311.withPackages (ps: with ps; [
 
       requests
