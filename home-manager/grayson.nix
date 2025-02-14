@@ -242,33 +242,6 @@ in
     nix-direnv.enable = true;
   };
   home.packages = with pkgs; [
-    # (pkgs.writeShellApplication {
-    #   name = "discord-nogl";
-    #   text = "${pkgs.unstable.discord}/bin/discord --use-gl=desktop";
-    # })
-    # (pkgs.makeDesktopItem {
-    #   name = "discord-nogl";
-    #   exec = "discord-nogl";
-    #   desktopName = "Discord (GPU Disabled)";
-    # })
-    # (pkgs.writeShellApplication {
-    #   name = "slack-nogl";
-    #   text = "${pkgs.unstable.slack}/bin/slack --disable-gpu";
-    # })
-    # (pkgs.makeDesktopItem {
-    #   name = "slack-nogl";
-    #   exec = "slack-nogl";
-    #   desktopName = "Slack (GPU Disabled)";
-    # })
-    # (pkgs.writeShellApplication {
-    #   name = "code-nogl";
-    #   text = "${pkgs.unstable.vscode}/bin/code --disable-gpu";
-    # })
-    # (pkgs.makeDesktopItem {
-    #   name = "code-nogl";
-    #   exec = "code-nogl";
-    #   desktopName = "VSCode (GPU Disabled)";
-    # })
     google-chrome
     dump1090
     cargo
@@ -282,7 +255,6 @@ in
     unstable.dia
     opera
     unstable.joplin-desktop
-    #unstable.signal-desktop
     gcc
     redis
     transmission-qt
@@ -320,13 +292,10 @@ in
     ventoy
     obsidian
     (python311.withPackages (ps: with ps; [
-
       requests
       pip
       numpy
-
       scipy
-
       flake8
       pytest
       coverage
@@ -383,11 +352,6 @@ in
       '';
       executable = true;
     };
-    # ".gnupg/gpg-agent.conf" = {
-    #   text = ''
-    #     pinentry-program /run/current-system/sw/bin/pinentry
-    #   '';
-    # };
   };
   home.activation = {
     text = ''
