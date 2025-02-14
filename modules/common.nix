@@ -27,6 +27,7 @@
       efibootmgr
       usbutils
       dmidecode
+      iperf
     ];
   };
   networking.search = [

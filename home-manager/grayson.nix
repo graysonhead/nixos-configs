@@ -234,6 +234,7 @@ in
       eamodio.gitlens
       ms-azuretools.vscode-docker
       streetsidesoftware.code-spell-checker
+      vscode-extensions.saoudrizwan.claude-dev
     ];
   };
   programs.direnv = {
