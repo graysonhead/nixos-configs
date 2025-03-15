@@ -27,7 +27,7 @@
       yubikey = {
         slot = 2;
         twoFactor = true;
-        gracePeriod = 8;
+        gracePeriod = 1;
         keyLength = 64;
         saltLength = 16;
         storage = {

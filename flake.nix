@@ -152,15 +152,15 @@
           ];
           specialArgs = { inherit inputs; };
         };
-        # factorio = nixpkgs.lib.nixosSystem {
-        #   system = "x86_64-linux";
-        #   modules = [
-        #     agenix.nixosModules.age
-        #     ./systems/factorio.nix
-        #     ./roles/factorio-server.nix
-        #   ];
-        #   specialArgs = { inherit inputs; };
-        # };
+        factorio = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            agenix.nixosModules.age
+            ./systems/factorio.nix
+            ./roles/factorio-server.nix
+          ];
+          specialArgs = { inherit inputs; };
+        };
         bounce-ksfo = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };

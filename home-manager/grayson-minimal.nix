@@ -12,6 +12,7 @@
     unzip
     p7zip
     termdown
+    nixpkgs-fmt
   ];
   home.sessionVariables = rec {
     CARGO_NET_GIT_FETCH_WITH_CLI = "true";

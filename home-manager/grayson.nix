@@ -223,6 +223,7 @@ in
         "**/.DS_Store" = true;
         "terminal.integrated.fontFamily" = "Hack NF";
       };
+      "nix.formatterPath" = "nixpkgs-fmt";
     };
     extensions = with pkgs.vscode-extensions; [
       bbenoist.nix
@@ -234,7 +235,7 @@ in
       eamodio.gitlens
       ms-azuretools.vscode-docker
       streetsidesoftware.code-spell-checker
-      vscode-extensions.saoudrizwan.claude-dev
+      pkgs.unstable.vscode-extensions.saoudrizwan.claude-dev
     ];
   };
   programs.direnv = {
@@ -251,6 +252,7 @@ in
     ltwheelconf
     calibre
     chirp
+    chromium
     element-desktop
     unstable.dia
     opera
@@ -265,6 +267,7 @@ in
     inputs.cargo2nix.packages.x86_64-linux.default
     qalculate-qt
     unstable.slack
+    exercism
     kubectl
     flux
     tilt
@@ -291,6 +294,7 @@ in
     devenv
     ventoy
     obsidian
+    nixpkgs-fmt
     (python311.withPackages (ps: with ps; [
       requests
       pip
@@ -323,7 +327,8 @@ in
 
   services.kdeconnect = {
     enable = true;
-    indicator = true;
+    indicator = false;
+    package = pkgs.kdePackages.kdeconnect-kde;
   };
 
   services.gpg-agent = {
