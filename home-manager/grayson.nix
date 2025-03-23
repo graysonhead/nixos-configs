@@ -246,6 +246,9 @@ in
     google-chrome
     dump1090
     cargo
+    rust-analyzer
+    clippy
+    rustfmt
     qgis
     gh
     unstable.ckan
