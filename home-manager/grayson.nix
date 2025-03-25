@@ -251,25 +251,25 @@ in
     rustfmt
     qgis
     gh
-    unstable.ckan
+    ckan
     ltwheelconf
     calibre
     chirp
     chromium
     element-desktop
-    unstable.dia
+    dia
     opera
-    unstable.joplin-desktop
+    joplin-desktop
     gcc
     redis
     transmission-qt
     thunderbird
-    unstable.wireshark
+    wireshark
     inputs.deploy-rs.defaultPackage.x86_64-linux
     inputs.agenix.packages.x86_64-linux.agenix
     inputs.cargo2nix.packages.x86_64-linux.default
     qalculate-qt
-    unstable.slack
+    slack
     exercism
     kubectl
     flux

@@ -121,6 +121,7 @@
     shellAliases = {
       update = "sudo nixos-rebuild boot --flake github:graysonhead/nixos-configs && sudo shutdown -r now";
       rebuild-from-dir = "nixos-rebuild build --impure --flake . && sudo ./result/bin/switch-to-configuration switch && source ~/.bashrc";
+      rebuild-from-dir-boot = "nixos-rebuild build --impure --flake . && sudo ./result/bin/switch-to-configuration boot && source ~/.bashrc";
       dir-size = "sudo du -shx ./* | sort -h";
       exportall = "f(){ set -o allexport; source $1; set +o allexport; }; f";
       nixrestic = "f(){ exportall /run/agenix/restic; restic -r b2:nixos-backups -p /run/agenix/restic_password $@; }; f";
@@ -129,7 +130,7 @@
       tilt-up = "minikube start && tilt up";
       tilt-down = "tilt down &&  minikube stop";
       k = "kubectl";
-      list-generations = "nix-env --list-generations --profile /nix/var/nix/profiles/system";
+      list-generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
     };
     bashrcExtra = ''
       export TERM='xterm-256color'

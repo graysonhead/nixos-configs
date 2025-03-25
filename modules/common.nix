@@ -40,10 +40,4 @@
       experimental-features = nix-command flakes
     '';
   };
-
-  # /tmp on tmpfs
-  boot.tmp = {
-    useTmpfs = true;
-    tmpfsSize = "25%";
-  };
 }

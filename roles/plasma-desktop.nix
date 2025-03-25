@@ -83,16 +83,14 @@ in
     libimobiledevice
     libheif
     kio-fuse
-    unstable.nssmdns
+    nssmdns
     networkmanager-iodine
     networkmanager-openvpn
     networkmanager-openconnect
     nordic
     teamspeak_client
     teamspeak5_client
-    unstable.zoom-us
-    unstable.discord
-    unstable.vesktop
+    zoom-us
     pass
     piper
     pinentry-curses
