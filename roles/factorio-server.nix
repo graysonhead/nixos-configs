@@ -51,18 +51,16 @@ in
     game-name = "The Darkside";
     saveName = "save";
     extraSettingsFile = config.age.secrets.factorio.path;
-    rConSettings = {
-      password = "THISPASSWORD";
-      bindAddress = "0.0.0.0:25575";
-    };
-    # rConBind = "0.0.0.0:25575";
-    # rConPassword = "$GAME_PASSWORD";
+    # rConSettings = {
+    #   password = "THISPASSWORD";
+    #   bindAddress = "0.0.0.0:25575";
+    # };
   };
-  # Factorio bot
-  services.factorio-bot = {
-    enable = true;
-    environmentFile = config.age.secrets.factorio-bot.path;
-  };
+  # Factorio bot Disabled until rcon gets merged
+  # services.factorio-bot = {
+  #   enable = true;
+  #   environmentFile = config.age.secrets.factorio-bot.path;
+  # };
 
   services.restic.backups = {
     factorio = {

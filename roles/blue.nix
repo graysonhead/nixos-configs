@@ -14,6 +14,7 @@
     ./jellyfin.nix
     ./adsb.nix
     ./veilid.nix
+    ./ai-gateway.nix
   ];
   environment.systemPackages = [
   ];
@@ -112,6 +113,10 @@
     };
     certs."nodered.i.graysonhead.net" = {
       dnsProvider = "digitalocean";
+      credentialsFile = config.age.secrets.dns-acme.path;
+    };
+    certs."ai.graysonhead.net" = {
+      dnsProvider = "cloudflare";
       credentialsFile = config.age.secrets.dns-acme.path;
     };
   };
@@ -264,6 +269,13 @@
       forceSSL = false;
       locations."/" = {
         proxyPass = "http://127.0.0.1:8080";
+      };
+    };
+    virtualHosts."ai.graysonhead.net" = {
+      useACMEHost = "ai.graysonhead.net";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://[::1]:8125";
       };
     };
   };
@@ -463,6 +475,16 @@
               name = "photos";
               record_type = "AAAA";
               interface = internal_interface;
+            }
+            {
+              name = "ai";
+              record_type = "AAAA";
+              interface = internal_interface;
+            }
+            {
+              name = "ai";
+              record_type = "A";
+              interface = "external";
             }
           ];
         }
