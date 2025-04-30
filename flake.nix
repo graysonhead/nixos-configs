@@ -4,8 +4,15 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # nixpkgs-unstable.url = "github:graysonhead/nixpkgs/factorio-rcon-args";
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     deploy-rs.url = "github:serokell/deploy-rs";
     dns-agent.url = "github:graysonhead/dns-agent";
@@ -132,7 +139,7 @@
             ./roles/libvirt.nix
             ./roles/sdr.nix
             #./roles/cuda.nix
-            #./roles/gamedev.nix
+            ./roles/gamedev.nix
             #./roles/weylus.nix
             ./roles/lm-notebook.nix
             ./roles/cross-compile.nix

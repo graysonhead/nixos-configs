@@ -15,4 +15,5 @@
   };
   home-manager.users.maerose = import ./maerose.nix;
   home-manager.users.wyatt = import ./wyatt.nix;
+  home-manager.sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
 }

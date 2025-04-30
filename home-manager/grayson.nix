@@ -17,6 +17,17 @@ let
 in
 {
 
+  programs.plasma = {
+    enable = true;
+
+    hotkeys.commands."edit-nixos-configs" = {
+      name = "Edit nixos-configs";
+      key = "Ctrl+Shift+C";
+      command = "code /home/grayson/nix/nixos-configs";
+    };
+
+  };
+
   # Optionally, specify if you'd like certain programs to use the fonts
   fonts.fontconfig.enable = true;
   programs.starship = {
@@ -215,7 +226,7 @@ in
       "diffEditor.ignoreTrimWhitespace" = false;
       "explorer.confirmDragAndDrop" = false;
       "editor.formatOnSave" = true;
-      "rust-analyzer.checkOnSave.command" = "clippy";
+      "rust-analyzer.checkOnSave" = true;
       "files.exclude" = {
         "**/.git" = false;
         "**/.svn" = true;
@@ -246,7 +257,7 @@ in
     google-chrome
     dump1090
     cargo
-    rust-analyzer
+    # rust-analyzer # This has a tendancy to cause issue with dev flakes, as for some reason this version takes precedence with VSCode
     clippy
     rustfmt
     qgis
@@ -297,6 +308,7 @@ in
     devenv
     ventoy
     obsidian
+    signal-desktop
     nixpkgs-fmt
     (python311.withPackages (ps: with ps; [
       requests
