@@ -22,9 +22,10 @@ in
 
     hotkeys.commands."edit-nixos-configs" = {
       name = "Edit nixos-configs";
-      key = "Ctrl+Shift+C";
+      key = "Alt+C";
       command = "code /home/grayson/nix/nixos-configs";
     };
+    session.sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
 
   };
 
@@ -308,7 +309,6 @@ in
     devenv
     ventoy
     obsidian
-    signal-desktop
     nixpkgs-fmt
     (python311.withPackages (ps: with ps; [
       requests
@@ -324,6 +324,7 @@ in
       flax
       matplotlib
     ]))
+    unstable.gurk-rs
   ];
 
   programs.home-manager = {

@@ -21,37 +21,37 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.luks.yubikeySupport = true;
+  boot.initrd.luks.yubikeySupport = false;
   boot.initrd.luks.devices = {
     root = {
-      yubikey = {
-        slot = 2;
-        twoFactor = true;
-        gracePeriod = 1;
-        keyLength = 64;
-        saltLength = 16;
-        storage = {
-          device = "/dev/nvme0n1p1";
-          fsType = "vfat";
-          path = "/crypt-storage/default";
-        };
-      };
+      # yubikey = {
+      #   slot = 2;
+      #   twoFactor = true;
+      #   gracePeriod = 1;
+      #   keyLength = 64;
+      #   saltLength = 16;
+      #   storage = {
+      #     device = "/dev/nvme0n1p1";
+      #     fsType = "vfat";
+      #     path = "/crypt-storage/default";
+      #   };
+      # };
       device = "/dev/nvme0n1p2";
       preLVM = true;
     };
     swap = {
-      yubikey = {
-        slot = 2;
-        twoFactor = true;
-        gracePeriod = 1;
-        keyLength = 64;
-        saltLength = 16;
-        storage = {
-          device = "/dev/nvme0n1p1";
-          fsType = "vfat";
-          path = "/crypt-storage/default";
-        };
-      };
+      # yubikey = {
+      #   slot = 2;
+      #   twoFactor = true;
+      #   gracePeriod = 1;
+      #   keyLength = 64;
+      #   saltLength = 16;
+      #   storage = {
+      #     device = "/dev/nvme0n1p1";
+      #     fsType = "vfat";
+      #     path = "/crypt-storage/default";
+      #   };
+      # };
       device = "/dev/nvme0n1p3";
       preLVM = true;
     };
