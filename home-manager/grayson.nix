@@ -277,7 +277,7 @@ in
     transmission-qt
     thunderbird
     wireshark
-    inputs.deploy-rs.defaultPackage.x86_64-linux
+    inputs.deploy-rs.packages.x86_64-linux.deploy-rs
     inputs.agenix.packages.x86_64-linux.agenix
     inputs.cargo2nix.packages.x86_64-linux.default
     qalculate-qt
@@ -310,6 +310,7 @@ in
     ventoy
     obsidian
     nixpkgs-fmt
+    unstable.claude-code
     (python311.withPackages (ps: with ps; [
       requests
       pip
