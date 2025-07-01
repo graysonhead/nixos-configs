@@ -125,7 +125,6 @@
 
   services.samba = {
     enable = true;
-    securityType = "user";
     openFirewall = true;
     settings = {
       global = {
@@ -144,27 +143,6 @@
         writeable = "yes";
         "valid users" = "%S";
       };
-    };
-    # extraConfig = ''
-    #   workgroup = HEADQRTRS
-    #   server string = blue
-    #   netbios name = blue
-    #   security = user 
-    #   #use sendfile = yes
-    #   #max protocol = smb2
-    #   # note: localhost is the ipv6 localhost ::1
-    #   hosts allow = 10.5.5. 127.0.0.1 2603:8080:1e03:a700:b498:c38b: localhost
-    #   hosts deny = 0.0.0.0/0
-    #   guest account = nobody
-    #   map to guest = bad user
-
-    #   [homes]
-    #   comment = Home Directories
-    #   browseable = yes
-    #   writable = yes
-    #   valid users = %S
-    # '';
-    shares = {
       data = {
         path = "/encrypted_storage/data";
         browseable = "yes";

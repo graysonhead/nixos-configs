@@ -217,38 +217,40 @@ in
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
-    userSettings = {
-      "git.enableCommitSigning" = true;
-      "workbench.colorTheme" = "Default Dark+";
-      "files.autoSave" = "afterDelay";
-      "git.confirmSync" = false;
-      "explorer.confirmDelete" = false;
-      "security.workspace.trust.untrustedFiles" = "open";
-      "diffEditor.ignoreTrimWhitespace" = false;
-      "explorer.confirmDragAndDrop" = false;
-      "editor.formatOnSave" = true;
-      "rust-analyzer.checkOnSave" = true;
-      "files.exclude" = {
-        "**/.git" = false;
-        "**/.svn" = true;
-        "**/.hg" = true;
-        "**/.DS_Store" = true;
-        "terminal.integrated.fontFamily" = "Hack NF";
+    profiles.default = {
+      userSettings = {
+        "git.enableCommitSigning" = true;
+        "workbench.colorTheme" = "Default Dark+";
+        "files.autoSave" = "afterDelay";
+        "git.confirmSync" = false;
+        "explorer.confirmDelete" = false;
+        "security.workspace.trust.untrustedFiles" = "open";
+        "diffEditor.ignoreTrimWhitespace" = false;
+        "explorer.confirmDragAndDrop" = false;
+        "editor.formatOnSave" = true;
+        "rust-analyzer.checkOnSave" = true;
+        "files.exclude" = {
+          "**/.git" = false;
+          "**/.svn" = true;
+          "**/.hg" = true;
+          "**/.DS_Store" = true;
+          "terminal.integrated.fontFamily" = "Hack NF";
+        };
+        "nix.formatterPath" = "nixpkgs-fmt";
       };
-      "nix.formatterPath" = "nixpkgs-fmt";
+      extensions = with pkgs.vscode-extensions; [
+        bbenoist.nix
+        bungcip.better-toml
+        formulahendry.code-runner
+        golang.go
+        ms-python.python
+        rust-lang.rust-analyzer
+        eamodio.gitlens
+        ms-azuretools.vscode-docker
+        streetsidesoftware.code-spell-checker
+        pkgs.unstable.vscode-extensions.saoudrizwan.claude-dev
+      ];
     };
-    extensions = with pkgs.vscode-extensions; [
-      bbenoist.nix
-      bungcip.better-toml
-      formulahendry.code-runner
-      golang.go
-      ms-python.python
-      rust-lang.rust-analyzer
-      eamodio.gitlens
-      ms-azuretools.vscode-docker
-      streetsidesoftware.code-spell-checker
-      pkgs.unstable.vscode-extensions.saoudrizwan.claude-dev
-    ];
   };
   programs.direnv = {
     enable = true;
@@ -272,7 +274,7 @@ in
     joplin-desktop
     gcc
     redis
-    transmission-qt
+    transmission_4-qt
     thunderbird
     wireshark
     inputs.deploy-rs.packages.x86_64-linux.deploy-rs
@@ -346,7 +348,7 @@ in
 
   services.gpg-agent = {
     enable = true;
-    pinentryPackage = pkgs.pinentry-qt;
+    pinentry.package = pkgs.pinentry-qt;
   };
 
   home.file = {

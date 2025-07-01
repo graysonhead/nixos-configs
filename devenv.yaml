@@ -1,0 +1,9 @@
+inputs:
+  nixpkgs:
+    url: github:nixos/nixpkgs/nixos-25.05
+  devenv:
+    url: github:cachix/devenv
+  agenix:
+    url: github:ryantm/agenix
+  deploy-rs:
+    url: github:serokell/deploy-rs
