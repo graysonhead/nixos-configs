@@ -2,7 +2,7 @@
 {
   imports = [
     ./users.nix
-    inputs.home-manager.nixosModule
+    inputs.home-manager.nixosModules.default
   ];
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;

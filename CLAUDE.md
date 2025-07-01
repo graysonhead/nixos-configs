@@ -20,6 +20,9 @@ This is a NixOS configurations repository using Nix flakes to manage multiple sy
 
 ### Building and Testing
 ```bash
+# Check flake configuration for errors (run this after any changes)
+nix flake check
+
 # Build a specific system configuration
 nix build .#nixosConfigurations.HOSTNAME.config.system.build.toplevel
 

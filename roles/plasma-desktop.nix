@@ -115,7 +115,7 @@ in
     pass
     piper
     pinentry-curses
-    ark
+    kdePackages.ark
     minikube
     openvpn
     iodine
@@ -130,14 +130,14 @@ in
     fuseiso
     exfat
     ntfs3g
-    ksshaskpass
+    kdePackages.ksshaskpass
     simple-scan
     xsane
     xsettingsd
-    kmag
+    kdePackages.kmag
     yubikey-agent
     yubikey-manager
-    yubikey-manager-qt
+    yubioath-flutter
     yubico-piv-tool
     pinentry-qt
     kdePackages.akonadi

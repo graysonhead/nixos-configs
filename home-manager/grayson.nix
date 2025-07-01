@@ -264,13 +264,11 @@ in
     qgis
     gh
     ckan
-    ltwheelconf
     calibre
     chirp
     chromium
     element-desktop
     dia
-    opera
     joplin-desktop
     gcc
     redis
@@ -292,11 +290,10 @@ in
     gparted
     unstable.obs-studio
     manuskript
-    kdenlive
-    nodePackages.create-react-app
+    kdePackages.kdenlive
     nodePackages.npm
     nodejs
-    nerdfonts
+    nerd-fonts.hack
     unstable.k9s
     virt-manager
     terminator
@@ -307,7 +304,6 @@ in
     vulkan-tools
     git-lfs
     unstable.devenv
-    ventoy
     obsidian
     nixpkgs-fmt
     unstable.claude-code
