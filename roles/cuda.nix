@@ -1,6 +1,6 @@
-{ nixpkgs, inputs, pkgs, config, ...}:
+{ nixpkgs, inputs, pkgs, config, ... }:
 {
-    environment.systemPackages = with pkgs; [
-        cudaPackages.cudatoolkit
-    ];
+  environment.systemPackages = with pkgs; [
+    cudaPackages.cudatoolkit
+  ];
 }

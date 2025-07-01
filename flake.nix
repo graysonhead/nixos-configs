@@ -77,25 +77,26 @@
           specialArgs = { inherit inputs; };
         };
 
-        deckchair = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            agenix.nixosModules.age
-            inputs.nixos-hardware.nixosModules.dell-xps-13-9370
-            ./home-manager/full-homes.nix
-            inputs.nixos-cosmic.nixosModules.default
-            # ./roles/cosmic-desktop.nix
-            ./roles/plasma-desktop.nix
-            ./systems/deckchair/configuration.nix
-            ./roles/libvirt.nix
-            ./roles/sdr.nix
-            ./roles/weylus.nix
-            ./roles/cross-compile.nix
-            ./roles/remote-builders.nix
-            ./roles/laptop.nix
-          ];
-          specialArgs = { inherit inputs; };
-        };
+        # Mostly Retired
+        # deckchair = nixpkgs.lib.nixosSystem {
+        #   system = "x86_64-linux";
+        #   modules = [
+        #     agenix.nixosModules.age
+        #     inputs.nixos-hardware.nixosModules.dell-xps-13-9370
+        #     ./home-manager/full-homes.nix
+        #     inputs.nixos-cosmic.nixosModules.default
+        #     # ./roles/cosmic-desktop.nix
+        #     ./roles/plasma-desktop.nix
+        #     ./systems/deckchair/configuration.nix
+        #     ./roles/libvirt.nix
+        #     ./roles/sdr.nix
+        #     ./roles/weylus.nix
+        #     ./roles/cross-compile.nix
+        #     ./roles/remote-builders.nix
+        #     ./roles/laptop.nix
+        #   ];
+        #   specialArgs = { inherit inputs; };
+        # };
 
         skippy = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";

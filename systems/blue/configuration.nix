@@ -46,11 +46,11 @@
   networking.interfaces.enp11s0.useDHCP = false;
   networking.interfaces.br0.useDHCP = true;
   networking.bridges = {
-      "br0" = {
-          interfaces = [ "enp11s0" ];
-          rstp = true;
-      };
+    "br0" = {
+      interfaces = [ "enp11s0" ];
+      rstp = true;
     };
+  };
 
 }
 

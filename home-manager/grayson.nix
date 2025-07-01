@@ -306,7 +306,7 @@ in
     rpi-imager
     vulkan-tools
     git-lfs
-    devenv
+    unstable.devenv
     ventoy
     obsidian
     nixpkgs-fmt

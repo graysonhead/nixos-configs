@@ -6,13 +6,14 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/disk/by-id/mmc-016GE2_0xa12f4284-part1"; 
+  boot.loader.grub.device = "/dev/disk/by-id/mmc-016GE2_0xa12f4284-part1";
   age.identityPaths = [
     "/etc/ssh/ssh_host_ed25519_key"
   ];

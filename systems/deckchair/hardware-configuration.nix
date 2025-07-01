@@ -18,7 +18,7 @@
     "aesni_intel"
     "cryptd"
   ];
-  boot.initrd.kernelModules = [ 
+  boot.initrd.kernelModules = [
     "dm-snapshot"
     "vfat"
     "nls_cp437"
