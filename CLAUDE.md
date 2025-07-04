@@ -105,3 +105,4 @@ User configurations are managed through home-manager with modular setups:
 - Secrets are managed with agenix encryption
 - Remote deployment handled by deploy-rs
 - Custom DNS and networking configurations for internal services
+- When you add new .nix files, you need to git add them or the flake will not be able to see them

@@ -26,6 +26,7 @@
     userName = "Grayson Head";
     userEmail = "grayson@graysonhead.net";
     extraConfig = {
+      push.autoSetupRemote = true;
       init.defaultBranch = "main";
       filter.lfs.clean = "git-lfs clean -- %f";
       filter.lfs.smudge = "git-lfs smudge -- %f";

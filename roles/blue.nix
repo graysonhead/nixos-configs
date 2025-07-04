@@ -11,6 +11,7 @@
     ./prometheus.nix
     ./blue-syncthing.nix
     ./radicale.nix
+    ./baikal.nix
     ./jellyfin.nix
     ./adsb.nix
     ./veilid.nix
@@ -431,6 +432,16 @@
             }
             {
               name = "calendar";
+              record_type = "AAAA";
+              interface = internal_interface;
+            }
+            {
+              name = "baikal";
+              record_type = "A";
+              interface = "external";
+            }
+            {
+              name = "baikal";
               record_type = "AAAA";
               interface = internal_interface;
             }

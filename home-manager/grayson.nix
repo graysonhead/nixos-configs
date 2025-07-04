@@ -309,21 +309,21 @@ in
     obsidian
     nixpkgs-fmt
     unstable.claude-code
-    (python311.withPackages (ps: with ps; [
-      requests
-      pip
-      numpy
-      scipy
-      flake8
-      pytest
-      coverage
-      cython
-      wheel
-      jupyterlab
-      flax
-      matplotlib
-    ]))
-    unstable.gurk-rs
+    # (python311.withPackages (ps: with ps; [
+    #   requests
+    #   pip
+    #   numpy
+    #   scipy
+    #   flake8
+    #   pytest
+    #   coverage
+    #   cython
+    #   wheel
+    #   # Currently broken
+    #   # jupyterlab
+    #   flax
+    #   matplotlib
+    # ]))
   ];
 
   programs.home-manager = {
