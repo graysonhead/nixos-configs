@@ -106,3 +106,8 @@ User configurations are managed through home-manager with modular setups:
 - Remote deployment handled by deploy-rs
 - Custom DNS and networking configurations for internal services
 - When you add new .nix files, you need to git add them or the flake will not be able to see them
+
+## Domain Configuration
+
+- **i.graysonhead.net**: Internal domain for LAN/VPN connectivity only
+- **graysonhead.net**: Public domain for external services

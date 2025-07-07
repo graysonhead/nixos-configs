@@ -67,6 +67,7 @@ in
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+  services.desktopManager.plasma6.enableQt5Integration = true;
   services.printing.enable = true;
   services.printing.drivers = [
     pkgs.gutenprint
@@ -140,24 +141,12 @@ in
     yubioath-flutter
     yubico-piv-tool
     pinentry-qt
-    kdePackages.akonadi
-    kdePackages.akonadiconsole
-    kdePackages.akonadi-search
-    kdePackages.akonadi-mime
-    kdePackages.akonadi-calendar
-    kdePackages.akonadi-mime
-    kdePackages.kontact
-    kdePackages.kmail
-    kdePackages.kmail-account-wizard
     kdePackages.kwrited
-    kdePackages.kontact
-    kdePackages.korganizer
     kdePackages.filelight
     kdePackages.kate
     kdePackages.kde-gtk-config
     kdePackages.krecorder
     kdePackages.kcalc
-    kdePackages.merkuro
     kdePackages.xwaylandvideobridge
     opendrop
     aspell

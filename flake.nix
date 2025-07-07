@@ -22,6 +22,7 @@
       url = "github:edolstra/flake-compat";
       flake = false;
     };
+    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     cargo2nix.url = "github:cargo2nix/cargo2nix/release-0.11.0";
     nixos-cosmic = {
       url = "github:lilyinstarlight/nixos-cosmic";
@@ -34,6 +35,7 @@
     , nixpkgs-unstable
     , agenix
     , deploy-rs
+    , pre-commit-hooks
     , ...
     }@inputs:
     let
@@ -42,6 +44,7 @@
     rec
     {
       devShells.x86_64-linux.default = pkgs.mkShell {
+        inherit (self.checks.x86_64-linux.pre-commit-check) shellHook;
         packages = [
           agenix.packages.x86_64-linux.agenix
           deploy-rs.packages.x86_64-linux.deploy-rs
@@ -197,6 +200,15 @@
           };
         };
       };
-      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib // {
+        x86_64-linux = (deploy-rs.lib.x86_64-linux.deployChecks self.deploy) // {
+          pre-commit-check = pre-commit-hooks.lib.x86_64-linux.run {
+            src = ./.;
+            hooks = {
+              nixpkgs-fmt.enable = true;
+            };
+          };
+        };
+      };
     };
 }

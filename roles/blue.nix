@@ -6,6 +6,7 @@
     ../modules/common.nix
     ../services/common.nix
     ../services/dns-agent.nix
+    ../services/file-server.nix
     ../modules/motion.nix
     ./prometheus_exporter.nix
     ./prometheus.nix
@@ -117,6 +118,10 @@
       credentialsFile = config.age.secrets.dns-acme.path;
     };
     certs."ai.graysonhead.net" = {
+      dnsProvider = "cloudflare";
+      credentialsFile = config.age.secrets.dns-acme.path;
+    };
+    certs."files.graysonhead.net" = {
       dnsProvider = "cloudflare";
       credentialsFile = config.age.secrets.dns-acme.path;
     };
@@ -474,6 +479,16 @@
               name = "ai";
               record_type = "A";
               interface = "external";
+            }
+            {
+              name = "files";
+              record_type = "A";
+              interface = "external";
+            }
+            {
+              name = "files";
+              record_type = "AAAA";
+              interface = internal_interface;
             }
           ];
         }
