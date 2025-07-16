@@ -259,7 +259,7 @@
       useACMEHost = "ai.graysonhead.net";
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://[::1]:8125";
+        proxyPass = "http://127.0.0.1:8125";
       };
     };
   };
