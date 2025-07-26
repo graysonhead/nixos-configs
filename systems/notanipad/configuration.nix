@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
@@ -17,27 +13,16 @@
     "/etc/ssh/ssh_host_ed25519_key"
   ];
 
-  # Supposedly better for the SSD.
   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
 
-  # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.efiSupport = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Grub menu is painted really slowly on HiDPI, so we lower the
-  # resolution. Unfortunately, scaling to 1280x720 (keeping aspect
-  # ratio) doesn't seem to work, so we just pick another low one.
-  boot.loader.grub.gfxmodeEfi = "1024x768";
-
-  boot.initrd.luks.devices = {
-    root = {
-      device = "/dev/disk/by-uuid/20c1473c-55f3-4e0c-ad7e-0a906d8ae4b0";
-      preLVM = true;
-      allowDiscards = true;
-    };
+  boot.loader.grub = {
+    enable = true;
+    device = "nodev";
+    efiSupport = true;
+    enableCryptodisk = true;
   };
+
+  boot.loader.grub.gfxmodeEfi = "1024x768";
 
   services.xserver.videoDrivers = [ "nvidia" "modesetting" ];
   hardware.nvidia = {
@@ -47,7 +32,6 @@
       intelBusId = "PCI:0:2:0";
     };
   };
-
 
   networking.hostName = "notanipad";
   networking.networkmanager = {
@@ -63,6 +47,9 @@
     _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
   };
 
-  system.stateVersion = "21.11";
+  # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
+  # and migrated your data accordingly.
+  #
+  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
+  system.stateVersion = "23.11"; # Did you read the comment?
 }
-
