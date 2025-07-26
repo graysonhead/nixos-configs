@@ -182,6 +182,18 @@
             ./systems/ksfo-bounce/configuration.nix
           ];
         };
+        hal = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            agenix.nixosModules.age
+            ./modules/common.nix
+            ./home-manager/minimal-homes.nix
+            ./roles/ssh-server.nix
+            ./services/auto-dns.nix
+            ./systems/hal/configuration.nix
+          ];
+          specialArgs = { inherit inputs; };
+        };
       };
 
       deploy = {

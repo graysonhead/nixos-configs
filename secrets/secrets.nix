@@ -12,7 +12,8 @@ let
   chromebook = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPYaZ5RV6vfa1wiWaFFC1pgspnzcvIb6yfnBhhVNe4U4";
   bounce-ksfo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE1xVQxbyh553AkA/O+tg5lu4jkb4eb1jjZyBeV1Oe0M";
   skippy = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBP/ob24tap0AzKunuGtUrSkPkfmXzas4KhKy+wNT2OD root@skippy";
-  systems = [ ops nx1 factorio deckchair notanipad mombox green blue chromebook bounce-ksfo skippy ];
+  hal = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILs6qDibFnyVTiS9vY/rfWXSXXGE2oaT9ufo/tJan3BJ";
+  systems = [ ops nx1 factorio deckchair notanipad mombox green blue chromebook bounce-ksfo skippy hal ];
 in
 {
   "digitalocean-key.age".publicKeys = users ++ systems;
