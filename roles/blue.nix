@@ -16,7 +16,6 @@
     ./jellyfin.nix
     ./adsb.nix
     ./veilid.nix
-    ./ai-gateway.nix
   ];
   environment.systemPackages = [
   ];

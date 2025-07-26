@@ -14,5 +14,10 @@
 
   networking.hostName = "hal";
 
+  # NVIDIA GPU support for compute workloads
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.graphics.enable = true;
+  hardware.nvidia.open = true;
+
   system.stateVersion = "23.11";
 }

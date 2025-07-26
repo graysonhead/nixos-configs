@@ -190,6 +190,7 @@
             ./home-manager/minimal-homes.nix
             ./roles/ssh-server.nix
             ./services/auto-dns.nix
+            ./roles/ai-gateway.nix
             ./systems/hal/configuration.nix
           ];
           specialArgs = { inherit inputs; };
@@ -209,6 +210,13 @@
           profiles.system = {
             user = "root";
             path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.bounce-ksfo;
+          };
+        };
+        nodes.hal = {
+          hostname = "hal.i.graysonhead.net";
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.hal;
           };
         };
       };
