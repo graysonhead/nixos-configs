@@ -31,4 +31,8 @@ in
   "bounce.graysonhead.net.crt.pem.age".publicKeys = users ++ systems;
   "graysonhead.net.crt.pem.age".publicKeys = users ++ systems;
   "fr24feed.age".publicKeys = users ++ systems;
+  "llmbot-environment.age".publicKeys = users ++ systems;
+  "llmbot-discord-token.age".publicKeys = users ++ systems;
+  "llmbot-openwebui-api-key.age".publicKeys = users ++ systems;
+  "searxng-environment.age".publicKeys = users ++ systems;
 }

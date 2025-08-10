@@ -78,6 +78,44 @@ in
   hardware.bluetooth.enable = true;
   programs.kdeconnect.enable = true;
   programs.wireshark.enable = true;
+
+  # Firefox with custom search engines
+  programs.firefox = {
+    enable = true;
+    policies = {
+      DisableTelemetry = true;
+      OfferToSaveLogins = false;
+      SearchEngines = {
+        Add = [
+          {
+            Name = "GraysonHead Search";
+            URLTemplate = "https://search.graysonhead.net/search?q={searchTerms}";
+            Method = "GET";
+            IconURL = "https://search.graysonhead.net/favicon.ico";
+            Alias = "@search";
+            Description = "Search via search.graysonhead.net";
+          }
+          {
+            Name = "NixOS Packages";
+            URLTemplate = "https://search.nixos.org/packages?query={searchTerms}";
+            Method = "GET";
+            IconURL = "https://search.nixos.org/favicon.ico";
+            Alias = "@nixpkgs";
+            Description = "Search NixOS packages";
+          }
+          {
+            Name = "NixOS Options";
+            URLTemplate = "https://search.nixos.org/options?query={searchTerms}";
+            Method = "GET";
+            IconURL = "https://search.nixos.org/favicon.ico";
+            Alias = "@nixoptions";
+            Description = "Search NixOS options";
+          }
+        ];
+        Default = "GraysonHead Search";
+      };
+    };
+  };
   services.avahi = {
     enable = true;
     nssmdns4 = false;

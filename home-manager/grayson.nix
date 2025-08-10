@@ -241,6 +241,7 @@ in
       extensions = with pkgs.vscode-extensions; [
         bbenoist.nix
         bungcip.better-toml
+        charliermarsh.ruff
         formulahendry.code-runner
         golang.go
         ms-python.python
@@ -329,15 +330,6 @@ in
     enable = true;
   };
 
-  programs.firefox = {
-    enable = true;
-    package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-      extraPolicies = {
-        DisableTelemetry = true;
-        OfferToSaveLogins = false;
-      };
-    };
-  };
 
   programs.thunderbird = {
     enable = true;

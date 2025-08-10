@@ -28,6 +28,7 @@
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    llmbot.url = "github:graysonhead/llmbot";
   };
   outputs =
     { self
@@ -191,6 +192,7 @@
             ./roles/ssh-server.nix
             ./services/auto-dns.nix
             ./roles/ai-gateway.nix
+            ./roles/llmbot.nix
             ./systems/hal/configuration.nix
           ];
           specialArgs = { inherit inputs; };

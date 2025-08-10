@@ -16,6 +16,7 @@
     ./jellyfin.nix
     ./adsb.nix
     ./veilid.nix
+    ./searxng.nix
   ];
   environment.systemPackages = [
   ];
@@ -137,7 +138,7 @@
         "server string" = "blue";
         "netbios name" = "blue";
         security = "user";
-        "hosts allow" = [ "10.5.5." "127.0.0.1" "2603:8080:1e03:a700:b498:c38b:" "localhost" ];
+        "hosts allow" = [ "10.5." "127.0.0.1" "2603:8080:1e03:a700:b498:c38b:" "localhost" ];
         "hosts deny" = [ "0.0.0.0/0" ];
         # "guest account" = "nobody";
         # "map to guest" = "bad user";
@@ -258,7 +259,18 @@
       useACMEHost = "ai.graysonhead.net";
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8125";
+        proxyPass = "http://10.5.5.141:8125";
+        proxyWebsockets = true;
+        extraConfig = ''
+          proxy_set_header Host 10.5.5.141:8125;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_buffering off;
+          proxy_request_buffering off;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection "upgrade";
+        '';
       };
     };
   };
@@ -486,6 +498,16 @@
             }
             {
               name = "files";
+              record_type = "AAAA";
+              interface = internal_interface;
+            }
+            {
+              name = "search";
+              record_type = "A";
+              interface = "external";
+            }
+            {
+              name = "search";
               record_type = "AAAA";
               interface = internal_interface;
             }
