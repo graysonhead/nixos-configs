@@ -453,11 +453,11 @@
         "pre-commit-hooks": "pre-commit-hooks_2"
       },
       "locked": {
-        "lastModified": 1754782893,
-        "narHash": "sha256-IFb5nCzBkGD/6Fm5m/5miW4FAl5jDPdBLXoO5TLJlRs=",
+        "lastModified": 1754972538,
+        "narHash": "sha256-06TxAAGgO5W9mNZbad94TMg6UkgSg5TFpvWszUBTcXo=",
         "owner": "graysonhead",
         "repo": "llmbot",
-        "rev": "299d399b4ecdba2e9dc561b48dc082d1d4b308eb",
+        "rev": "23d49d8fceda2f133baee419f26ff2a39b33278e",
         "type": "github"
       },
       "original": {
