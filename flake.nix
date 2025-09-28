@@ -143,14 +143,14 @@
             ./roles/ssh-server.nix
             ./roles/libvirt.nix
             ./roles/sdr.nix
-            #./roles/cuda.nix
             ./roles/gamedev.nix
-            #./roles/weylus.nix
             ./roles/lm-notebook.nix
             ./roles/cross-compile.nix
             ./roles/nix-substituter.nix
+            ./roles/ai-workstation.nix
             ./roles/vr.nix
             ./roles/steam.nix
+            ./roles/head-tracking.nix
           ];
           specialArgs = { inherit inputs; };
         };

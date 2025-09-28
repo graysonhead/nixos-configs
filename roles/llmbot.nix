@@ -9,14 +9,16 @@
     file = ../secrets/llmbot-discord-token.age;
   };
 
-  age.secrets.llmbot-openwebui-api-key = {
-    file = ../secrets/llmbot-openwebui-api-key.age;
+  age.secrets.llmbot-system-message = {
+    file = ../secrets/llmbot-system-message.age;
+    owner = "llmbot";
+    group = "llmbot";
   };
 
   services.llmbot = {
     enable = true;
-    serverUrl = "http://hal.i.graysonhead.net:8125/ollama/v1";
     discordTokenFile = config.age.secrets.llmbot-discord-token.path;
-    openwebuiApiKeyFile = config.age.secrets.llmbot-openwebui-api-key.path;
+    searxngUrl = "https://search.graysonhead.net/search";
+    systemMessageFile = config.age.secrets.llmbot-system-message.path;
   };
 }

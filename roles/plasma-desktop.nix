@@ -85,6 +85,12 @@ in
     policies = {
       DisableTelemetry = true;
       OfferToSaveLogins = false;
+      ExtensionSettings = {
+        "uBlock0@raymondhill.net" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+        };
+      };
       SearchEngines = {
         Add = [
           {
@@ -243,7 +249,7 @@ in
   # Fixes iotop
   boot.kernel.sysctl = { "kernel.task_delayacct" = 1; };
 
-  boot.kernelPackages = with pkgs; unstable.linuxPackages;
+  # boot.kernelPackages = with pkgs; unstable.linuxPackages;
 
   services.fwupd.enable = true;
 }

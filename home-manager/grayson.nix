@@ -344,6 +344,13 @@ in
         "calendar.timezone.useSystemTimezone" = true;
         "calendar.ui.version" = 3;
 
+        # Default reminder settings for events and tasks
+        "calendar.alarms.default.enabled" = true;
+        "calendar.alarms.default.length" = 15; # 15 minutes before
+        "calendar.alarms.default.unit" = 0; # 0=minutes, 1=hours, 2=days
+        "calendar.tasks.defaultstart" = "none"; # or "today", "tomorrow", "nextweek"
+        "calendar.tasks.defaultdue" = "none"; # or "today", "tomorrow", "nextweek"
+
         # Main Calendar (Grayson's Calendar)
         "calendar.registry.c0531f6c-889f-48ca-b5c4-ceab6d55b896.cache.enabled" = true;
         "calendar.registry.c0531f6c-889f-48ca-b5c4-ceab6d55b896.calendar-main-in-composite" = true;
