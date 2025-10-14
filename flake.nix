@@ -187,12 +187,16 @@
           system = "x86_64-linux";
           modules = [
             agenix.nixosModules.age
-            ./modules/common.nix
-            ./home-manager/minimal-homes.nix
+            # ./modules/common.nix
+            # ./home-manager/minimal-homes.nix
             ./roles/ssh-server.nix
-            ./services/auto-dns.nix
-            ./roles/ai-gateway.nix
-            ./roles/llmbot.nix
+            # ./services/auto-dns.nix
+            # ./roles/ai-gateway.nix
+            # ./roles/llmbot.nix
+            ./home-manager/full-homes.nix
+            ./roles/plasma-desktop.nix
+            ./roles/vr.nix
+            ./roles/steam.nix
             ./systems/hal/configuration.nix
           ];
           specialArgs = { inherit inputs; };

@@ -14,6 +14,7 @@ let
 
     passthru = { fileName = defaultIconFileName; };
   };
+  sharedCalendars = import ./shared-calendars.nix { lib = lib; };
 in
 {
 
@@ -335,64 +336,7 @@ in
     enable = true;
     profiles."default" = {
       isDefault = true;
-      settings = {
-        # Auto-enable extensions
-        "extensions.autoDisableScopes" = 0;
-
-        # Calendar configuration
-        "calendar.timezone.local" = "America/Chicago";
-        "calendar.timezone.useSystemTimezone" = true;
-        "calendar.ui.version" = 3;
-
-        # Default reminder settings for events and tasks
-        "calendar.alarms.default.enabled" = true;
-        "calendar.alarms.default.length" = 15; # 15 minutes before
-        "calendar.alarms.default.unit" = 0; # 0=minutes, 1=hours, 2=days
-        "calendar.tasks.defaultstart" = "none"; # or "today", "tomorrow", "nextweek"
-        "calendar.tasks.defaultdue" = "none"; # or "today", "tomorrow", "nextweek"
-
-        # Main Calendar (Grayson's Calendar)
-        "calendar.registry.c0531f6c-889f-48ca-b5c4-ceab6d55b896.cache.enabled" = true;
-        "calendar.registry.c0531f6c-889f-48ca-b5c4-ceab6d55b896.calendar-main-in-composite" = true;
-        "calendar.registry.c0531f6c-889f-48ca-b5c4-ceab6d55b896.color" = "#3d3846";
-        "calendar.registry.c0531f6c-889f-48ca-b5c4-ceab6d55b896.disabled" = false;
-        "calendar.registry.c0531f6c-889f-48ca-b5c4-ceab6d55b896.name" = "Grayson's Calendar";
-        "calendar.registry.c0531f6c-889f-48ca-b5c4-ceab6d55b896.readOnly" = false;
-        "calendar.registry.c0531f6c-889f-48ca-b5c4-ceab6d55b896.refreshInterval" = "5";
-        "calendar.registry.c0531f6c-889f-48ca-b5c4-ceab6d55b896.suppressAlarms" = false;
-        "calendar.registry.c0531f6c-889f-48ca-b5c4-ceab6d55b896.type" = "caldav";
-        "calendar.registry.c0531f6c-889f-48ca-b5c4-ceab6d55b896.uri" = "https://calendar.graysonhead.net/ghead/58b3381d-c909-44b8-d92a-8c220c54874e/";
-        "calendar.registry.c0531f6c-889f-48ca-b5c4-ceab6d55b896.username" = "ghead";
-
-        # Family Calendar
-        "calendar.registry.f45b781a-f0bc-4be1-96eb-8ce4e8bb73b7.cache.enabled" = true;
-        "calendar.registry.f45b781a-f0bc-4be1-96eb-8ce4e8bb73b7.calendar-main-default" = true;
-        "calendar.registry.f45b781a-f0bc-4be1-96eb-8ce4e8bb73b7.calendar-main-in-composite" = true;
-        "calendar.registry.f45b781a-f0bc-4be1-96eb-8ce4e8bb73b7.color" = "#f5c211";
-        "calendar.registry.f45b781a-f0bc-4be1-96eb-8ce4e8bb73b7.disabled" = false;
-        "calendar.registry.f45b781a-f0bc-4be1-96eb-8ce4e8bb73b7.name" = "Family Calendar";
-        "calendar.registry.f45b781a-f0bc-4be1-96eb-8ce4e8bb73b7.readOnly" = false;
-        "calendar.registry.f45b781a-f0bc-4be1-96eb-8ce4e8bb73b7.refreshInterval" = "5";
-        "calendar.registry.f45b781a-f0bc-4be1-96eb-8ce4e8bb73b7.suppressAlarms" = false;
-        "calendar.registry.f45b781a-f0bc-4be1-96eb-8ce4e8bb73b7.type" = "caldav";
-        "calendar.registry.f45b781a-f0bc-4be1-96eb-8ce4e8bb73b7.uri" = "https://calendar.graysonhead.net/ghead/438917c6-82a6-7d8e-8f5f-b01190f02147/";
-        "calendar.registry.f45b781a-f0bc-4be1-96eb-8ce4e8bb73b7.username" = "ghead";
-
-        # Oncall Calendar
-        "calendar.registry.b211e8d1-b459-40a1-aaf2-551362c9a426.cache.enabled" = true;
-        "calendar.registry.b211e8d1-b459-40a1-aaf2-551362c9a426.calendar-main-in-composite" = true;
-        "calendar.registry.b211e8d1-b459-40a1-aaf2-551362c9a426.color" = "#99ffff";
-        "calendar.registry.b211e8d1-b459-40a1-aaf2-551362c9a426.disabled" = false;
-        "calendar.registry.b211e8d1-b459-40a1-aaf2-551362c9a426.name" = "Oncall";
-        "calendar.registry.b211e8d1-b459-40a1-aaf2-551362c9a426.readOnly" = true;
-        "calendar.registry.b211e8d1-b459-40a1-aaf2-551362c9a426.refreshInterval" = "30";
-        "calendar.registry.b211e8d1-b459-40a1-aaf2-551362c9a426.suppressAlarms" = false;
-        "calendar.registry.b211e8d1-b459-40a1-aaf2-551362c9a426.type" = "ics";
-        "calendar.registry.b211e8d1-b459-40a1-aaf2-551362c9a426.uri" = "https://cloudflare.pagerduty.com/private/c445b47257761cc27746a1d317b015851ba473084d5a3ed5c63750ff3f32efe2/feed";
-
-        # Calendar list order (updated to include oncall calendar)
-        "calendar.list.sortOrder" = "f45b781a-f0bc-4be1-96eb-8ce4e8bb73b7 c0531f6c-889f-48ca-b5c4-ceab6d55b896 b211e8d1-b459-40a1-aaf2-551362c9a426";
-      };
+      settings = sharedCalendars.sharedCalendars { use24HourFormat = true; };
     };
   };
 
@@ -435,6 +379,54 @@ in
     ".face.icon" = {
       source = defaultIcon;
     };
+    ".claude/agents/writing-editor.md" =
+      {
+        text = ''
+          ---
+          name: writing-editor
+          description: Use this agent when you need to review, edit, or improve written content for structure, grammar, spelling, and flow. Examples: <example>Context: User has written a blog post draft and wants feedback. user: 'I just finished writing this article about remote work trends. Can you review it for clarity and flow?' assistant: 'I'll use the writing-editor agent to review your article for structure, grammar, spelling, and flow while preserving your unique voice and style.'</example> <example>Context: User is working on professional documentation. user: 'Here's my proposal for the new marketing strategy. I want to make sure it reads professionally but still sounds like me.' assistant: 'Let me use the writing-editor agent to polish your proposal while maintaining your authentic voice and ensuring professional presentation.'</example>
+          tools: Glob, Grep, Read, Edit, MultiEdit, Write, NotebookEdit, WebFetch, TodoWrite, WebSearch
+          model: sonnet
+          color: orange
+          ---
+
+          You are an expert writing editor and collaborative partner with deep expertise in professional communication, grammar, and stylistic refinement. Your role combines the analytical precision of a skilled editor with the collaborative spirit of a writing partner.
+
+          Your primary responsibilities:
+          - Evaluate and improve structure, organization, and logical flow of written content
+          - Correct grammar, spelling, punctuation, and syntax errors
+          - Enhance clarity, conciseness, and readability while preserving the author's voice
+          - Identify and eliminate redundancy, wordiness, and unclear expressions
+          - Suggest improvements to sentence variety, rhythm, and transitions
+          - Ensure consistency in tone, style, and formatting throughout the piece
+
+          Your editing philosophy:
+          - Optimize for professional, clean, and tight writing without over-editing
+          - Preserve and respect the author's unique stylistic choices and voice
+          - Match the tone and style of the existing content when working with longer pieces
+          - Avoid imposing generic 'AI writing' patterns such as em-dashes, formulaic phrases like 'It's not just X, it's Y,' or overly structured list formats
+          - Balance polish with authenticity - make writing better, not bland
+
+          Your process:
+          1. Read the entire piece to understand context, purpose, and the author's natural voice
+          2. Identify the target audience and appropriate tone level
+          3. Review for structural issues: organization, flow, logical progression
+          4. Address mechanical issues: grammar, spelling, punctuation
+          5. Refine for clarity and conciseness without losing meaning or personality
+          6. Suggest specific improvements with brief explanations when helpful
+          7. Highlight particularly strong passages that should be preserved
+
+          When providing feedback:
+          - Offer specific, actionable suggestions rather than vague comments
+          - Explain the reasoning behind significant changes
+          - Distinguish between errors that must be fixed and stylistic suggestions
+          - Provide alternative phrasings when recommending changes
+          - Ask clarifying questions if the author's intent is unclear
+          - Acknowledge and preserve effective writing techniques already present
+
+          You will maintain a collaborative, supportive tone while being direct about areas needing improvement. Your goal is to help the author communicate their ideas more effectively while ensuring their authentic voice remains strong and clear.
+        '';
+      };
     ".config/plasma-workspace/env/ssh-agent-startup.sh" = {
       text = ''
         #!/bin/bash

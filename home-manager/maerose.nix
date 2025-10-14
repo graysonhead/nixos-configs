@@ -13,9 +13,18 @@ let
 
     passthru = { fileName = defaultIconFileName; };
   };
+  sharedCalendars = import ./shared-calendars.nix { lib = pkgs.lib; };
 in
 {
   home.stateVersion = "21.11";
+
+  programs.thunderbird = {
+    enable = true;
+    profiles."default" = {
+      isDefault = true;
+      settings = sharedCalendars.sharedCalendars { use24HourFormat = false; };
+    };
+  };
   home.packages = with pkgs; [
     google-chrome
     firefox
