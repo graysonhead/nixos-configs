@@ -13,6 +13,9 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "hal";
+  networking.networkmanager = {
+    enable = true;
+  };
 
   # NVIDIA GPU support for compute workloads
   services.xserver.videoDrivers = [ "nvidia" ];
