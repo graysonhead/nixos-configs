@@ -18,6 +18,7 @@
   };
 
   hardware.enableRedistributableFirmware = true;
+  hardware.enableAllFirmware = true;
   hardware.firmware = [ pkgs.linux-firmware ];
 
   # NVIDIA GPU support for compute workloads
