@@ -17,6 +17,9 @@
     enable = true;
   };
 
+  hardware.enableRedistributableFirmware = true;
+  hardware.firmware = [ pkgs.linux-firmware ];
+
   # NVIDIA GPU support for compute workloads
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.graphics.enable = true;
