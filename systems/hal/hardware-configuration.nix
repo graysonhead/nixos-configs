@@ -11,12 +11,24 @@
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.kernelModules = [ "8852au" "kvm-intel" ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.rtl8852bu ];
+
+  services.udev.extraRules =
+    # Switch Archer TX20U Nano from CDROM mode (default) to WiFi mode.
+    ''
+      ATTR{idVendor}=="0bda", ATTR{idProduct}=="1a2b", RUN+="${lib.getExe pkgs.usb-modeswitch} -K -v 0bda -p 1a2b"
+    ''
+  ;
 
   fileSystems."/" =
     {
       device = "/dev/disk/by-uuid/3709e5cf-1b33-49aa-94a4-0c49a007451c";
+      fsType = "ext4";
+    };
+  fileSystems."/games" =
+    {
+      device = "/dev/disk/by-uuid/83a6e1a8-9f89-40fb-a3f0-e4aacf9c7831";
       fsType = "ext4";
     };
 
