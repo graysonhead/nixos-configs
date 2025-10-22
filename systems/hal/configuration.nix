@@ -28,11 +28,13 @@
     open = true;
     modesetting.enable = true;
     powerManagement.enable = false;
+    powerManagement.finegrained = false;
   };
 
-  services.xserver.screenSection = ''
-    Option "ConnectedMonitor" "DFP"
+  services.xserver.displayManager.sessionCommands = ''
+    ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --auto
   '';
+
 
   # Set permissions for /games directory to be accessible by users group
   systemd.tmpfiles.rules = [
