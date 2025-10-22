@@ -12,6 +12,7 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "8852au" "kvm-intel" ];
+  boot.kernelParams = [ "nvidia-drm.modeset=1" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.rtl8852bu ];
 
   services.udev.extraRules =
