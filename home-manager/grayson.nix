@@ -26,6 +26,11 @@ in
       key = "Alt+C";
       command = "code /home/grayson/nix/nixos-configs";
     };
+    hotkeys.commands."launch-obsidian" = {
+      name = "Launch Obsidian";
+      key = "Meta+N";
+      command = "obsidian";
+    };
     session.sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
 
   };
@@ -259,6 +264,7 @@ in
     nix-direnv.enable = true;
   };
   home.packages = with pkgs; [
+    libgourou
     google-chrome
     dump1090
     cargo
@@ -303,7 +309,6 @@ in
     krita
     qt6.full
     gnupg
-    rpi-imager
     vulkan-tools
     git-lfs
     unstable.devenv
