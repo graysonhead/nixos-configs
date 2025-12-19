@@ -26,6 +26,7 @@ in
     zip
     vlc
     (unstable.discord.override { nss = pkgs.nss_latest; })
+    steam
   ];
   home.file = {
     ".face.icon" = {

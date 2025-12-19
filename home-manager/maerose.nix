@@ -31,6 +31,7 @@ in
     zip
     vlc
     (unstable.discord.override { nss = pkgs.nss_latest; })
+    steam
   ];
   programs.bash = {
     enable = true;

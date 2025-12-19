@@ -264,6 +264,7 @@ in
     nix-direnv.enable = true;
   };
   home.packages = with pkgs; [
+    arduino-ide
     libgourou
     google-chrome
     dump1090
