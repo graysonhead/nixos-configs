@@ -2,7 +2,7 @@
 let
   unstable-overlay = final: prev: {
     unstable = import inputs.nixpkgs-unstable {
-      system = "x86_64-linux";
+      inherit (prev.stdenv.hostPlatform) system;
       config.allowUnfree = true;
     };
   };
@@ -51,7 +51,7 @@ in
   };
   #services.xserver.videoDrivers = [ "modesetting" ];
   hardware.amdgpu = {
-    amdvlk.enable = true;
+    # amdvlk.enable = true; # Removed in NixOS 25.11 - RADV (Mesa) is now default
     initrd.enable = true;
     opencl.enable = true;
   };

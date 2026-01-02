@@ -21,22 +21,22 @@
   };
 
   programs.git = {
-    package = pkgs.gitAndTools.gitFull;
+    package = pkgs.gitFull;
     enable = true;
-    userName = "Grayson Head";
-    userEmail = "grayson@graysonhead.net";
-    extraConfig = {
+    signing = {
+      key = "1F5820610A829D10BE2D236A3ED82391AFC8671F";
+    };
+    settings = {
+      user = {
+        name = "Grayson Head";
+        email = "grayson@graysonhead.net";
+      };
       push.autoSetupRemote = true;
       init.defaultBranch = "main";
       filter.lfs.clean = "git-lfs clean -- %f";
       filter.lfs.smudge = "git-lfs smudge -- %f";
       filter.lfs.process = "git-lfs filter-process";
       filter.lfs.required = true;
-    };
-    signing = {
-      key = "1F5820610A829D10BE2D236A3ED82391AFC8671F";
-    };
-    extraConfig = {
       pull = {
         rebase = "false";
       };

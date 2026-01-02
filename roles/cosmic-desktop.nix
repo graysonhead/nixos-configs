@@ -3,7 +3,7 @@
 let
   unstable-overlay = final: prev: {
     unstable = import inputs.nixpkgs-unstable {
-      system = "x86_64-linux";
+      inherit (prev.stdenv.hostPlatform) system;
       config.allowUnfree = true;
     };
   };
@@ -79,7 +79,7 @@ in
   environment.systemPackages = with pkgs; [
     gimp
     #   appimage-run
-    bitwarden
+    bitwarden-desktop
     bitwarden-cli
     #   ifuse
     #   libimobiledevice
@@ -90,8 +90,8 @@ in
     networkmanager-openvpn
     networkmanager-openconnect
     #   nordic
-    #   teamspeak_client
-    #   teamspeak5_client
+    #   teamspeak3
+    #   teamspeak6-client
     #   unstable.zoom-us
     #   pass
     #   piper
@@ -100,7 +100,7 @@ in
     minikube
     openvpn
     iodine
-    python310Packages.protonup
+    protonup-ng
     libreoffice-qt
     hunspellDicts.en_US
     protontricks
@@ -177,10 +177,11 @@ in
 
   nixpkgs.config.permittedInsecurePackages = [
     "qtwebkit-5.212.0-alpha4"
+    "qtwebengine-5.15.19"
   ];
 
   # Set limits for esync.
-  systemd.extraConfig = "DefaultLimitNOFILE=1048576";
+  systemd.settings.Manager.DefaultLimitNOFILE = 1048576;
 
   security.pam.loginLimits = [{
     domain = "*";

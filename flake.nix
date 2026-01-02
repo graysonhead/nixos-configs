@@ -1,11 +1,11 @@
 {
   description = "Grayson's NixOS Configurations";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # nixpkgs-unstable.url = "github:graysonhead/nixpkgs/factorio-rcon-args";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     plasma-manager = {
@@ -56,7 +56,6 @@
       nixosConfigurations = {
 
         chromebook = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           modules = [
             agenix.nixosModules.age
             ./roles/plasma-desktop.nix
@@ -67,7 +66,6 @@
           specialArgs = { inherit inputs; };
         };
         blue = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           modules = [
             agenix.nixosModules.age
             ./roles/blue.nix
@@ -103,7 +101,6 @@
         # };
 
         skippy = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           modules = [
             agenix.nixosModules.age
             inputs.nixos-hardware.nixosModules.framework-13-7040-amd
@@ -121,7 +118,6 @@
         };
 
         notanipad = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           modules = [
             agenix.nixosModules.age
             inputs.nixos-hardware.nixosModules.dell-precision-5530
@@ -134,7 +130,6 @@
         };
 
         green = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           modules = [
             agenix.nixosModules.age
             ./home-manager/full-homes.nix
@@ -155,7 +150,6 @@
           specialArgs = { inherit inputs; };
         };
         mombox = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           modules = [
             agenix.nixosModules.age
             ./home-manager/full-homes.nix
@@ -166,7 +160,6 @@
           specialArgs = { inherit inputs; };
         };
         factorio = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           modules = [
             agenix.nixosModules.age
             ./systems/factorio.nix
@@ -175,7 +168,6 @@
           specialArgs = { inherit inputs; };
         };
         bounce-ksfo = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
             agenix.nixosModules.age
@@ -184,7 +176,6 @@
           ];
         };
         hal = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           modules = [
             agenix.nixosModules.age
             # ./modules/common.nix

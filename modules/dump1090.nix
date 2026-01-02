@@ -11,8 +11,8 @@ in
       enable = mkEnableOption "dump1090";
 
       package = mkOption {
-        default = pkgs.dump1090;
-        defaultText = literalExpression "pkgs.dump1090";
+        default = pkgs.dump1090-fa;
+        defaultText = literalExpression "pkgs.dump1090-fa";
         type = types.package;
       };
 

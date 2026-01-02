@@ -12,7 +12,6 @@
     ./prometheus.nix
     ./blue-syncthing.nix
     ./radicale.nix
-    ./baikal.nix
     ./jellyfin.nix
     ./adsb.nix
     ./veilid.nix
@@ -69,6 +68,7 @@
   # Transmission
   services.transmission = {
     enable = true;
+    package = pkgs.transmission_4;
     group = "users";
     openFirewall = true;
     openRPCPort = true;
@@ -448,16 +448,6 @@
             }
             {
               name = "calendar";
-              record_type = "AAAA";
-              interface = internal_interface;
-            }
-            {
-              name = "baikal";
-              record_type = "A";
-              interface = "external";
-            }
-            {
-              name = "baikal";
               record_type = "AAAA";
               interface = internal_interface;
             }

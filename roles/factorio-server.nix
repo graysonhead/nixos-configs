@@ -3,7 +3,7 @@
 let
   unstable-overlay = final: prev: {
     unstable = import inputs.nixpkgs-unstable {
-      system = "x86_64-linux";
+      inherit (prev.stdenv.hostPlatform) system;
       config.allowUnfree = true;
     };
   };

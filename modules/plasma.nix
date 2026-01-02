@@ -18,7 +18,7 @@
     nordic
     slack
     discord
-    teamspeak_client
+    teamspeak3
     zoom-us
   ];
 }

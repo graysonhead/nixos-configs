@@ -9,7 +9,7 @@
 
   boot.blacklistedKernelModules = [ "dvb_usb_rtl28xxu" ];
   environment.systemPackages = with pkgs; [
-    dump1090
+    dump1090-fa
   ];
 
   services.dump1090 = {

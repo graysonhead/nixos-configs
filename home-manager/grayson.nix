@@ -267,7 +267,7 @@ in
     arduino-ide
     libgourou
     google-chrome
-    dump1090
+    dump1090-fa
     cargo
     # rust-analyzer # This has a tendancy to cause issue with dev flakes, as for some reason this version takes precedence with VSCode
     clippy
@@ -301,14 +301,12 @@ in
     unstable.obs-studio
     manuskript
     kdePackages.kdenlive
-    nodePackages.npm
     nodejs
     nerd-fonts.hack
     unstable.k9s
     virt-manager
     terminator
     krita
-    qt6.full
     gnupg
     vulkan-tools
     git-lfs
