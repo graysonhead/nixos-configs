@@ -58,7 +58,7 @@
 
   fileSystems."/security_footage" =
     {
-      device = "/dev/disk/by-uuid/02f214e1-fe5f-41db-a4bf-6ba939a32eb0";
+      device = "/dev/disk/by-uuid/03af4e8e-2765-4e6f-b1ec-924a4c9201ab";
       fsType = "ext4";
     };
 

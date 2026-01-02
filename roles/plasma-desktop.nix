@@ -247,6 +247,13 @@ in
 
 
 
+  # NetworkManager plugins
+  networking.networkmanager.plugins = with pkgs; [
+    networkmanager-openvpn
+    networkmanager-openconnect
+    networkmanager-iodine
+  ];
+
   # Fixes iotop
   boot.kernel.sysctl = { "kernel.task_delayacct" = 1; };
 
