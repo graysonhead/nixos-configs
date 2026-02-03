@@ -243,6 +243,7 @@ in
           "terminal.integrated.fontFamily" = "Hack NF";
         };
         "nix.formatterPath" = "nixpkgs-fmt";
+        "claudeCode.useTerminal" = true;
       };
       extensions = with pkgs.vscode-extensions; [
         bbenoist.nix
