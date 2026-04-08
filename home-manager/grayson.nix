@@ -246,6 +246,7 @@ in
         "claudeCode.useTerminal" = true;
       };
       extensions = with pkgs.vscode-extensions; [
+        alygin.vscode-tlaplus
         bbenoist.nix
         bungcip.better-toml
         charliermarsh.ruff
@@ -265,11 +266,15 @@ in
     nix-direnv.enable = true;
   };
   home.packages = with pkgs; [
+    tlaplus
+    tlaplusToolbox
+    jdk
     arduino-ide
     libgourou
     google-chrome
     dump1090-fa
     cargo
+    crrcsim
     # rust-analyzer # This has a tendancy to cause issue with dev flakes, as for some reason this version takes precedence with VSCode
     clippy
     rustfmt
@@ -315,6 +320,8 @@ in
     obsidian
     nixpkgs-fmt
     unstable.claude-code
+    python3
+    python3Packages.pip
     # (python311.withPackages (ps: with ps; [
     #   requests
     #   pip

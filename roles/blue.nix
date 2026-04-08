@@ -16,6 +16,8 @@
     ./adsb.nix
     ./veilid.nix
     ./searxng.nix
+    ./navplan_database.nix
+    ./navplan.nix
   ];
   environment.systemPackages = [
   ];
@@ -122,6 +124,14 @@
       credentialsFile = config.age.secrets.dns-acme.path;
     };
     certs."files.graysonhead.net" = {
+      dnsProvider = "cloudflare";
+      credentialsFile = config.age.secrets.dns-acme.path;
+    };
+    certs."navplan.i.graysonhead.net" = {
+      dnsProvider = "digitalocean";
+      credentialsFile = config.age.secrets.dns-acme.path;
+    };
+    certs."navplan-staging.graysonhead.net" = {
       dnsProvider = "cloudflare";
       credentialsFile = config.age.secrets.dns-acme.path;
     };
@@ -286,6 +296,7 @@
     443
     5672 # AMQP
     15672 # Rabbitmq webui
+    5000 # iperf
   ];
 
   services.motion = {
@@ -396,6 +407,16 @@
               record_type = "A";
               interface = "external";
             }
+            {
+              name = "navplan";
+              record_type = "A";
+              interface = internal_interface;
+            }
+            {
+              name = "navplan";
+              record_type = "AAAA";
+              interface = internal_interface;
+            }
           ];
         }
         {
@@ -498,6 +519,16 @@
             }
             {
               name = "search";
+              record_type = "AAAA";
+              interface = internal_interface;
+            }
+            {
+              name = "navplan-staging";
+              record_type = "A";
+              interface = "external";
+            }
+            {
+              name = "navplan-staging";
               record_type = "AAAA";
               interface = internal_interface;
             }

@@ -29,6 +29,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     llmbot.url = "github:graysonhead/llmbot";
+    navplan = {
+      url = "git+ssh://git@github.com/graysonhead/fieldfinder";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     { self
@@ -37,6 +41,7 @@
     , agenix
     , deploy-rs
     , pre-commit-hooks
+    , navplan
     , ...
     }@inputs:
     let
@@ -72,11 +77,13 @@
             ./roles/libvirt.nix
             ./roles/ssh-server.nix
             ./roles/photoprism.nix
+            ./roles/navplan_database.nix
+            ./roles/navplan.nix
             ./systems/blue/configuration.nix
             ./roles/nix-substituter.nix
             ./roles/factorio-server.nix
           ];
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs navplan; };
         };
 
         # Mostly Retired
@@ -113,6 +120,8 @@
             #./roles/remote-builders.nix
             ./roles/laptop.nix
             ./roles/steam.nix
+            ./roles/gamedev.nix
+            ./roles/drone_gcs.nix
           ];
           specialArgs = { inherit inputs; };
         };
@@ -146,6 +155,7 @@
             ./roles/vr.nix
             ./roles/steam.nix
             ./roles/head-tracking.nix
+            ./roles/drone_gcs.nix
           ];
           specialArgs = { inherit inputs; };
         };
