@@ -266,6 +266,7 @@ in
     nix-direnv.enable = true;
   };
   home.packages = with pkgs; [
+    openscad
     tlaplus
     tlaplusToolbox
     jdk
@@ -273,6 +274,7 @@ in
     libgourou
     google-chrome
     dump1090-fa
+    bottles
     cargo
     crrcsim
     # rust-analyzer # This has a tendancy to cause issue with dev flakes, as for some reason this version takes precedence with VSCode
@@ -322,6 +324,7 @@ in
     unstable.claude-code
     python3
     python3Packages.pip
+    prismlauncher
     # (python311.withPackages (ps: with ps; [
     #   requests
     #   pip

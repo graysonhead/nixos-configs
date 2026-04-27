@@ -18,6 +18,7 @@
     ./searxng.nix
     ./navplan_database.nix
     ./navplan.nix
+    ./minecraft-server.nix
   ];
   environment.systemPackages = [
   ];
@@ -78,7 +79,7 @@
       rpc-bind-address = "0.0.0.0";
       download-dir = "/encrypted_storage/data/T_Downloads/new";
       incomplete-dir = "/encrypted_storage/data/T_Downloads/incomplete";
-      rpc-whitelist = "10.5.5.* 127.0.0.1 localhost";
+      rpc-whitelist = "127.0.0.1";
       rpc-host-whitelist = "transmission.i.graysonhead.net";
     };
   };
@@ -131,6 +132,10 @@
       dnsProvider = "digitalocean";
       credentialsFile = config.age.secrets.dns-acme.path;
     };
+    certs."llmbot-admin.i.graysonhead.net" = {
+      dnsProvider = "digitalocean";
+      credentialsFile = config.age.secrets.dns-acme.path;
+    };
     certs."navplan-staging.graysonhead.net" = {
       dnsProvider = "cloudflare";
       credentialsFile = config.age.secrets.dns-acme.path;
@@ -148,7 +153,7 @@
         "server string" = "blue";
         "netbios name" = "blue";
         security = "user";
-        "hosts allow" = [ "10.5." "127.0.0.1" "2603:8080:1e03:a700:b498:c38b:" "localhost" ];
+        "hosts allow" = [ "10.5." "127.0.0.1" "2605:a601:a0a6:6c00:" "localhost" ];
         "hosts deny" = [ "0.0.0.0/0" ];
         # "guest account" = "nobody";
         # "map to guest" = "bad user";
@@ -408,12 +413,32 @@
               interface = "external";
             }
             {
+              name = "minecraft";
+              record_type = "AAAA";
+              interface = internal_interface;
+            }
+            {
+              name = "minecraft";
+              record_type = "A";
+              interface = "external";
+            }
+            {
               name = "navplan";
               record_type = "A";
               interface = internal_interface;
             }
             {
               name = "navplan";
+              record_type = "AAAA";
+              interface = internal_interface;
+            }
+            {
+              name = "llmbot-admin";
+              record_type = "A";
+              interface = internal_interface;
+            }
+            {
+              name = "llmbot-admin";
               record_type = "AAAA";
               interface = internal_interface;
             }
@@ -434,6 +459,16 @@
             }
             {
               name = "factorio";
+              record_type = "A";
+              interface = "external";
+            }
+            {
+              name = "minecraft";
+              record_type = "AAAA";
+              interface = internal_interface;
+            }
+            {
+              name = "minecraft";
               record_type = "A";
               interface = "external";
             }

@@ -33,6 +33,10 @@
       url = "git+ssh://git@github.com/graysonhead/fieldfinder";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-minecraft = {
+      url = "github:Infinidoge/nix-minecraft";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
   outputs =
     { self
@@ -82,6 +86,7 @@
             ./systems/blue/configuration.nix
             ./roles/nix-substituter.nix
             ./roles/factorio-server.nix
+            ./roles/llmbot.nix
           ];
           specialArgs = { inherit inputs navplan; };
         };
