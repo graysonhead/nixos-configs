@@ -32,6 +32,7 @@ in
     vlc
     (unstable.discord.override { nss = pkgs.nss_latest; })
     steam
+    prismlauncher
   ];
   programs.bash = {
     enable = true;
