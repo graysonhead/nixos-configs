@@ -37,6 +37,7 @@
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    parental-controls.url = "path:/home/grayson/code/python/parental-controls";
   };
   outputs =
     { self
@@ -87,6 +88,7 @@
             ./roles/nix-substituter.nix
             ./roles/factorio-server.nix
             ./roles/llmbot.nix
+            ./roles/parental-controls.nix
           ];
           specialArgs = { inherit inputs navplan; };
         };
