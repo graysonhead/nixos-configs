@@ -937,14 +937,17 @@
         "nixpkgs": "nixpkgs_13"
       },
       "locked": {
-        "lastModified": 1778727675,
-        "narHash": "sha256-0MDNJLtLnR/6ZaFjsdBVEghMHskEukruMfFOKlmzlpo=",
-        "path": "/home/grayson/code/python/parental-controls",
-        "type": "path"
+        "lastModified": 1779223408,
+        "narHash": "sha256-TM5gRQLG1r0mxz4TDgvLog6S++KoBqFi0vPHe1GZZ40=",
+        "owner": "graysonhead",
+        "repo": "parental-controls",
+        "rev": "5f2e46a799673b2e60133610f5c78c6e22514f03",
+        "type": "github"
       },
       "original": {
-        "path": "/home/grayson/code/python/parental-controls",
-        "type": "path"
+        "owner": "graysonhead",
+        "repo": "parental-controls",
+        "type": "github"
       }
     },
     "plasma-manager": {

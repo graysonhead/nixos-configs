@@ -37,7 +37,7 @@
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    parental-controls.url = "path:/home/grayson/code/python/parental-controls";
+    parental-controls.url = "github:graysonhead/parental-controls";
   };
   outputs =
     { self

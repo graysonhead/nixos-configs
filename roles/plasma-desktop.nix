@@ -17,10 +17,22 @@ in
 {
   imports = [
     ../modules/common.nix
+    ../modules/probe-rs-udev.nix
+    ../modules/picotool-udev.nix
     ../services/syncthing.nix
     ../modules/home-backups.nix
     ../services/auto-dns.nix
+    inputs.parental-controls.nixosModules.parental-controls-agent
   ];
+
+  services.parental-controls-agent = {
+    enable = true;
+    serverUrl = "https://parental-controls.graysonhead.net";
+    children = {
+      "Wyatt" = "wyatt";
+      "Owen" = "owen";
+    };
+  };
   nixpkgs.overlays = [
     unstable-overlay
   ];

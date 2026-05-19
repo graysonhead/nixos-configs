@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  defaultIconFileName = "w.icon";
+  defaultIconFileName = "o.icon";
   defaultIcon = pkgs.stdenvNoCC.mkDerivation {
     name = "default-icon";
     src = ./. + "/icons/${defaultIconFileName}";

@@ -235,6 +235,7 @@ in
         "explorer.confirmDragAndDrop" = false;
         "editor.formatOnSave" = true;
         "rust-analyzer.checkOnSave" = true;
+        "rust-analyzer.server.path" = "rust-analyzer";
         "files.exclude" = {
           "**/.git" = false;
           "**/.svn" = true;
@@ -325,6 +326,7 @@ in
     python3
     python3Packages.pip
     prismlauncher
+    picotool
     # (python311.withPackages (ps: with ps; [
     #   requests
     #   pip

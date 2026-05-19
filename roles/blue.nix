@@ -567,6 +567,16 @@
               record_type = "AAAA";
               interface = internal_interface;
             }
+            {
+              name = "parental-controls";
+              record_type = "A";
+              interface = "external";
+            }
+            {
+              name = "parental-controls";
+              record_type = "AAAA";
+              interface = internal_interface;
+            }
           ];
         }
       ];

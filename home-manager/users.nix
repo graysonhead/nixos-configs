@@ -54,4 +54,16 @@
       "lp"
     ];
   };
+
+  users.users.owen = {
+    isNormalUser = true;
+    uid = 1003;
+    home = "/home/owen";
+    description = "Owen Head";
+    extraGroups = [
+      "networkmanager"
+      "scanner"
+      "lp"
+    ];
+  };
 }
