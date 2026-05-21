@@ -212,6 +212,8 @@ in
     gamescope
     mangohud
     iotop
+    picocom
+    minicom
   ];
   services.yubikey-agent.enable = true;
   programs.adb.enable = true;
