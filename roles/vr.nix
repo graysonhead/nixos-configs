@@ -1,6 +1,6 @@
 { nixpkgs, inputs, pkgs, config, ... }:
 {
-  environment.systemPackages = [ pkgs.unstable.envision pkgs.libusb1 pkgs.udev ];
+  environment.systemPackages = [ pkgs.libusb1 pkgs.udev ]; # pkgs.unstable.envision removed because it is broken in nixpkgs
   services.udev.extraRules = ''
     # HP Reverb G2 WMR headset
     SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="0580", MODE="0666", GROUP="users", TAG+="uaccess"

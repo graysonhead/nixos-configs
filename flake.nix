@@ -159,7 +159,6 @@
             ./roles/cross-compile.nix
             ./roles/nix-substituter.nix
             ./roles/ai-workstation.nix
-            ./roles/vr.nix
             ./roles/steam.nix
             ./roles/head-tracking.nix
             ./roles/drone_gcs.nix
