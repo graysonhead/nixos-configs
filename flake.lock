@@ -937,11 +937,11 @@
         "nixpkgs": "nixpkgs_13"
       },
       "locked": {
-        "lastModified": 1779454989,
-        "narHash": "sha256-yD4srjhNUTwkCX8MG5gyVJQIgF7C1H5BNd9WL5buZc4=",
+        "lastModified": 1779827856,
+        "narHash": "sha256-SxH6tvZvELvp0WGA6NoIB3KloiJzpyyE24TgnW4EAC0=",
         "owner": "graysonhead",
         "repo": "parental-controls",
-        "rev": "018399e4a688516ce5a9bfda41b60e93427e4630",
+        "rev": "7ee4aa429a39313edcd0385e16e004ff93d4b879",
         "type": "github"
       },
       "original": {
