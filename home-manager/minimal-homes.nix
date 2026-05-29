@@ -6,6 +6,7 @@
   ];
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
+  home-manager.sharedModules = [ ./common.nix ];
   home-manager.users.grayson = {
     imports = [
       ./grayson-minimal.nix

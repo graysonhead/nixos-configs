@@ -11,7 +11,7 @@ in
       enable = mkEnableOption "factorio-bot";
 
       package = mkOption {
-        default = inputs.factorio-bot.defaultPackage.${pkgs.system};
+        default = inputs.factorio-bot.defaultPackage.${pkgs.stdenv.hostPlatform.system};
         defaultText = literalExpression "inputs.factorio-bot.defaultPackage";
         type = types.package;
       };
