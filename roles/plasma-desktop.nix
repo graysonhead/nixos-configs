@@ -160,13 +160,12 @@ in
     ifuse
     libimobiledevice
     libheif
-    kio-fuse
+    kdePackages.kio-fuse
     nssmdns
     networkmanager-iodine
     networkmanager-openvpn
     networkmanager-openconnect
     nordic
-    teamspeak3
     teamspeak6-client
     zoom-us
     pass
@@ -180,9 +179,9 @@ in
     libreoffice-qt
     hunspellDicts.en_US
     protontricks
-    xorg.xkill
+    xkill
     winetricks
-    wineWowPackages.stable
+    wineWow64Packages.stable
     os-prober
     fuseiso
     exfat
@@ -214,10 +213,11 @@ in
     iotop
     picocom
     minicom
+    android-tools
   ];
   services.yubikey-agent.enable = true;
-  programs.adb.enable = true;
   virtualisation.docker.enable = true;
+  virtualisation.docker.package = pkgs.docker_29;
   hardware.sane = {
     enable = true;
     brscan4 = {
@@ -242,6 +242,8 @@ in
   nixpkgs.config.permittedInsecurePackages = [
     "qtwebkit-5.212.0-alpha4"
     "qtwebengine-5.15.19"
+    # bitwarden-desktop 2026.5.0 depends on electron-39 (EOL); remove when upstream updates
+    "electron-39.8.10"
   ];
 
   # Set limits for esync.

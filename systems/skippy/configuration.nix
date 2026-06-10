@@ -18,6 +18,9 @@
   # Enable framework Kernel module
   hardware.framework.enableKmod = true;
 
+  # MT7922 bluetooth requires kernel 6.13+ to fix btmtk wmt func ctrl bug
+  boot.kernelPackages = pkgs.unstable.linuxPackages;
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

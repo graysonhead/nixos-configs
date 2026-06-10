@@ -69,6 +69,7 @@
 
   fileSystems."/var/lib/private/photoprism" = {
     device = "/encrypted_storage/data/photoprism";
+    fsType = "none";
     options = [ "bind" ];
   };
 

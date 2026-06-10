@@ -6,11 +6,11 @@
     lldpd
   ];
   services.lldpd.enable = true;
-  systemd.sleep.extraConfig = ''
-    AllowSuspend=yes
-    AllowHibernation=yes
-    AllowHybridSleep=yes
-    AllowSuspendThenHibernate=yes
-    HibernateDelaySec=3600
-  '';
+  systemd.sleep.settings.Sleep = {
+    AllowSuspend = "yes";
+    AllowHibernation = "yes";
+    AllowHybridSleep = "yes";
+    AllowSuspendThenHibernate = "yes";
+    HibernateDelaySec = "3600";
+  };
 }

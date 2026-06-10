@@ -11,6 +11,8 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  # Pin to 6.12 LTS: rtl8852bu out-of-tree WiFi driver breaks with kernel >= 6.18
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
 
   networking.hostName = "hal";
   networking.networkmanager = {
@@ -32,7 +34,7 @@
   };
 
   services.xserver.displayManager.sessionCommands = ''
-    ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --auto
+    ${pkgs.xrandr}/bin/xrandr --output HDMI-0 --auto
   '';
 
 

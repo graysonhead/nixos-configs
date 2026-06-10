@@ -1,11 +1,11 @@
 {
   description = "Grayson's NixOS Configurations";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # nixpkgs-unstable.url = "github:graysonhead/nixpkgs/factorio-rcon-args";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     plasma-manager = {
@@ -31,7 +31,7 @@
     llmbot.url = "github:graysonhead/llmbot";
     navplan = {
       url = "git+ssh://git@github.com/graysonhead/fieldfinder";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # Not following nixpkgs: gdal Rust crate incompatible with nixpkgs 26.05 GDAL version
     };
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";

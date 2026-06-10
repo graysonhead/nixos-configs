@@ -15,6 +15,8 @@
     enableCryptodisk = true;
   };
   boot.loader.efi.canTouchEfiVariables = true;
+  # Keep scripted initrd until YubiKey LUKS is migrated to systemd-cryptenroll (required for 26.11)
+  boot.initrd.systemd.enable = false;
   boot.initrd.luks.yubikeySupport = true;
   boot.initrd.luks.devices = {
     encrypted_storage = {

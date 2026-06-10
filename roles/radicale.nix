@@ -17,7 +17,7 @@
   ];
   security.acme.certs."calendar.graysonhead.net" = {
     dnsProvider = "cloudflare";
-    credentialsFile = config.age.secrets.dns-acme.path;
+    environmentFile = config.age.secrets.dns-acme.path;
   };
   services.nginx.virtualHosts."calendar.graysonhead.net" = {
     useACMEHost = "calendar.graysonhead.net";

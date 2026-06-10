@@ -106,7 +106,7 @@ in
     protontricks
     # xorg.xkill
     winetricks
-    wineWowPackages.stable
+    wineWow64Packages.stable
     os-prober
     fuseiso
     #   exfat
@@ -154,6 +154,7 @@ in
   services.yubikey-agent.enable = true;
   programs.adb.enable = true;
   virtualisation.docker.enable = true;
+  virtualisation.docker.package = pkgs.docker_29;
   hardware.sane = {
     enable = true;
     brscan4 = {

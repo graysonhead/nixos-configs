@@ -16,6 +16,7 @@
     ];
   };
   nixpkgs.config.allowUnfree = true;
+  hardware.enableRedistributableFirmware = true;
   environment = {
     systemPackages = with pkgs; [
       git

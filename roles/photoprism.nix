@@ -11,7 +11,7 @@
     };
     certs."photos.graysonhead.net" = {
       dnsProvider = "cloudflare";
-      credentialsFile = config.age.secrets.dns-acme.path;
+      environmentFile = config.age.secrets.dns-acme.path;
     };
   };
   services.nginx = {

@@ -21,8 +21,8 @@ in
     krita
     tuxtype
     tuxpaint
-    superTuxKart
-    superTux
+    supertuxkart
+    supertux
     zip
     vlc
     steam

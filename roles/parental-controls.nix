@@ -12,7 +12,7 @@
 
   security.acme.certs."parental-controls.graysonhead.net" = {
     dnsProvider = "cloudflare";
-    credentialsFile = config.age.secrets.dns-acme.path;
+    environmentFile = config.age.secrets.dns-acme.path;
   };
 
   services.nginx.virtualHosts."parental-controls.graysonhead.net" = {

@@ -50,6 +50,8 @@
     enable = true;
     viAlias = true;
     vimAlias = true;
+    withRuby = true;
+    withPython3 = true;
     coc.enable = true;
     plugins = with pkgs.vimPlugins; [
       ale
@@ -120,8 +122,8 @@
     #   . \"$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh\"
     # '';
     shellAliases = {
-      rebuild-from-dir = "nixos-rebuild build --impure --flake . && sudo ./result/bin/switch-to-configuration switch && source ~/.bashrc";
-      rebuild-from-dir-boot = "nixos-rebuild build --impure --flake . && sudo ./result/bin/switch-to-configuration boot && source ~/.bashrc";
+      rebuild-from-dir = "sudo nixos-rebuild switch --impure --flake . && source ~/.bashrc";
+      rebuild-from-dir-boot = "sudo nixos-rebuild boot --impure --flake . && source ~/.bashrc";
       dir-size = "sudo du -shx ./* | sort -h";
       bluerestic = "f(){ exportall /run/agenix/restic; restic -r b2:ghead-blue-backup -p /run/agenix/restic_password $@; }; f";
       tilt-hardreset = "tilt down && minikube delete && minikube start && tilt up";

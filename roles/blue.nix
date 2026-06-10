@@ -106,39 +106,39 @@
     };
     certs."home.graysonhead.net" = {
       dnsProvider = "cloudflare";
-      credentialsFile = config.age.secrets.dns-acme.path;
+      environmentFile = config.age.secrets.dns-acme.path;
     };
     certs."transmission.i.graysonhead.net" = {
       dnsProvider = "digitalocean";
-      credentialsFile = config.age.secrets.dns-acme.path;
+      environmentFile = config.age.secrets.dns-acme.path;
     };
     certs."zwave.i.graysonhead.net" = {
       dnsProvider = "digitalocean";
-      credentialsFile = config.age.secrets.dns-acme.path;
+      environmentFile = config.age.secrets.dns-acme.path;
     };
     certs."nodered.i.graysonhead.net" = {
       dnsProvider = "digitalocean";
-      credentialsFile = config.age.secrets.dns-acme.path;
+      environmentFile = config.age.secrets.dns-acme.path;
     };
     certs."ai.graysonhead.net" = {
       dnsProvider = "cloudflare";
-      credentialsFile = config.age.secrets.dns-acme.path;
+      environmentFile = config.age.secrets.dns-acme.path;
     };
     certs."files.graysonhead.net" = {
       dnsProvider = "cloudflare";
-      credentialsFile = config.age.secrets.dns-acme.path;
+      environmentFile = config.age.secrets.dns-acme.path;
     };
     certs."navplan.i.graysonhead.net" = {
       dnsProvider = "digitalocean";
-      credentialsFile = config.age.secrets.dns-acme.path;
+      environmentFile = config.age.secrets.dns-acme.path;
     };
     certs."llmbot-admin.i.graysonhead.net" = {
       dnsProvider = "digitalocean";
-      credentialsFile = config.age.secrets.dns-acme.path;
+      environmentFile = config.age.secrets.dns-acme.path;
     };
     certs."navplan-staging.graysonhead.net" = {
       dnsProvider = "cloudflare";
-      credentialsFile = config.age.secrets.dns-acme.path;
+      environmentFile = config.age.secrets.dns-acme.path;
     };
   };
 
