@@ -226,7 +226,7 @@ in
     profiles.default = {
       userSettings = {
         "git.enableCommitSigning" = true;
-        "workbench.colorTheme" = "Default Dark+";
+        "workbench.colorTheme" = "Dark+";
         "files.autoSave" = "afterDelay";
         "git.confirmSync" = false;
         "explorer.confirmDelete" = false;

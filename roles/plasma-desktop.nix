@@ -7,12 +7,6 @@ let
       config.allowUnfree = true;
     };
   };
-  fontsPkg = pkgs: (pkgs.runCommand "share-fonts" { preferLocalBuild = true; } ''
-    mkdir -p "$out/share/fonts"
-    font_regexp='.*\.\(ttf\|ttc\|otf\|pcf\|pfa\|pfb\|bdf\)\(\.gz\)?'
-    find ${toString (config.fonts.fonts)} -regex "$font_regexp" \
-      -exec ln -sf -t "$out/share/fonts" '{}' \;
-  '');
 in
 {
   imports = [
@@ -147,6 +141,15 @@ in
     };
   };
   services.flatpak.enable = true;
+
+  # Expose NixOS fonts to flatpak sandboxed apps via /usr/share/fonts
+  fonts.fontDir.enable = true;
+  system.fsPackages = [ pkgs.bindfs ];
+  fileSystems."/usr/share/fonts" = {
+    device = "/run/current-system/sw/share/X11/fonts";
+    fsType = "fuse.bindfs";
+    options = [ "ro" "resolve-symlinks" "x-gvfs-hide" ];
+  };
   programs.ssh.startAgent = true;
   services.usbmuxd.enable = true;
   services.pcscd.enable = true;
