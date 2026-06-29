@@ -19,6 +19,7 @@
     ./navplan_database.nix
     ./navplan.nix
     ./minecraft-server.nix
+    ./calibre.nix
   ];
   environment.systemPackages = [
   ];
@@ -56,6 +57,7 @@
       volumes = [ "/home/nodered:/data" ];
       extraOptions = [
         "--network=host"
+        "--no-healthcheck"
       ];
     };
   };
@@ -574,6 +576,16 @@
             }
             {
               name = "parental-controls";
+              record_type = "AAAA";
+              interface = internal_interface;
+            }
+            {
+              name = "calibre";
+              record_type = "A";
+              interface = "external";
+            }
+            {
+              name = "calibre";
               record_type = "AAAA";
               interface = internal_interface;
             }

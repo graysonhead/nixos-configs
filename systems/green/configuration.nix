@@ -17,6 +17,7 @@ in
     [
       ./hardware-configuration.nix
       ../../services/dns-agent.nix
+      ../../roles/sunshine.nix
     ];
   nixpkgs.overlays = [
     unstable-overlay

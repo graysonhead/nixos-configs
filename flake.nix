@@ -213,6 +213,7 @@
       deploy = {
         nodes.blue = {
           hostname = "blue.i.graysonhead.net";
+          confirmTimeout = 120;
           profiles.system = {
             user = "root";
             path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.blue;
