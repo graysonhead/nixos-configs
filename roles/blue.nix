@@ -142,6 +142,10 @@
       dnsProvider = "cloudflare";
       environmentFile = config.age.secrets.dns-acme.path;
     };
+    certs."jellyfin.graysonhead.net" = {
+      dnsProvider = "cloudflare";
+      environmentFile = config.age.secrets.dns-acme.path;
+    };
   };
 
   users.groups.acme.members = [ "nginx" ];
@@ -270,6 +274,14 @@
       forceSSL = false;
       locations."/" = {
         proxyPass = "http://127.0.0.1:8080";
+      };
+    };
+    virtualHosts."jellyfin.graysonhead.net" = {
+      useACMEHost = "jellyfin.graysonhead.net";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8096";
+        proxyWebsockets = true;
       };
     };
     virtualHosts."ai.graysonhead.net" = {
@@ -526,6 +538,16 @@
             }
             {
               name = "photos";
+              record_type = "AAAA";
+              interface = internal_interface;
+            }
+            {
+              name = "jellyfin";
+              record_type = "A";
+              interface = "external";
+            }
+            {
+              name = "jellyfin";
               record_type = "AAAA";
               interface = internal_interface;
             }

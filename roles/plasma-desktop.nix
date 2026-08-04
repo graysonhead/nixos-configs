@@ -7,6 +7,23 @@ let
       config.allowUnfree = true;
     };
   };
+  # i686 pipewire (pulled in by the bottles FHS environment) enables several
+  # optional plugins whose i686 builds are not in the binary cache, forcing
+  # local compilation of heavy deps like openblas/numpy/roc-toolkit/scons.
+  # None of these features are needed for these systems (yet).
+  no-i686-heavy-overlay = final: prev: {
+    pkgsi686Linux = prev.pkgsi686Linux.extend (_: p: {
+      pipewire = (p.pipewire.override {
+        ffadoSupport = false; # FireWire audio - not present on any machine here
+        rocSupport = false; # ROC network audio - pulls in scons/roc-toolkit
+        onnxruntimeSupport = false; # ML inference - unnecessary for Wine audio
+      }).overrideAttrs (old: {
+        # libcamera must be disabled at the meson level too, not just removed from inputs
+        buildInputs = builtins.filter (x: (x.pname or "") != "libcamera") (old.buildInputs or [ ]);
+        mesonFlags = (old.mesonFlags or [ ]) ++ [ "-Dlibcamera=disabled" ];
+      });
+    });
+  };
 in
 {
   imports = [
@@ -29,6 +46,7 @@ in
   };
   nixpkgs.overlays = [
     unstable-overlay
+    no-i686-heavy-overlay
   ];
 
   system.nssDatabases.hosts = (lib.mkMerge [
@@ -240,6 +258,18 @@ in
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber.extraConfig = {
+      # libcamera's UVC pipeline handler segfaults/aborts probing the
+      # Logitech C925e; it's only needed for MIPI/CSI sensors anyway, not
+      # standard UVC webcams, so just disable the monitor.
+      "51-disable-libcamera" = {
+        "wireplumber.profiles" = {
+          main = {
+            "monitor.libcamera" = "disabled";
+          };
+        };
+      };
+    };
   };
 
   nixpkgs.config.permittedInsecurePackages = [

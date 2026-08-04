@@ -122,8 +122,8 @@
     #   . \"$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh\"
     # '';
     shellAliases = {
-      rebuild-from-dir = "sudo nixos-rebuild switch --impure --flake . && source ~/.bashrc";
-      rebuild-from-dir-boot = "sudo nixos-rebuild boot --impure --flake . && source ~/.bashrc";
+      rebuild-from-dir = "sudo nixos-rebuild switch --impure --flake .#$(hostname) && source ~/.bashrc";
+      rebuild-from-dir-boot = "sudo nixos-rebuild boot --impure --flake .#$(hostname) && source ~/.bashrc";
       dir-size = "sudo du -shx ./* | sort -h";
       bluerestic = "f(){ exportall /run/agenix/restic; restic -r b2:ghead-blue-backup -p /run/agenix/restic_password $@; }; f";
       tilt-hardreset = "tilt down && minikube delete && minikube start && tilt up";

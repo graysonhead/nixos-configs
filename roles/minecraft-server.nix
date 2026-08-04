@@ -12,7 +12,7 @@
     eula = true;
     servers.fabric = {
       enable = true;
-      package = pkgs.fabricServers.fabric.override { jre_headless = pkgs.jdk25_headless; };
+      package = pkgs.fabricServers.fabric-26_1_2.override { jre_headless = pkgs.jdk25_headless; };
       openFirewall = true;
       serverProperties = {
         server-port = 25565;
