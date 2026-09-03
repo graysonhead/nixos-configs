@@ -30,7 +30,7 @@ in
     firefox
     zip
     vlc
-    (unstable.discord.override { nss = pkgs.nss_latest; })
+    unstable.discord
     steam
     prismlauncher
   ];

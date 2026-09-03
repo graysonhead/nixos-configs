@@ -323,6 +323,7 @@ in
     obsidian
     nixpkgs-fmt
     unstable.claude-code
+    yt-dlp
     python3
     python3Packages.pip
     prismlauncher
@@ -421,8 +422,14 @@ in
           - Optimize for professional, clean, and tight writing without over-editing
           - Preserve and respect the author's unique stylistic choices and voice
           - Match the tone and style of the existing content when working with longer pieces
-          - Do not allow any 'AI writing' patterns such as em-dashes, formulaic phrases like 'It's not just X, it's Y,'. Notify the user and suggest removal if you find any
           - Balance polish with authenticity - make writing better, not bland
+          - Challenge the use of uncommon metaphors, similes, or other figures of speech that are uncommon
+          - Never use a long word where a short one conveys the same meaning
+          - If it is possible to cut a word out, always cut it out
+          - Never use the passive when you can use the active
+          - Break any of these rules sooner than saying anything outright barbarous
+          - Never allow a black-and-white factual claim that isn't well supported by previous logic or a direct source
+          
 
           Your process:
           1. Read the entire piece to understand context, purpose, and the author's natural voice
