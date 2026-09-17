@@ -6,9 +6,13 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    ollama
     rocmPackages.rocminfo
   ];
+
+  services.ollama = {
+    enable = true;
+    package = pkgs.ollama-rocm;
+  };
 
   # Environment variables for AMD acceleration
   environment.variables = {

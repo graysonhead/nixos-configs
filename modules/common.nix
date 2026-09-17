@@ -15,6 +15,10 @@
       "https://simula.cachix.org"
     ];
   };
+  # crates.io blocks the default curl user-agent used by nixpkgs' fetchurl
+  # builder for fixed-output derivations (e.g. Cargo.lock crate downloads),
+  # returning 403. A descriptive user-agent avoids the block.
+  systemd.services.nix-daemon.environment.NIX_CURL_FLAGS = "--user-agent graysonhead-nixos-configs-nix-fetch/1.0";
   nixpkgs.config.allowUnfree = true;
   hardware.enableRedistributableFirmware = true;
   environment = {

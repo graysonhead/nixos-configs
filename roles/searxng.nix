@@ -48,6 +48,18 @@
         default_lang = "en-US";
         formats = [ "html" "json" ];
       };
+      engines = [
+        {
+          name = "brave";
+          disabled = true;
+        }
+        {
+          name = "braveapi";
+          engine = "braveapi";
+          api_key = "$BRAVE_API_KEY";
+          inactive = false;
+        }
+      ];
     };
     environmentFile = "/run/secrets/searxng-environment";
   };

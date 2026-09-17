@@ -19,6 +19,7 @@
     ./navplan_database.nix
     ./navplan.nix
     ./minecraft-server.nix
+    ./minecraft-server-createfly.nix
     ./calibre.nix
   ];
   environment.systemPackages = [
@@ -143,6 +144,14 @@
       environmentFile = config.age.secrets.dns-acme.path;
     };
     certs."jellyfin.graysonhead.net" = {
+      dnsProvider = "cloudflare";
+      environmentFile = config.age.secrets.dns-acme.path;
+    };
+    certs."minecraft.graysonhead.net" = {
+      dnsProvider = "cloudflare";
+      environmentFile = config.age.secrets.dns-acme.path;
+    };
+    certs."create.graysonhead.net" = {
       dnsProvider = "cloudflare";
       environmentFile = config.age.secrets.dns-acme.path;
     };
@@ -281,6 +290,22 @@
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://127.0.0.1:8096";
+        proxyWebsockets = true;
+      };
+    };
+    virtualHosts."minecraft.graysonhead.net" = {
+      useACMEHost = "minecraft.graysonhead.net";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8100";
+        proxyWebsockets = true;
+      };
+    };
+    virtualHosts."create.graysonhead.net" = {
+      useACMEHost = "create.graysonhead.net";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8101";
         proxyWebsockets = true;
       };
     };
@@ -608,6 +633,16 @@
             }
             {
               name = "calibre";
+              record_type = "AAAA";
+              interface = internal_interface;
+            }
+            {
+              name = "create";
+              record_type = "A";
+              interface = "external";
+            }
+            {
+              name = "create";
               record_type = "AAAA";
               interface = internal_interface;
             }

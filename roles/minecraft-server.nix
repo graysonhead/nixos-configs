@@ -39,6 +39,10 @@
             url = "https://cdn.modrinth.com/data/Si383TIH/versions/sOppWAjh/flan-26.1.2-1.12.7-fabric.jar";
             sha512 = "80f2decccc3dc29304ef0c03e4cebde385bc9ab6e6b0beb60282b6482bdc879cfddb6bd2d2d2f5b79397354c6568b17d7d31e6e8a8bedb3a462c640953684928";
           };
+          BlueMap = pkgs.fetchurl {
+            url = "https://cdn.modrinth.com/data/swbUV1cr/versions/bR8uae8S/bluemap-5.23-fabric.jar";
+            sha512 = "7997e47e89ddf69ccea187f8b2e52a278c9d4d3e77636f06b581e7166b7549f7c900d0867a827b81eb54823d804d4d422d040788a530559f27410a539450a91e";
+          };
         });
       };
       files."ops.json".value = [
@@ -49,6 +53,12 @@
           bypassesPlayerLimit = false;
         }
       ];
+      # Accepts Mojang's EULA for BlueMap to download the Minecraft client
+      # resources (textures/models) it needs to render the map.
+      files."config/bluemap/core.conf" = {
+        format = pkgs.formats.yaml { };
+        value.accept-download = true;
+      };
     };
   };
 }
