@@ -328,6 +328,7 @@ in
     python3Packages.pip
     prismlauncher
     picotool
+    opencode
     # (python311.withPackages (ps: with ps; [
     #   requests
     #   pip

@@ -38,6 +38,9 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     parental-controls.url = "github:graysonhead/parental-controls";
+    beehive = {
+      url = "git+ssh://git@github.com/graysonhead/beehive?ref=nix-flake";
+    };
   };
   outputs =
     { self
@@ -89,6 +92,7 @@
             ./roles/factorio-server.nix
             ./roles/llmbot.nix
             ./roles/parental-controls.nix
+            ./roles/beehived.nix
           ];
           specialArgs = { inherit inputs navplan; };
         };
@@ -119,6 +123,7 @@
             agenix.nixosModules.age
             inputs.nixos-hardware.nixosModules.framework-13-7040-amd
             ./home-manager/full-homes.nix
+            ./home-manager/laptop-power.nix
             ./roles/plasma-desktop.nix
             ./systems/skippy/configuration.nix
             ./roles/libvirt.nix
@@ -138,6 +143,7 @@
             agenix.nixosModules.age
             inputs.nixos-hardware.nixosModules.dell-precision-5530
             ./home-manager/full-homes.nix
+            ./home-manager/laptop-power.nix
             ./roles/plasma-desktop.nix
             ./systems/notanipad/configuration.nix
             ./roles/laptop.nix
@@ -162,6 +168,7 @@
             ./roles/steam.nix
             ./roles/head-tracking.nix
             ./roles/drone_gcs.nix
+            ./roles/beehive-honeybee.nix
           ];
           specialArgs = { inherit inputs; };
         };

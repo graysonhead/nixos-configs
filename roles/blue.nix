@@ -139,6 +139,10 @@
       dnsProvider = "digitalocean";
       environmentFile = config.age.secrets.dns-acme.path;
     };
+    certs."beehive.i.graysonhead.net" = {
+      dnsProvider = "digitalocean";
+      environmentFile = config.age.secrets.dns-acme.path;
+    };
     certs."navplan-staging.graysonhead.net" = {
       dnsProvider = "cloudflare";
       environmentFile = config.age.secrets.dns-acme.path;
@@ -478,6 +482,16 @@
             }
             {
               name = "llmbot-admin";
+              record_type = "AAAA";
+              interface = internal_interface;
+            }
+            {
+              name = "beehive";
+              record_type = "A";
+              interface = internal_interface;
+            }
+            {
+              name = "beehive";
               record_type = "AAAA";
               interface = internal_interface;
             }

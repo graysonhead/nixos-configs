@@ -35,4 +35,7 @@ in
   "llmbot-discord-token.age".publicKeys = users ++ systems;
   "llmbot-system-message.age".publicKeys = users ++ systems;
   "searxng-environment.age".publicKeys = users ++ systems;
+  # Shared across all hosts (not host-restricted) so any current or future
+  # beehive/honeybee machine can decrypt it without minting a new key.
+  "beehive-deploy-key.age".publicKeys = users ++ systems;
 }
