@@ -160,6 +160,10 @@ in
   };
   services.flatpak.enable = true;
 
+  # Default monospace to a Nerd Font so terminal prompts (starship) get their icons
+  fonts.packages = [ pkgs.nerd-fonts.hack ];
+  fonts.fontconfig.defaultFonts.monospace = [ "Hack Nerd Font Mono" ];
+
   # Expose NixOS fonts to flatpak sandboxed apps via /usr/share/fonts
   fonts.fontDir.enable = true;
   system.fsPackages = [ pkgs.bindfs ];

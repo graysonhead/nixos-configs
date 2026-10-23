@@ -32,6 +32,10 @@ in
       command = "obsidian";
     };
     session.sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
+    fonts.fixedWidth = {
+      family = "Hack Nerd Font Mono";
+      pointSize = 10;
+    };
 
   };
 
@@ -262,6 +266,20 @@ in
       ];
     };
   };
+  # Manages ~/.config/obsidian/obsidian.json with updateDisabled = true so the
+  # Nix-provided version (and its .desktop file) is what actually runs.
+  programs.obsidian.enable = true;
+  programs.obsidian.package = pkgs.obsidian.overrideAttrs (old: {
+    # Upstream's desktop file is obsidian.desktop with StartupWMClass=md.Obsidian,
+    # but the Wayland app_id is md.obsidian.Obsidian, so KDE shows a generic icon
+    # and doesn't group the window with its launcher.
+    postInstall = (old.postInstall or "") + ''
+      mv $out/share/applications/obsidian.desktop $out/share/applications/md.obsidian.Obsidian.desktop
+      substituteInPlace $out/share/applications/md.obsidian.Obsidian.desktop \
+        --replace-fail "StartupWMClass=md.Obsidian" "StartupWMClass=md.obsidian.Obsidian"
+    '';
+  });
+
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
@@ -320,7 +338,6 @@ in
     vulkan-tools
     git-lfs
     unstable.devenv
-    obsidian
     nixpkgs-fmt
     unstable.claude-code
     yt-dlp
@@ -356,6 +373,19 @@ in
     profiles."default" = {
       isDefault = true;
       settings = sharedCalendars.sharedCalendars { use24HourFormat = true; };
+      extensions = [
+        # https://addons.thunderbird.net/en-us/thunderbird/addon/betterunsubscribe/
+        (pkgs.runCommand "thunderbird-betterunsubscribe-2.9.1"
+          {
+            src = pkgs.fetchurl {
+              url = "https://addons.thunderbird.net/thunderbird/downloads/file/1046526/betterunsubscribe-2.9.1-tb.xpi";
+              sha256 = "400e337878f51edd6c5e7eb24b252ab37fdc37a98aa622ac3cd803d7963377a0";
+            };
+          } ''
+          install -Dm644 "$src" \
+            "$out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/{4753278b-acea-4b2b-a111-1fc9450d239d}.xpi"
+        '')
+      ];
     };
   };
 

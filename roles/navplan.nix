@@ -15,6 +15,10 @@
 
     # Database configuration (peer authentication via Unix socket)
     databaseUrl = "postgresql:///navplan?host=/run/postgresql";
+
+    # Browser-facing landable-area raster + manifest.json published by the
+    # pipeline runner's stage 4 (served under /tiles).
+    rasterDirectory = "/encrypted_storage/data/navplan/raster";
   };
 
   services.navplan.pipeline-runner = {
@@ -27,6 +31,11 @@
 
     # Database configuration (peer authentication via Unix socket)
     databaseUrl = "postgresql://localhost/navplan?host=/run/postgresql";
+
+    # Per-tile rasters go in rasterDirectory/dem/, and the browser-facing
+    # COG + manifest.json are published to rasterDirectory itself. Point
+    # the webserver's rasterDirectory (above) at the same path.
+    rasterDirectory = "/encrypted_storage/data/navplan/raster";
 
     # Pipeline parameters
     maxSlope = 8.0; # Maximum slope percentage for landable areas

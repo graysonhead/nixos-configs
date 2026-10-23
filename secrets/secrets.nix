@@ -38,4 +38,8 @@ in
   # Shared across all hosts (not host-restricted) so any current or future
   # beehive/honeybee machine can decrypt it without minting a new key.
   "beehive-deploy-key.age".publicKeys = users ++ systems;
+  # Password for the navplan postgres role's network (scram-sha-256) auth.
+  # Shared across all hosts so any LAN machine can be temporarily deputized
+  # as a navplan-worker (see roles/navplan-worker.nix).
+  "navplan-db-password.age".publicKeys = users ++ systems;
 }

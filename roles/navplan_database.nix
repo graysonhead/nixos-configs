@@ -42,6 +42,30 @@
   # The navplan user and group are created by the service modules
   # (webserver.nix and pipeline-runner.nix), so we don't need to create them here
 
+  # Password for the navplan role, used for scram-sha-256 network auth by
+  # any machine temporarily running roles/navplan-worker.nix. Local peer
+  # auth (used by blue's own webserver/pipeline-runner) doesn't need this.
+  age.secrets.navplan-db-password = {
+    file = ../secrets/navplan-db-password.age;
+    mode = "0440";
+    owner = "postgres";
+  };
+
+  systemd.services.navplan-set-db-password = {
+    description = "Set navplan postgres role password from agenix secret";
+    after = [ "postgresql.service" ];
+    requires = [ "postgresql.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      User = "postgres";
+    };
+    script = ''
+      ${config.services.postgresql.package}/bin/psql -c \
+        "ALTER ROLE navplan WITH PASSWORD '$(cat ${config.age.secrets.navplan-db-password.path})'"
+    '';
+  };
+
   # Open PostgreSQL port on firewall
   networking.firewall.allowedTCPPorts = [ 5432 ];
 }
