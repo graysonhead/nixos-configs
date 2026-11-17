@@ -270,13 +270,11 @@ in
   # Nix-provided version (and its .desktop file) is what actually runs.
   programs.obsidian.enable = true;
   programs.obsidian.package = pkgs.obsidian.overrideAttrs (old: {
-    # Upstream's desktop file is obsidian.desktop with StartupWMClass=md.Obsidian,
-    # but the Wayland app_id is md.obsidian.Obsidian, so KDE shows a generic icon
-    # and doesn't group the window with its launcher.
+    # Upstream's desktop file is obsidian.desktop, but the Wayland app_id is
+    # md.obsidian.Obsidian, so KDE shows a generic icon and doesn't group the
+    # window with its launcher unless the desktop file id matches.
     postInstall = (old.postInstall or "") + ''
       mv $out/share/applications/obsidian.desktop $out/share/applications/md.obsidian.Obsidian.desktop
-      substituteInPlace $out/share/applications/md.obsidian.Obsidian.desktop \
-        --replace-fail "StartupWMClass=md.Obsidian" "StartupWMClass=md.obsidian.Obsidian"
     '';
   });
 
@@ -338,6 +336,7 @@ in
     vulkan-tools
     git-lfs
     unstable.devenv
+    ventoy
     nixpkgs-fmt
     unstable.claude-code
     yt-dlp
@@ -346,6 +345,7 @@ in
     prismlauncher
     picotool
     opencode
+    uv
     # (python311.withPackages (ps: with ps; [
     #   requests
     #   pip

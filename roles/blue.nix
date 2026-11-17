@@ -147,6 +147,10 @@
       dnsProvider = "cloudflare";
       environmentFile = config.age.secrets.dns-acme.path;
     };
+    certs."fin.graysonhead.net" = {
+      dnsProvider = "cloudflare";
+      environmentFile = config.age.secrets.dns-acme.path;
+    };
     certs."jellyfin.graysonhead.net" = {
       dnsProvider = "cloudflare";
       environmentFile = config.age.secrets.dns-acme.path;
@@ -627,6 +631,16 @@
             }
             {
               name = "navplan-staging";
+              record_type = "AAAA";
+              interface = internal_interface;
+            }
+            {
+              name = "fin";
+              record_type = "A";
+              interface = "external";
+            }
+            {
+              name = "fin";
               record_type = "AAAA";
               interface = internal_interface;
             }

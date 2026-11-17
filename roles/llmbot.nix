@@ -15,6 +15,10 @@
     enable = true;
     environmentFile = config.age.secrets.llmbot-environment.path;
     model = "claude-haiku-4-5";
+    plugins.parental-controls = {
+      package = inputs.parental-controls.lib.llmbotPlugin;
+      settings.url = "http://${config.services.parental-controls.host}:${toString config.services.parental-controls.port}";
+    };
   };
 
   systemd.services.llmbot.environment = {

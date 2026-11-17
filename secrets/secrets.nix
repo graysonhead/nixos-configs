@@ -42,4 +42,7 @@ in
   # Shared across all hosts so any LAN machine can be temporarily deputized
   # as a navplan-worker (see roles/navplan-worker.nix).
   "navplan-db-password.age".publicKeys = users ++ systems;
+  "github-runner-token.age".publicKeys = users ++ [ blue ];
+  # SimpleFIN access URL (bank-data credential), so blue only.
+  "fin-environment.age".publicKeys = users ++ [ blue ];
 }

@@ -28,6 +28,7 @@ in
 {
   imports = [
     ../modules/common.nix
+    ../modules/claude-desktop.nix
     ../modules/probe-rs-udev.nix
     ../modules/picotool-udev.nix
     ../services/syncthing.nix
@@ -281,6 +282,8 @@ in
     "qtwebengine-5.15.19"
     # bitwarden-desktop 2026.5.0 depends on electron-39 (EOL); remove when upstream updates
     "electron-39.8.10"
+    # ventoy ships unauditable prebuilt binary blobs; nixpkgs flags it insecure for that
+    "ventoy-1.1.12"
   ];
 
   # Set limits for esync.

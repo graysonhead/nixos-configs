@@ -19,6 +19,8 @@
   # builder for fixed-output derivations (e.g. Cargo.lock crate downloads),
   # returning 403. A descriptive user-agent avoids the block.
   systemd.services.nix-daemon.environment.NIX_CURL_FLAGS = "--user-agent graysonhead-nixos-configs-nix-fetch/1.0";
+  # Enables running generic Linux binaries
+  programs.nix-ld.enable = true;
   nixpkgs.config.allowUnfree = true;
   hardware.enableRedistributableFirmware = true;
   environment = {

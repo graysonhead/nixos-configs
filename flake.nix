@@ -33,11 +33,19 @@
       url = "git+ssh://git@github.com/graysonhead/fieldfinder";
       # Not following nixpkgs: gdal Rust crate incompatible with nixpkgs 26.05 GDAL version
     };
+    fin.url = "git+ssh://git@github.com/graysonhead/fin";
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    parental-controls.url = "github:graysonhead/parental-controls";
+    parental-controls = {
+      url = "github:graysonhead/parental-controls";
+      inputs.llmbot.follows = "llmbot";
+    };
+    claude-desktop = {
+      url = "github:aaddrick/claude-desktop-debian";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     beehive = {
       url = "git+ssh://git@github.com/graysonhead/beehive?ref=nix-flake";
     };
@@ -93,6 +101,8 @@
             ./roles/llmbot.nix
             ./roles/parental-controls.nix
             ./roles/beehived.nix
+            ./roles/github-runner.nix
+            ./roles/fin.nix
           ];
           specialArgs = { inherit inputs navplan; };
         };

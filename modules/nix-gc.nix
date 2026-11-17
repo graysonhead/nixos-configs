@@ -29,5 +29,13 @@ in
     options = "--delete-older-than 30d";
   };
 
+  # The timer above only runs nightly, so a burst of builds (deploys, CI
+  # runners) can still fill the disk. When free space drops below min-free
+  # during a build, nix collects garbage until max-free is available.
+  nix.settings = {
+    min-free = 5 * 1024 * 1024 * 1024;
+    max-free = 20 * 1024 * 1024 * 1024;
+  };
+
   environment.systemPackages = [ nix-store-cleanup ];
 }
